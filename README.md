@@ -20,14 +20,14 @@
    ```
 ## Views
 
-### Desktop View
-![Desktop View](./src/assets/main-page.pngg)
-![Desktop View](./src/assets/service-page.png)
-![Desktop View](./src/assets/privacy-page.png)
+| Desktop - Main | Mobile View |
+|:---:|:---:|
+| ![Desktop View](./src/assets/main-page.png) | ![Mobile View](./src/assets/mobile.png) |
 
+| Desktop - Privacy | Desktop - Service |
+|:---:|:---:|
+| ![Desktop View](./src/assets/privacy-page.png) | ![Desktop View](./src/assets/service-page.png) |
 
-### Mobile View
-![Mobile View](./src/assets/mobile.png)
 
 ## Technologies Used
 
