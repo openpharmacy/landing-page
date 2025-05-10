@@ -35,10 +35,6 @@
 - Tailwind CSS
 - React Router DOM
 
-## Navigate to project directory
-
-cd landing-page
-
 ## Install dependencies
 
 npm install
