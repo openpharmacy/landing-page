@@ -8,7 +8,7 @@ import { content } from "../data/Content";
 
 function Main() {
   return (
-    <div className="bg-[#1c2632] text-white px-4 sm:px-8 md:px-16 md:pr-0 py-4">
+    <div className="min-h-screen bg-[#1c2632] text-white px-4 sm:px-8 md:px-16 md:pr-0 py-4">
       <NavBar />
 
       <main className="mt-16 md:mt-20">
