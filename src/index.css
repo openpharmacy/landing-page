@@ -1,0 +1,12 @@
+@import "tailwindcss";
+
+@font-face {
+  font-family: "Grifter";
+  src: url("/grifterbold.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@theme {
+  --font-grifter: Grifter, sans-serif;
+}
