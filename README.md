@@ -14,6 +14,15 @@
      // ... other content
    };
    ```
+## Views
+
+### Desktop View
+![Desktop View](https://github.com/Openpharmacy/landing-page/src/assets/main-page.png)
+![Desktop View](https://github.com/Openpharmacy/landing-page/src/assets/service-page.png)
+![Desktop View](https://github.com/Openpharmacy/landing-page/src/assets/privacy-page.png)
+
+### Mobile View
+![Mobile View](https://github.com/Openpharmacy/landing-page/assets/...mobile-view.png)
 
 ## Technologies Used
 
