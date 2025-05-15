@@ -6,10 +6,4 @@ export const content = {
   description: {
     text: "Your secure digital wallet for Australian electronic prescriptions, fully compliant with ADHA standards. Its robust security simplifies storing, accessing, and sharing your scripts with ease. Enjoy seamless prescription management.",
   },
-  privacyPolicy: {
-    text: "Effective Date: May 2025 ",
-  },
-  termsOfService: {
-    text: "Effective Date: May 2025.",
-  },
 };
