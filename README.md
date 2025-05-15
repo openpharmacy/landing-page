@@ -5,25 +5,35 @@
    ```javascript
    export const content = {
      heading: {
-       line1: "Your Heading",
-       line2: "Second Line",
+       line1: "Digital Scripts,",
+       line2: "Done Right",
      },
      description: {
-       text: "Your description text",
+       text: "Your secure digital wallet for Australian electronic prescriptions, fully compliant with ADHA standards. Its robust security simplifies storing, accessing, and sharing your scripts with ease. Enjoy seamless prescription management.",
      },
-     // ... other content
-   };
+     privacyPolicy: {
+       text: "Effective Date: May 2025 ",
+     },
+     termsOfService: {
+       text: "Effective Date: May 2025.",
+     },
    ```
+## Views
+
+| Desktop - Main | Mobile View |
+|:---:|:---:|
+| ![Desktop View](./src/assets/main-page.png) | ![Mobile View](./src/assets/mobile.png) |
+
+| Desktop - Privacy | Desktop - Service |
+|:---:|:---:|
+| ![Desktop View](./src/assets/privacy-page.png) | ![Desktop View](./src/assets/service-page.png) |
+
 
 ## Technologies Used
 
 - React + Vite
 - Tailwind CSS
 - React Router DOM
-
-## Navigate to project directory
-
-cd landing-page
 
 ## Install dependencies
 
