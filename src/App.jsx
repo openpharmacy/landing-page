@@ -7,13 +7,11 @@ import TermsOfService from "./pages/TermsOfService";
 
 function App() {
   return (
-    <BrowserRouter basename="/landing-page">
-      <Routes>
-        <Route path="/" element={<Main />} />
-        <Route path="/privacy-policy" element={<PrivacyPolicy />} />
-        <Route path="/terms-of-service" element={<TermsOfService />} />
-      </Routes>
-    </BrowserRouter>
+    <Routes>
+      <Route path="/" element={<Main />} />
+      <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+      <Route path="/terms-of-service" element={<TermsOfService />} />
+    </Routes>
   );
 }
 
