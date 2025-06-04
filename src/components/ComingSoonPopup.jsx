@@ -4,12 +4,12 @@ const ComingSoonPopup = ({ isOpen, onClose }) => {
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+    <div className="fixed inset-0 backdrop-blur-sm bg-black/30 flex items-center justify-center z-50">
       <div className="bg-[#2A3543] rounded-2xl p-6 max-w-sm w-full mx-4">
         <div className="text-center">
           <h3 className="text-xl font-semibold mb-2">Coming Soon!</h3>
           <p className="text-gray-300 mb-4">
-            Our app will be available shortly. Stay tuned!
+            Our app will be available shortly.
           </p>
           <button
             onClick={onClose}
