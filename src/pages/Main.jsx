@@ -1,12 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
 import AppStore from "../assets/Appstore.png";
 import GooglePlay from "../assets/GooglePlay.png";
 import PhoneImage from "../assets/iPhone 14.png";
 import NavBar from "../components/NavBar";
 import Footer from "../components/Footer";
+import ComingSoonPopup from "../components/ComingSoonPopup";
 import { content } from "../data/Content";
 
 function Main() {
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
+
+  const handleStoreClick = (e) => {
+    e.preventDefault();
+    setIsPopupOpen(true);
+  };
+
   return (
     <div className="min-h-screen bg-[#1c2632] text-white px-4 sm:px-8 md:px-16 md:pr-0 py-4">
       <NavBar />
@@ -33,14 +41,22 @@ function Main() {
               {content.description.text}
             </p>
             <div className="flex justify-center md:justify-start gap-4">
-              <a href="#" className="hover:opacity-90 transition-opacity">
+              <a
+                href="#"
+                onClick={handleStoreClick}
+                className="hover:opacity-90 transition-opacity"
+              >
                 <img
                   src={AppStore}
                   alt="Download on the App Store"
                   className="h-12 md:h-14"
                 />
               </a>
-              <a href="#" className="hover:opacity-90 transition-opacity">
+              <a
+                href="#"
+                onClick={handleStoreClick}
+                className="hover:opacity-90 transition-opacity"
+              >
                 <img
                   src={GooglePlay}
                   alt="Get it on Google Play"
@@ -58,6 +74,11 @@ function Main() {
           </div>
         </div>
       </main>
+
+      <ComingSoonPopup
+        isOpen={isPopupOpen}
+        onClose={() => setIsPopupOpen(false)}
+      />
 
       <Footer />
     </div>

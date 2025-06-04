@@ -13,7 +13,7 @@ const NavBar = () => {
         />
       </Link>
       <a
-        href="mailto:jeanmarc.wicht@gmail.com"
+        href="mailto:hello@openpharmacy.com"
         className="bg-[#F67C37] text-white text-base lg:text-lg px-4 lg:px-7 py-1.5 lg:py-2 rounded-full hover:opacity-90 transition-opacity"
       >
         Contact
