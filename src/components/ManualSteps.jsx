@@ -1,4 +1,5 @@
 import React from "react";
+import { motion } from "framer-motion";
 
 function ManualSteps({ steps }) {
   return (
@@ -8,7 +9,7 @@ function ManualSteps({ steps }) {
           key={idx}
           className={`w-full flex flex-col md:flex-row ${
             idx % 2 === 1 ? "md:flex-row-reverse" : ""
-          } items-center mb-16 md:mb-24`}
+          } items-start mb-16 md:mb-24`}
         >
           {/* text box */}
           <div
