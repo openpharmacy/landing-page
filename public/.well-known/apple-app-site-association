@@ -1,0 +1,11 @@
+{
+  "applinks": {
+    "apps": [],
+    "details": [
+      {
+        "appID": "NGD95AZ7PS.com.openpharmacy.test",
+        "paths": ["/scripts/*"]
+      }
+    ]
+  }
+}
