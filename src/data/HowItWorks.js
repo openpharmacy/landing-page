@@ -14,17 +14,17 @@ import automaticStep4 from "../assets/automatic_4.svg";
 export const easySteps = [
   {
     title: "Download & Sign Up",
-    desc: "Get started by downloading the app and creating your account.",
+    desc: "Download OpenPharmacy free from Google Play or App Store and sign up in minutes.",
     img: step1,
   },
   {
     title: "Add Your eScripts",
-    desc: "Have a quick consultation with a doctor or pharmacist.",
+    desc: "Click the eScript link or paste the token sent to your phone or email from your doctor or pharmacy.",
     img: step2,
   },
   {
     title: "Stay in Control",
-    desc: "Access your eScript directly and get ready to take the next step.",
+    desc: "Securely view, manage, and share your eScripts anytime, anywhere - all in one convenient, trusted app.",
     img: step3,
   },
 ];
@@ -54,8 +54,8 @@ export const automaticSteps = [
     img: automaticStep1,
   },
   {
-    title: "Get ASL Active List code",
-    desc: "After you approve the text message to share your ASL with the pharmacy, you'll receive your ASL code (e.g., 123-ABCD), which you can use to connect it to OpenPharmacy.",
+    title: "Get ASL Activation code",
+    desc: "After you approve the text message to share your ASL with the pharmacy, you'll receive your ASL code (e.g., XYZ-5678), which you can use to connect it to OpenPharmacy.",
     img: automaticStep2,
   },
   {

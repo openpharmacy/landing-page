@@ -45,7 +45,7 @@ function FAQ() {
                 onClick={() => handleCategoryChange(category)}
                 className={`inline-block px-4 py-2 rounded-full text-sm lg:text-base transition-colors cursor-pointer ${
                   selectedCategory === category
-                    ? "bg-[#F67C37] text-white"
+                    ? "bg-[#37B5FE] text-white"
                     : "text-white/60 hover:text-white"
                 }`}
               >

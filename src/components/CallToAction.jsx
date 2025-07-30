@@ -17,7 +17,7 @@ const CallToAction = () => {
         Ready to simplify your prescriptions?
       </h2>
       <p className="text-lg md:text-xl mb-8">
-        Download <span className="text-[#F67C37]">OpenPharmacy</span> today!
+        Download <span className="text-[#37B5FE]">OpenPharmacy</span> today!
       </p>
       <div className="flex justify-center gap-4">
         <a

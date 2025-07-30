@@ -43,7 +43,7 @@ const NavBar = () => {
         {/* Desktop Contact button */}
         <a
           href="mailto:hello@openpharmacy.com"
-          className="hidden md:block bg-[#F67C37] text-white text-base lg:text-lg px-4 lg:px-7 py-1.5 lg:py-2 rounded-full hover:opacity-90 transition-opacity"
+          className="hidden md:block bg-[#37B5FE] text-white text-base lg:text-lg px-4 lg:px-7 py-1.5 lg:py-2 rounded-full hover:opacity-90 transition-opacity"
         >
           Contact
         </a>
@@ -115,7 +115,7 @@ const NavBar = () => {
           <a
             href="mailto:hello@openpharmacy.com"
             onClick={() => setMenuOpen(false)}
-            className="bg-[#F67C37] text-white text-base px-4 py-2 rounded-full hover:opacity-90 transition-opacity w-full text-center"
+            className="bg-[#37B5FE] text-white text-base px-4 py-2 rounded-full hover:opacity-90 transition-opacity w-full text-center"
           >
             Contact
           </a>

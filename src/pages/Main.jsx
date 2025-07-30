@@ -29,7 +29,7 @@ function Main() {
       <Layout noRightPadding>
         <div className="relative w-full">
           <div className="hidden md:flex md:items-center md:gap-3 mb-6 md:mb-10">
-            <span className="bg-[#F67C37] font-extralight px-2 md:px-3.5 py-1 rounded-3xl text-xs md:text-sm">
+            <span className="bg-[#37B5FE] font-extralight px-2 md:px-3.5 py-1 rounded-3xl text-xs md:text-sm">
               v1.01
             </span>
             <span className="font-sans font-extralight text-sm md:text-base">

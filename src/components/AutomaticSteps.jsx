@@ -17,7 +17,7 @@ function AutomaticSteps({ steps }) {
       >
         <h2 className="text-3xl md:text-4xl font-extrabold text-center rounded-xl px-6 py-4 shadow-lg">
           Want to manage all your scripts{" "}
-          <span className="text-[#F67C37]">automatically?</span>
+          <span className="text-[#37B5FE]">automatically?</span>
         </h2>
       </motion.div>
 
@@ -32,7 +32,7 @@ function AutomaticSteps({ steps }) {
           {/* Title (Left) */}
           <h2 className="text-2xl md:text-3xl font-bold mb-4 md:mb-0 text-white text-center md:text-left md:w-1/2">
             Say Hello to the{" "}
-            <span className="text-[#F67C37]">
+            <span className="text-[#37B5FE]">
               Active Script
               <br className="hidden md:inline" /> List (ASL)
             </span>
@@ -42,7 +42,7 @@ function AutomaticSteps({ steps }) {
             Also known as My Script List (MySL), ASL is a government-approved
             system
             <br className="hidden md:inline" />
-            that pulls all your active scripts and repeats—both paper
+            that pulls all your active scripts and repeats — both paper
             <br className="hidden md:inline" />
             and electronic into one easy-to-manage list.
           </p>
@@ -50,7 +50,7 @@ function AutomaticSteps({ steps }) {
         {/* Timeline Line (starts after card) and steps */}
         <div className="relative">
           <div
-            className="hidden md:block absolute left-1/2 top-0 h-full w-0.5 bg-[#F67C37] z-0"
+            className="hidden md:block absolute left-1/2 top-0 h-full w-0.5 bg-[#37B5FE] z-0"
             style={{ transform: "translateX(-50%)" }}
           />
           {steps.map((step, idx) => (
@@ -66,7 +66,7 @@ function AutomaticSteps({ steps }) {
                   transform: "translate(-50%, -50%)",
                 }}
               >
-                <div className="bg-[#F67C37] text-white rounded-full w-10 h-10 flex items-center justify-center font-bold text-base border-4 border-[#1c2632]">
+                <div className="bg-[#37B5FE] text-white rounded-full w-10 h-10 flex items-center justify-center font-bold text-base border-4 border-[#1c2632]">
                   {idx + 1}
                 </div>
               </div>
@@ -89,7 +89,7 @@ function AutomaticSteps({ steps }) {
                 }`}
               >
                 <div className="bg-[#263040] rounded-lg p-6 min-w-[200px] max-w-md flex flex-col items-start gap-2 shadow-lg">
-                  <div className="md:hidden bg-[#F67C37] text-white rounded-full w-8 h-8 flex items-center justify-center font-bold text-sm mb-2">
+                  <div className="md:hidden bg-[#37B5FE] text-white rounded-full w-8 h-8 flex items-center justify-center font-bold text-sm mb-2">
                     {idx + 1}
                   </div>
                   <h3 className="font-semibold mb-1 text-lg md:text-xl">

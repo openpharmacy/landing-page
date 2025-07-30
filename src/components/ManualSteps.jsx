@@ -18,7 +18,7 @@ function ManualSteps({ steps }) {
             }`}
           >
             <div className="bg-[#263040] rounded-lg p-6 px-8 md:p-6 md:px-12 min-w-[160px] md:min-w-[200px] max-w-xl flex gap-4 md:gap-8 items-start shadow-lg">
-              <div className="bg-[#F67C37] text-white rounded-full w-7 h-7 md:w-8 md:h-8 flex items-center justify-center font-bold text-xs md:text-sm flex-shrink-0">
+              <div className="bg-[#37B5FE] text-white rounded-full w-7 h-7 md:w-8 md:h-8 flex items-center justify-center font-bold text-xs md:text-sm flex-shrink-0">
                 {idx + 1}
               </div>
               <div>
