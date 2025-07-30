@@ -10,3 +10,8 @@
 @theme {
   --font-grifter: Grifter, sans-serif;
 }
+
+body {
+  font-family: "Lexend", sans-serif;
+  overflow-y: scroll;
+}
