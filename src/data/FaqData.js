@@ -44,7 +44,7 @@ const faqData = {
     },
     {
       q: "What happens to my prescriptions after they’re dispensed?",
-      a: "Once dispensed, prescriptions are moved to an archived list in OpenPharmacy to keep your active prescriptions organized. You can view archived prescriptions by going to the Archive tab on the home screen. For repeats, add the new token you receive. Linking to the Active Script List (ASL) automates repeat updates",
+      a: "Once dispensed, prescriptions are moved to an archived list in OpenPharmacy to keep your active prescriptions organized. You can view archived prescriptions by going to the Archive tab on the home screen. For repeats, add the new token you receive. Linking to the Active Script List (ASL) automates repeat updates.",
     },
     {
       q: "Why doesn’t OpenPharmacy automatically update my prescription status after dispensing?",
