@@ -1,6 +1,6 @@
 // src/App.jsx
 import React from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { HashRouter, Routes, Route } from "react-router-dom";
 import Main from "./pages/Main";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import TermsOfService from "./pages/TermsOfService";
@@ -9,7 +9,7 @@ import FAQ from "./pages/FAQ";
 
 function App() {
   return (
-    <BrowserRouter>
+    <HashRouter>
       <Routes>
         <Route path="/" element={<Main />} />
         <Route path="/privacy-policy" element={<PrivacyPolicy />} />
@@ -17,7 +17,7 @@ function App() {
         <Route path="/how-it-works" element={<HowItWorks />} />
         <Route path="/faq" element={<FAQ />} />
       </Routes>
-    </BrowserRouter>
+    </HashRouter>
   );
 }
 
