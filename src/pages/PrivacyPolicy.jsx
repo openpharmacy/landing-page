@@ -23,8 +23,8 @@ function PrivacyPolicy() {
           app, you consent to the practices described in this policy.
         </p>
         <p className="text-base md:text-lg font-extralight leading-relaxed text-white/80 mb-8">
-          In this Privacy Policy, "we," "our," or "us" refers to Saferhealth
-          Australia Pty Ltd the developer of OpenPharmacy.
+          In this Privacy Policy, "we," "our," or "us" refers to Easy As Health
+          Pty Ltd the developer of OpenPharmacy.
         </p>
 
         <section className="mb-8">
@@ -247,7 +247,7 @@ function PrivacyPolicy() {
             your personal information, please contact us:
           </p>
           <p className="text-base md:text-lg font-extralight leading-relaxed text-white/80 mb-8">
-            Saferhealth Australia Pty Ltd
+            Easy As Health Pty Ltd
             <br />
             Email: hello@openpharmacy.com
           </p>

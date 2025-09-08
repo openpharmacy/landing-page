@@ -35,8 +35,8 @@ function TermsOfService() {
           </h2>
           <p className="text-base md:text-lg font-extralight leading-relaxed text-white/80 mb-4">
             These Terms of Use ("Terms") constitute a binding agreement between
-            you, the user ("You", "Your"), and Saferhealth Australia Pty Ltd
-            ("We", "Our", "Us"), the developer of the OpenPharmacy app.
+            you, the user ("You", "Your"), and Easy As Health Pty Ltd ("We",
+            "Our", "Us"), the developer of the OpenPharmacy app.
           </p>
           <ul className="list-disc pl-6 mb-4">
             <li className="text-base md:text-lg font-extralight leading-relaxed text-white/80 mb-2">
