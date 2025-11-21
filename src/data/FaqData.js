@@ -94,68 +94,68 @@ const faqData = {
     },
   ],
 
-  "Active Script List (ASL)": [
-    {
-      q: "What is the Active Script List (ASL)?",
-      a: "The Active Script List (ASL), also known as My Script List (MySL), is a secure, government-supported digital record of your active eScripts and repeats. It simplifies prescription management for you and your healthcare providers, especially for multiple medications. OpenPharmacy integrates with ASL for seamless management. Register at your pharmacy to get started. Learn more at MySL.com.au or the Australian Digital Health Agency website.",
-    },
-    {
-      q: "How do I obtain my ASL activation code?",
-      a: "Request your ASL activation code from any pharmacy. It’s easiest at a pharmacy where you’ve filled prescriptions, but any pharmacy can provide it after verifying your identity. You’ll receive a code like “XYZ-5678” after consenting via SMS.",
-    },
-    {
-      q: "How do automatic updates work with ASL in OpenPharmacy?",
-      a: "Once you link OpenPharmacy with your ASL activation code from your pharmacy, new prescriptions and repeats update automatically in real-time, eliminating the need to add tokens manually.",
-    },
-    {
-      q: "What information does a pharmacy need to give me my ASL code?",
-      a: "If you’re registered with ASL/MySL, the pharmacy can retrieve your code from their system. If not, they’ll need 100 points of ID (e.g., license, passport, Medicare card) and your mobile number or email to register you and provide the code.",
-    },
-    {
-      q: "Can I get an ASL activation code from any pharmacy, even if it’s not my usual one?",
-      a: "Yes, any pharmacy can provide your ASL activation code after verifying your identity with 100 points of ID (e.g., driver’s license, passport, Medicare card). It’s faster at a pharmacy where you’re already registered.",
-    },
-    {
-      q: "Does my ASL activation code expire?",
-      a: "No, your ASL activation code is permanent and does not expire. Store it securely.",
-    },
-    {
-      q: "What if I lose or forget my ASL activation code?",
-      a: "Visit any pharmacy to request your code again. It remains the same across pharmacies.",
-    },
-    {
-      q: "Is connecting to ASL required to use OpenPharmacy?",
-      a: "No, you can manually add eScript tokens to OpenPharmacy. However, connecting to ASL simplifies management by automatically updating your prescriptions.",
-    },
-    {
-      q: "Is the ASL secure?",
-      a: "Yes, ASL meets stringent security standards set by Australian health authorities, and OpenPharmacy complies with these to ensure safe integration. Check our compliance on the ePrescribing conformance register.",
-    },
-    {
-      q: "How is my ASL updated?",
-      a: "Your doctors and pharmacists update your ASL when prescribing or dispensing medications, keeping it current. You can request that specific prescriptions not be uploaded if desired.",
-    },
-    {
-      q: "Who operates the ASL?",
-      a: "The Australian Digital Health Agency oversees the ASL program. It’s managed by MySL, operated by Medication Knowledge and eRx Script Exchange Pty Ltd, subsidiaries of Fred IT Group Pty Ltd, which handles Australia’s prescription data. Visit MySL.com.au for terms of use and privacy details.",
-    },
-    {
-      q: "Will I still receive eScript tokens via SMS if I’m connected to ASL?",
-      a: "Yes, you’ll still get eScript tokens via SMS, but OpenPharmacy automatically adds them when linked to ASL, saving you time.",
-    },
-    {
-      q: "Can someone else manage my prescriptions via ASL?",
-      a: "Yes, if you share your ASL activation code with them, they can view all your prescriptions. Specific prescriptions cannot be hidden, so only share with trusted individuals.",
-    },
-    {
-      q: "Can I hide or delete prescriptions on ASL?",
-      a: "Active prescriptions cannot be deleted from ASL, but you can hide them in OpenPharmacy to limit visibility to certain healthcare providers.",
-    },
-    {
-      q: "Do all prescriptions appear on ASL?",
-      a: "Most active prescriptions are on ASL. Handwritten paper prescriptions, unuploaded scripts, or those you requested not to be uploaded may not appear. Contact your pharmacy or doctor if a prescription is missing.",
-    },
-  ],
+  // "Active Script List (ASL)": [
+  //   {
+  //     q: "What is the Active Script List (ASL)?",
+  //     a: "The Active Script List (ASL), also known as My Script List (MySL), is a secure, government-supported digital record of your active eScripts and repeats. It simplifies prescription management for you and your healthcare providers, especially for multiple medications. OpenPharmacy integrates with ASL for seamless management. Register at your pharmacy to get started. Learn more at MySL.com.au or the Australian Digital Health Agency website.",
+  //   },
+  //   {
+  //     q: "How do I obtain my ASL activation code?",
+  //     a: "Request your ASL activation code from any pharmacy. It’s easiest at a pharmacy where you’ve filled prescriptions, but any pharmacy can provide it after verifying your identity. You’ll receive a code like “XYZ-5678” after consenting via SMS.",
+  //   },
+  //   {
+  //     q: "How do automatic updates work with ASL in OpenPharmacy?",
+  //     a: "Once you link OpenPharmacy with your ASL activation code from your pharmacy, new prescriptions and repeats update automatically in real-time, eliminating the need to add tokens manually.",
+  //   },
+  //   {
+  //     q: "What information does a pharmacy need to give me my ASL code?",
+  //     a: "If you’re registered with ASL/MySL, the pharmacy can retrieve your code from their system. If not, they’ll need 100 points of ID (e.g., license, passport, Medicare card) and your mobile number or email to register you and provide the code.",
+  //   },
+  //   {
+  //     q: "Can I get an ASL activation code from any pharmacy, even if it’s not my usual one?",
+  //     a: "Yes, any pharmacy can provide your ASL activation code after verifying your identity with 100 points of ID (e.g., driver’s license, passport, Medicare card). It’s faster at a pharmacy where you’re already registered.",
+  //   },
+  //   {
+  //     q: "Does my ASL activation code expire?",
+  //     a: "No, your ASL activation code is permanent and does not expire. Store it securely.",
+  //   },
+  //   {
+  //     q: "What if I lose or forget my ASL activation code?",
+  //     a: "Visit any pharmacy to request your code again. It remains the same across pharmacies.",
+  //   },
+  //   {
+  //     q: "Is connecting to ASL required to use OpenPharmacy?",
+  //     a: "No, you can manually add eScript tokens to OpenPharmacy. However, connecting to ASL simplifies management by automatically updating your prescriptions.",
+  //   },
+  //   {
+  //     q: "Is the ASL secure?",
+  //     a: "Yes, ASL meets stringent security standards set by Australian health authorities, and OpenPharmacy complies with these to ensure safe integration. Check our compliance on the ePrescribing conformance register.",
+  //   },
+  //   {
+  //     q: "How is my ASL updated?",
+  //     a: "Your doctors and pharmacists update your ASL when prescribing or dispensing medications, keeping it current. You can request that specific prescriptions not be uploaded if desired.",
+  //   },
+  //   {
+  //     q: "Who operates the ASL?",
+  //     a: "The Australian Digital Health Agency oversees the ASL program. It’s managed by MySL, operated by Medication Knowledge and eRx Script Exchange Pty Ltd, subsidiaries of Fred IT Group Pty Ltd, which handles Australia’s prescription data. Visit MySL.com.au for terms of use and privacy details.",
+  //   },
+  //   {
+  //     q: "Will I still receive eScript tokens via SMS if I’m connected to ASL?",
+  //     a: "Yes, you’ll still get eScript tokens via SMS, but OpenPharmacy automatically adds them when linked to ASL, saving you time.",
+  //   },
+  //   {
+  //     q: "Can someone else manage my prescriptions via ASL?",
+  //     a: "Yes, if you share your ASL activation code with them, they can view all your prescriptions. Specific prescriptions cannot be hidden, so only share with trusted individuals.",
+  //   },
+  //   {
+  //     q: "Can I hide or delete prescriptions on ASL?",
+  //     a: "Active prescriptions cannot be deleted from ASL, but you can hide them in OpenPharmacy to limit visibility to certain healthcare providers.",
+  //   },
+  //   {
+  //     q: "Do all prescriptions appear on ASL?",
+  //     a: "Most active prescriptions are on ASL. Handwritten paper prescriptions, unuploaded scripts, or those you requested not to be uploaded may not appear. Contact your pharmacy or doctor if a prescription is missing.",
+  //   },
+  // ],
 };
 
 export default faqData;

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { motion, AnimatePresence } from "motion/react";
+import { motion as Motion, AnimatePresence } from "motion/react";
 import Layout from "../components/Layout";
 import faqData from "../data/FaqData";
 
@@ -7,7 +7,7 @@ const categories = Object.keys(faqData);
 
 function FAQ() {
   const [selectedCategory, setSelectedCategory] = useState("General");
-  const [selectedQuestion, setSelectedQuestion] = useState(0);
+  const [selectedQuestion, setSelectedQuestion] = useState(null);
 
   const [openQuestions, setOpenQuestions] = useState([]);
 
@@ -25,7 +25,7 @@ function FAQ() {
 
   const handleCategoryChange = (category) => {
     setSelectedCategory(category);
-    setSelectedQuestion(0);
+    setSelectedQuestion(null);
     setOpenQuestions([]);
   };
 
@@ -45,7 +45,7 @@ function FAQ() {
                 onClick={() => handleCategoryChange(category)}
                 className={`inline-block px-4 py-2 rounded-full text-sm lg:text-base transition-colors cursor-pointer ${
                   selectedCategory === category
-                    ? "bg-[#37B5FE] text-white"
+                    ? "bg-[var(--color-accent)] text-white"
                     : "text-white/60 hover:text-white"
                 }`}
               >
@@ -58,7 +58,7 @@ function FAQ() {
           <div className="space-y-2 px-2">
             {currentFaqs.map((faq, idx) => (
               <div key={idx}>
-                <motion.div
+                <Motion.div
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.3, delay: idx * 0.1 }}
@@ -77,21 +77,21 @@ function FAQ() {
                     <span className="text-white/90">{faq.q}</span>
                     <span className="text-white/60">›</span>
                   </div>
-                </motion.div>
+                </Motion.div>
 
                 <AnimatePresence>
                   {openQuestions.includes(idx) && (
-                    <motion.div
+                    <Motion.div
                       initial={{ opacity: 0, y: 10, height: 0 }}
                       animate={{ opacity: 1, y: 0, height: "auto" }}
                       exit={{ opacity: 0, y: -10, height: 0 }}
                       transition={{ duration: 0.25, ease: "easeInOut" }}
-                      className="block lg:hidden bg-[#263040] rounded-xl p-3 my-2 overflow-hidden"
+                      className="block lg:hidden bg-[var(--color-secondary)] rounded-xl p-3 my-2 overflow-hidden"
                     >
                       <p className="text-white/80 leading-relaxed text-base lg:text-lg">
                         {faq.a}
                       </p>
-                    </motion.div>
+                    </Motion.div>
                   )}
                 </AnimatePresence>
               </div>
@@ -101,18 +101,20 @@ function FAQ() {
         {/* Right Section */}
         <div className="lg:w-1/2 mt-14 hidden lg:block">
           <AnimatePresence mode="wait">
-            <motion.div
-              key={`${selectedCategory}-${selectedQuestion}`}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.3 }}
-              className="bg-[#263040] rounded-xl p-4 h-fit"
-            >
-              <p className="text-white/80 leading-relaxed text-lg">
-                {currentFaqs[selectedQuestion]?.a}
-              </p>
-            </motion.div>
+            {selectedQuestion !== null && (
+              <Motion.div
+                key={`${selectedCategory}-${selectedQuestion}`}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -20 }}
+                transition={{ duration: 0.3 }}
+                className="bg-[var(--color-secondary)] rounded-xl p-4 h-fit"
+              >
+                <p className="text-white/80 leading-relaxed text-lg">
+                  {currentFaqs[selectedQuestion]?.a}
+                </p>
+              </Motion.div>
+            )}
           </AnimatePresence>
         </div>
       </div>

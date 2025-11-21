@@ -13,7 +13,7 @@ const ComingSoonPopup = ({ isOpen, onClose }) => {
           </p>
           <button
             onClick={onClose}
-            className="bg-[#37B5FE] text-white px-6 py-2 rounded-full hover:opacity-90 transition-opacity"
+            className="bg-[var(--color-accent)] text-white px-6 py-2 rounded-full hover:opacity-90 transition-opacity"
           >
             Close
           </button>
