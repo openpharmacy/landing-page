@@ -5,7 +5,7 @@ import Logo from "../assets/HomeLogo.png";
 const NavBar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   return (
-    <nav className="w-full bg-[#1c2632]">
+    <nav className="w-full bg-[var(--color-primary)]">
       <div
         className={
           "max-w-7xl mx-auto flex justify-between items-center py-4 px-4 sm:px-8 md:px-2"
@@ -43,7 +43,7 @@ const NavBar = () => {
         {/* Desktop Contact button */}
         <a
           href="mailto:hello@openpharmacy.com"
-          className="hidden md:block bg-[#37B5FE] text-white text-base lg:text-lg px-4 lg:px-7 py-1.5 lg:py-2 rounded-full hover:opacity-90 transition-opacity"
+          className="hidden md:block bg-[var(--color-accent)] text-white text-base lg:text-lg px-4 lg:px-7 py-1.5 lg:py-2 rounded-full hover:opacity-90 transition-opacity"
         >
           Contact
         </a>
@@ -72,7 +72,7 @@ const NavBar = () => {
         aria-hidden={!menuOpen}
       >
         <div
-          className={`bg-[#1c2632] w-64 h-full p-6 flex flex-col gap-6 transform transition-transform duration-300 ${
+          className={`bg-[var(--color-primary)] w-64 h-full p-6 flex flex-col gap-6 transform transition-transform duration-300 ${
             menuOpen ? "translate-x-0" : "translate-x-full"
           }`}
           onClick={(e) => e.stopPropagation()}
@@ -115,7 +115,7 @@ const NavBar = () => {
           <a
             href="mailto:hello@openpharmacy.com"
             onClick={() => setMenuOpen(false)}
-            className="bg-[#37B5FE] text-white text-base px-4 py-2 rounded-full hover:opacity-90 transition-opacity w-full text-center"
+            className="bg-[var(--color-accent)] text-white text-base px-4 py-2 rounded-full hover:opacity-90 transition-opacity w-full text-center"
           >
             Contact
           </a>
