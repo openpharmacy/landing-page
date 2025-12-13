@@ -1,20 +1,13 @@
-import React, { useState } from "react";
+import React from "react";
 import AppStore from "../assets/Appstore.png";
 import GooglePlay from "../assets/GooglePlay.png";
 import PhoneImage from "../assets/iPhone 14.png";
 import Layout from "../components/Layout";
-import ComingSoonPopup from "../components/ComingSoonPopup";
+
 import { content } from "../data/MainContent";
 import { motion as Motion } from "framer-motion";
 
 function Main() {
-  const [isPopupOpen, setIsPopupOpen] = useState(false);
-
-  const handleStoreClick = (e) => {
-    e.preventDefault();
-    setIsPopupOpen(true);
-  };
-
   return (
     <div className="relative min-h-screen bg-[var(--color-primary)] text-white">
       <Motion.img
@@ -54,8 +47,9 @@ function Main() {
               </p>
               <div className="flex justify-center md:justify-start gap-4">
                 <a
-                  href="#"
-                  onClick={handleStoreClick}
+                  href="https://apps.apple.com/au/app/openpharmacy/id6751562406"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="hover:opacity-90 transition-opacity"
                 >
                   <img
@@ -64,9 +58,11 @@ function Main() {
                     className="h-12 md:h-14"
                   />
                 </a>
+
                 <a
-                  href="#"
-                  onClick={handleStoreClick}
+                  href="https://play.google.com/store/apps/details?id=com.openpharmacy.production&hl=en_AU"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="hover:opacity-90 transition-opacity"
                 >
                   <img
@@ -79,10 +75,6 @@ function Main() {
             </div>
           </div>
         </div>
-        <ComingSoonPopup
-          isOpen={isPopupOpen}
-          onClose={() => setIsPopupOpen(false)}
-        />
       </Layout>
     </div>
   );
