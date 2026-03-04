@@ -1,0 +1,46 @@
+# robots.txt — openpharmacy.com
+# Allow all crawlers including AI training and inference bots
+
+User-agent: *
+Allow: /
+
+# OpenAI — ChatGPT training and browsing
+User-agent: GPTBot
+Allow: /
+
+# OpenAI — ChatGPT real-time browsing
+User-agent: ChatGPT-User
+Allow: /
+
+# Google — Gemini training (Google-Extended) and search
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Googlebot
+Allow: /
+
+# Anthropic — Claude
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+# Perplexity AI
+User-agent: PerplexityBot
+Allow: /
+
+# Common Crawl — feeds many open AI training datasets
+User-agent: CCBot
+Allow: /
+
+# Meta AI
+User-agent: FacebookBot
+Allow: /
+
+# Apple
+User-agent: Applebot
+Allow: /
+
+# Sitemap reference
+Sitemap: https://openpharmacy.com/sitemap.xml
