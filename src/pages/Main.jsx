@@ -5,7 +5,7 @@ import PhoneImage from "../assets/iPhone 14.png";
 import Layout from "../components/Layout";
 
 import { content } from "../data/MainContent";
-import { motion as Motion } from "framer-motion";
+import { motion as Motion } from "motion/react";
 
 function Main() {
   return (
