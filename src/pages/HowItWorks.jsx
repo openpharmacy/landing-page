@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { motion as Motion } from "framer-motion";
+import { motion as Motion } from "motion/react";
 import Layout from "../components/Layout";
 import { easySteps, manualSteps, automaticSteps } from "../data/HowItWorks";
 import ManualSteps from "../components/ManualSteps";
