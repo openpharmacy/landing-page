@@ -3,6 +3,12 @@ import { createRoot, hydrateRoot } from "react-dom/client";
 import "./index.css";
 import App from "./App.jsx";
 import React from "react";
+import { Routes, Route } from "react-router-dom";
+import Main from "./pages/Main";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
+import TermsOfService from "./pages/TermsOfService";
+import HowItWorks from "./pages/HowItWorks";
+import FAQ from "./pages/FAQ";
 
 // Client-side entry: hydrate prerendered HTML if present, otherwise mount fresh.
 // hydrateRoot is used so React attaches to the server-rendered DOM without
@@ -56,13 +62,6 @@ export async function prerender(data) {
 
 // Routes rendered during SSR — mirrors App.jsx but accepts StaticRouter context.
 function AppRoutes() {
-  const { Routes, Route } = require("react-router-dom");
-  const Main = require("./pages/Main").default;
-  const PrivacyPolicy = require("./pages/PrivacyPolicy").default;
-  const TermsOfService = require("./pages/TermsOfService").default;
-  const HowItWorks = require("./pages/HowItWorks").default;
-  const FAQ = require("./pages/FAQ").default;
-
   return (
     <Routes>
       <Route path="/" element={<Main />} />
