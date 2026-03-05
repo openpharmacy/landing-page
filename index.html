@@ -11,7 +11,54 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/Logo.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>OpenPharmacy</title>
+
+    <!-- Primary meta — vite-plugin-prerender will inject page-specific content over these defaults -->
+    <title>OpenPharmacy — Secure eScript Wallet for Australians</title>
+    <meta name="description" content="OpenPharmacy is a free, ADHA-registered app for managing Australian electronic prescriptions. Store, view, and share your eScripts securely — works offline, encrypted end-to-end, data stored in Australia." />
+    <link rel="canonical" href="https://openpharmacy.com/" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://openpharmacy.com/" />
+    <meta property="og:site_name" content="OpenPharmacy" />
+    <meta property="og:title" content="OpenPharmacy — Secure eScript Wallet for Australians" />
+    <meta property="og:description" content="OpenPharmacy is a free, ADHA-registered app for managing Australian electronic prescriptions. Store, view, and share your eScripts securely — works offline, encrypted end-to-end, data stored in Australia." />
+    <meta property="og:image" content="https://openpharmacy.com/Logo.svg" />
+
+    <!-- Twitter / X Card -->
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="OpenPharmacy — Secure eScript Wallet for Australians" />
+    <meta name="twitter:description" content="Free ADHA-registered app to store and manage Australian eScripts. Offline QR access, end-to-end encryption, Australian data storage." />
+    <meta name="twitter:image" content="https://openpharmacy.com/Logo.svg" />
+
+    <!--
+      GitHub Pages SPA redirect restore.
+      Companion to public/404.html — reads the ?p= query param set by the
+      404 fallback and replaces the URL with the original path so BrowserRouter
+      can match the correct route without a page reload.
+    -->
+    <script>
+      (function () {
+        var redirect = sessionStorage.redirect;
+        delete sessionStorage.redirect;
+        if (redirect && redirect !== location.href) {
+          history.replaceState(null, null, redirect);
+        }
+        // Also handle the ?p= param set by 404.html
+        var search = location.search;
+        if (search) {
+          var p = new URLSearchParams(search).get("p");
+          if (p) {
+            var q = new URLSearchParams(search).get("q");
+            history.replaceState(
+              null,
+              null,
+              "/" + p.replace(/~and~/g, "&") + (q ? "?" + q.replace(/~and~/g, "&") : "") + location.hash
+            );
+          }
+        }
+      })();
+    </script>
   </head>
   <body>
     <!-- Google Tag Manager (noscript) -->
