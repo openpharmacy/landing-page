@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>OpenPharmacy</title>
+    <!--
+      GitHub Pages SPA redirect — required when using BrowserRouter (not HashRouter).
+      GitHub Pages serves 404.html for any path it doesn't recognise (i.e. every deep
+      link other than the root). This script converts the URL path into a query string,
+      then redirects to the root so the main index.html can restore it via the companion
+      script in index.html. Technique: https://github.com/rafgraph/spa-github-pages
+    -->
+    <script>
+      var l = window.location;
+      l.replace(
+        l.protocol +
+          "//" +
+          l.hostname +
+          (l.port ? ":" + l.port : "") +
+          l.pathname.split("/").slice(0, 1).join("/") +
+          "/?p=" +
+          encodeURIComponent(
+            l.pathname.slice(1) + (l.search ? "&" + l.search.slice(1) : "")
+          ) +
+          (l.hash || "")
+      );
+    </script>
+  </head>
+  <body></body>
+</html>
