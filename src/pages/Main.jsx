@@ -1,5 +1,5 @@
 import React from "react";
-import AppStore from "../assets/Appstore.png";
+import AppStore from "../assets/AppStore.png";
 import GooglePlay from "../assets/GooglePlay.png";
 import PhoneImage from "../assets/iPhone 14.png";
 import Layout from "../components/Layout";
