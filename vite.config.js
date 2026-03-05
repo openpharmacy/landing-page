@@ -21,11 +21,10 @@ export default defineConfig({
         "/terms-of-service",
       ],
 
-      renderer: "@prerenderer/renderer-puppeteer",
+      renderer: "@prerenderer/renderer-jsdom",
       rendererOptions: {
-        // Wait for the React root to be populated before capturing HTML
-        renderAfterElementExists: "#root > *",
-        headless: true,
+        // Wait for the React root to dispatch this event before capturing HTML
+        renderAfterDocumentEvent: "render-complete",
       },
     }),
   ],
