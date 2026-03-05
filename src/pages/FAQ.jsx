@@ -1,11 +1,44 @@
-import React, { useState } from "react";
+import React, { useState, useMemo } from "react";
 import { motion as Motion, AnimatePresence } from "motion/react";
 import Layout from "../components/Layout";
+import { usePageMeta } from "../hooks/usePageMeta";
 import faqData from "../data/FaqData";
 
 const categories = Object.keys(faqData);
 
+// Build FAQPage JSON-LD schema from all active FAQ entries
+function buildFaqSchema() {
+  const allQuestions = [];
+  for (const category of categories) {
+    for (const faq of faqData[category]) {
+      allQuestions.push({
+        "@type": "Question",
+        name: faq.q,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: faq.a,
+        },
+      });
+    }
+  }
+  return {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: allQuestions,
+  };
+}
+
 function FAQ() {
+  const faqSchema = useMemo(() => buildFaqSchema(), []);
+
+  usePageMeta({
+    title: "OpenPharmacy FAQ — Electronic Prescription Questions Answered",
+    description:
+      "Common questions about OpenPharmacy's eScript wallet, security, offline access, ADHA compliance, and prescription management in Australia.",
+    canonicalPath: "/faq",
+    schema: faqSchema,
+  });
+
   const [selectedCategory, setSelectedCategory] = useState("General");
   const [selectedQuestion, setSelectedQuestion] = useState(null);
 
