@@ -3,11 +3,19 @@ import AppStore from "../assets/Appstore.png";
 import GooglePlay from "../assets/GooglePlay.png";
 import PhoneImage from "../assets/iPhone 14.png";
 import Layout from "../components/Layout";
+import { usePageMeta } from "../hooks/usePageMeta";
 
 import { content } from "../data/MainContent";
 import { motion as Motion } from "framer-motion";
 
 function Main() {
+  usePageMeta({
+    title: "OpenPharmacy — Secure Australian eScript Wallet | iOS & Android",
+    description:
+      "OpenPharmacy is a free, ADHA-registered app for managing Australian electronic prescriptions. Store, view, and share eScripts offline with end-to-end encryption. Available on iOS and Android.",
+    canonicalPath: "/",
+  });
+
   return (
     <div className="relative min-h-screen bg-[var(--color-primary)] text-white">
       <Motion.img

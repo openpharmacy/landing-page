@@ -1,12 +1,20 @@
 import React, { useState } from "react";
 import { motion as Motion } from "framer-motion";
 import Layout from "../components/Layout";
+import { usePageMeta } from "../hooks/usePageMeta";
 import { easySteps, manualSteps, automaticSteps } from "../data/HowItWorks";
 import ManualSteps from "../components/ManualSteps";
 import AutomaticSteps from "../components/AutomaticSteps";
 import CallToAction from "../components/CallToAction";
 
 function HowItWorks() {
+  usePageMeta({
+    title: "How OpenPharmacy Works — Add & Manage eScripts",
+    description:
+      "Learn how to add electronic prescriptions to OpenPharmacy manually or automatically via My Script List. 3 easy steps to get started.",
+    canonicalPath: "/how-it-works",
+  });
+
   const [selectedMethod, setSelectedMethod] = useState("manual");
   const currentSteps =
     selectedMethod === "manual" ? manualSteps : automaticSteps;

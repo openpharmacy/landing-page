@@ -1,7 +1,15 @@
 import React, { useEffect } from "react";
 import Layout from "../components/Layout";
+import { usePageMeta } from "../hooks/usePageMeta";
 
 function TermsOfService() {
+  usePageMeta({
+    title: "Terms of Service — OpenPharmacy",
+    description:
+      "Terms and conditions for the OpenPharmacy eScript wallet application by Easy As Health Pty Ltd.",
+    canonicalPath: "/terms-of-service",
+  });
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);

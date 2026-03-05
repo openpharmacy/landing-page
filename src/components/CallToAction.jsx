@@ -1,16 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import AppStore from "../assets/Appstore.png";
 import GooglePlay from "../assets/GooglePlay.png";
-import ComingSoonPopup from "./ComingSoonPopup";
 
 const CallToAction = () => {
-  const [isPopupOpen, setIsPopupOpen] = useState(false);
-
-  const handleStoreClick = (e) => {
-    e.preventDefault();
-    setIsPopupOpen(true);
-  };
-
   return (
     <section className="text-center pb-16">
       <h2 className="text-2xl md:text-3xl font-bold mb-4">
@@ -22,8 +14,9 @@ const CallToAction = () => {
       </p>
       <div className="flex justify-center gap-4">
         <a
-          href="#"
-          onClick={handleStoreClick}
+          href="https://apps.apple.com/au/app/openpharmacy/id6751562406"
+          target="_blank"
+          rel="noopener noreferrer"
           className="hover:opacity-90 transition-opacity"
         >
           <img
@@ -33,8 +26,9 @@ const CallToAction = () => {
           />
         </a>
         <a
-          href="#"
-          onClick={handleStoreClick}
+          href="https://play.google.com/store/apps/details?id=com.openpharmacy.production&hl=en_AU"
+          target="_blank"
+          rel="noopener noreferrer"
           className="hover:opacity-90 transition-opacity"
         >
           <img
@@ -44,10 +38,6 @@ const CallToAction = () => {
           />
         </a>
       </div>
-      <ComingSoonPopup
-        isOpen={isPopupOpen}
-        onClose={() => setIsPopupOpen(false)}
-      />
     </section>
   );
 };
