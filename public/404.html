@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>OpenPharmacy</title>
+    <!--
+      GitHub Pages SPA fallback.
+
+      When a visitor directly navigates to a URL that GitHub Pages doesn't
+      have a file for (e.g. a future route not yet in the prerender list),
+      GitHub Pages serves this 404.html. The script below encodes the
+      current path into sessionStorage and redirects to the root, where
+      the React app boots and reads the stored path to navigate correctly.
+
+      All five current routes (/, /faq, /how-it-works, /privacy-policy,
+      /terms-of-service) have prerendered HTML files so they won't hit this
+      fallback — but it remains a safety net for any new routes until they
+      are added to the prerender list in src/entry-prerender.jsx.
+
+      This technique originates from https://github.com/rafgraph/spa-github-pages
+    -->
+    <script>
+      (function () {
+        var path = window.location.pathname;
+        // Don't redirect root or asset requests
+        if (path !== "/" && !path.match(/\.[a-z]+$/i)) {
+          sessionStorage.setItem("spa_redirect", path + window.location.search);
+          window.location.replace("/");
+        }
+      })();
+    </script>
+  </head>
+  <body></body>
+</html>

@@ -11,6 +11,13 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/Logo.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!--
+      Title, description, og:*, twitter:*, and canonical are injected
+      per-route by vite-prerender-plugin at build time via entry-prerender.jsx.
+      Do not add static versions here — they would be overwritten anyway and
+      would apply identically to all routes during development only.
+    -->
+    <meta name="robots" content="index, follow" />
     <title>OpenPharmacy</title>
   </head>
   <body>
@@ -19,6 +26,12 @@
     height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
     <div id="root"></div>
+    <!--
+      The `prerender` attribute tells vite-prerender-plugin that
+      src/entry-prerender.jsx is the build-time prerender entry.
+      It is ignored by the browser at runtime.
+    -->
     <script type="module" src="/src/main.jsx"></script>
+    <script type="module" prerender src="/src/entry-prerender.jsx"></script>
   </body>
 </html>
