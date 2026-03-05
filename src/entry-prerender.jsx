@@ -13,7 +13,7 @@
  */
 
 import { renderToString } from "react-dom/server";
-import { StaticRouter } from "react-router-dom/server";
+import { StaticRouter } from "react-router-dom";
 import React from "react";
 import App from "./App.jsx";
 
