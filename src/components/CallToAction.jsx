@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import AppStore from "../assets/Appstore.png";
+import AppStore from "../assets/AppStore.png";
 import GooglePlay from "../assets/GooglePlay.png";
 import ComingSoonPopup from "./ComingSoonPopup";
 
