@@ -1,7 +1,7 @@
 import { defineConfig } from "vite";
 import tailwindcss from "@tailwindcss/vite";
 import react from "@vitejs/plugin-react";
-import vitePrerender from "vite-plugin-prerender";
+import prerender from "@prerenderer/rollup-plugin";
 import path from "path";
 import { fileURLToPath } from "url";
 
@@ -11,10 +11,7 @@ export default defineConfig({
   plugins: [
     react(),
     tailwindcss(),
-    vitePrerender({
-      // The Vite build output directory
-      staticDir: path.join(__dirname, "dist"),
-
+    prerender({
       // All routes defined in src/App.jsx — add new routes here as the site grows
       routes: [
         "/",
@@ -24,11 +21,12 @@ export default defineConfig({
         "/terms-of-service",
       ],
 
-      renderer: new vitePrerender.PuppeteerRenderer({
+      renderer: "@prerenderer/renderer-puppeteer",
+      rendererOptions: {
         // Wait for the React root to be populated before capturing HTML
         renderAfterElementExists: "#root > *",
         headless: true,
-      }),
+      },
     }),
   ],
 });
