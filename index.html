@@ -8,10 +8,38 @@
     'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
     })(window,document,'script','dataLayer','GTM-T4K43VRQ');</script>
     <!-- End Google Tag Manager -->
+
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/Logo.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>OpenPharmacy</title>
+    <title>OpenPharmacy — Secure eScript Wallet for Australians</title>
+
+    <!--
+      GitHub Pages SPA redirect receiver.
+      Pairs with public/404.html to restore deep-link navigation under BrowserRouter.
+      Pre-rendered routes don't use this path — it only activates for routes
+      not yet in the pre-render list.
+    -->
+    <script>
+      (function (l) {
+        if (l.search[1] === "/") {
+          var decoded = l.search
+            .slice(1)
+            .split("&")
+            .map(function (s) {
+              return s.replace(/~and~/g, "&");
+            })
+            .join("?");
+          window.history.replaceState(
+            null,
+            null,
+            l.pathname.slice(0, -1) +
+              decoded +
+              l.hash
+          );
+        }
+      })(window.location);
+    </script>
   </head>
   <body>
     <!-- Google Tag Manager (noscript) -->

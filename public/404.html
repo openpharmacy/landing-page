@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>OpenPharmacy</title>
+    <!--
+      GitHub Pages SPA fallback for BrowserRouter.
+
+      When a user navigates directly to a deep link (e.g. openpharmacy.com/faq),
+      GitHub Pages returns this 404.html because it has no matching file.
+      This script encodes the full path into the query string, then redirects
+      to the root index.html, which decodes it and restores the correct route.
+
+      Note: pre-rendered routes (/, /faq, /how-it-works, /privacy-policy,
+      /terms-of-service) each have their own index.html in dist/ so they load
+      directly without hitting this fallback at all — this only matters for
+      any future route not yet pre-rendered, or for direct navigation edge cases.
+
+      Technique: https://github.com/rafgraph/spa-github-pages
+    -->
+    <script>
+      var pathSegmentsToKeep = 0;
+      var l = window.location;
+      l.replace(
+        l.protocol +
+          "//" +
+          l.hostname +
+          (l.port ? ":" + l.port : "") +
+          l.pathname
+            .split("/")
+            .slice(0, 1 + pathSegmentsToKeep)
+            .join("/") +
+          "/?/" +
+          l.pathname
+            .slice(1)
+            .split("/")
+            .slice(pathSegmentsToKeep)
+            .join("/")
+            .replace(/&/g, "~and~") +
+          (l.search ? "&" + l.search.slice(1).replace(/&/g, "~and~") : "") +
+          l.hash
+      );
+    </script>
+  </head>
+  <body></body>
+</html>
