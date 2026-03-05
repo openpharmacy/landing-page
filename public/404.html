@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>OpenPharmacy</title>
+    <!--
+      GitHub Pages SPA redirect trick.
+      When GitHub Pages serves a 404 for a deep route (e.g. /faq), this page
+      fires. It encodes the path into a query string and redirects to /?p=/faq
+      so the root index.html loads, then a script there restores the path via
+      history.replaceState before React boots — giving BrowserRouter the
+      correct URL without a server-side rewrite rule.
+      Source: https://github.com/rafgraph/spa-github-pages
+    -->
+    <script>
+      (function () {
+        var l = window.location;
+        var path = l.pathname.slice(1);
+        // Only redirect if there is a real path (i.e. not the root)
+        if (path) {
+          l.replace(
+            l.protocol +
+              "//" +
+              l.hostname +
+              (l.port ? ":" + l.port : "") +
+              "/?p=/" +
+              path.split("?")[0].replace(/\/$/, "") +
+              (l.search ? "&q=" + l.search.slice(1) : "") +
+              l.hash
+          );
+        }
+      })();
+    </script>
+  </head>
+  <body></body>
+</html>

@@ -8,10 +8,57 @@
     'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
     })(window,document,'script','dataLayer','GTM-T4K43VRQ');</script>
     <!-- End Google Tag Manager -->
+
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/Logo.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>OpenPharmacy</title>
+
+    <!-- Primary meta — overridden per-page by the prerender plugin at build time -->
+    <title>OpenPharmacy — Secure Digital Wallet for Australian eScripts</title>
+    <meta
+      name="description"
+      content="OpenPharmacy is Australia's secure eScript wallet app. Store, view, and share your electronic prescriptions — offline, encrypted, and ADHA-conformant. Free on iOS and Android."
+    />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://openpharmacy.com/" />
+    <meta property="og:site_name" content="OpenPharmacy" />
+    <meta property="og:title" content="OpenPharmacy — Secure Digital Wallet for Australian eScripts" />
+    <meta
+      property="og:description"
+      content="Store, view, and share your Australian electronic prescriptions in one secure place. Works offline. ADHA-conformant. Free for iOS and Android."
+    />
+    <meta property="og:image" content="https://openpharmacy.com/Logo.svg" />
+
+    <!-- Twitter / X card -->
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="OpenPharmacy — Secure Digital Wallet for Australian eScripts" />
+    <meta
+      name="twitter:description"
+      content="Store, view, and share your Australian electronic prescriptions in one secure place. Works offline. ADHA-conformant. Free for iOS and Android."
+    />
+
+    <!-- Canonical -->
+    <link rel="canonical" href="https://openpharmacy.com/" />
+
+    <!--
+      GitHub Pages SPA — path restoration.
+      The 404.html redirect encodes the intended path as ?p=/faq.
+      This script recovers it and calls history.replaceState before React
+      boots, so BrowserRouter sees the correct URL.
+    -->
+    <script>
+      (function () {
+        var params = new URLSearchParams(window.location.search);
+        var p = params.get("p");
+        var q = params.get("q");
+        if (p) {
+          var url = p + (q ? "?" + q : "") + window.location.hash;
+          window.history.replaceState(null, "", url);
+        }
+      })();
+    </script>
   </head>
   <body>
     <!-- Google Tag Manager (noscript) -->
