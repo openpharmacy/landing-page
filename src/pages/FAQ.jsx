@@ -66,7 +66,7 @@ function FAQ() {
                     selectedQuestion === idx ? "bg-white/10" : ""
                   }`}
                   onClick={() => {
-                    if (window.innerWidth < 1024) {
+                    if (typeof window !== "undefined" && window.innerWidth < 1024) {
                       handleMobileQuestionClick(idx);
                     } else {
                       handleDesktopQuestionClick(idx);
