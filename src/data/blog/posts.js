@@ -48,6 +48,14 @@ const blogPosts = [
       "An eScript wallet stores your electronic prescription QR codes securely on your phone, so they are always available at the pharmacy — even offline. Here is how they work and what to look for.",
     tags: ["Educational", "eScripts", "How It Works", "Australia", "Digital Health"],
   },
+  {
+    slug: "offline-escript-access-australia",
+    title: "Offline eScript Access in Australia: Why Your QR Code Must Be Available Without Internet",
+    date: "2026-03-11",
+    excerpt:
+      "SMS and email eScripts fail without a signal — at rural pharmacies, underground, or when your data runs out. OpenPharmacy stores QR codes directly on your device so they are always accessible, even in airplane mode.",
+    tags: ["Offline Access", "Rural Australia", "eScripts", "QR Code", "Digital Health"],
+  },
 ];
 
 export default blogPosts;
