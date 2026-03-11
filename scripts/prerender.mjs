@@ -27,6 +27,7 @@ const ROUTES = [
   "/privacy-policy",
   "/terms-of-service",
   "/blog",
+  "/blog/australian-escript-wallets-complete-guide",
   "/blog/what-is-an-escript-australia",
 ];
 
