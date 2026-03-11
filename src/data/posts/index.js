@@ -36,12 +36,12 @@
  * }
  */
 
+import whatAreAustralianEscripts from "./what-are-australian-escripts.js";
+
 /** @type {PostEntry[]} */
 const posts = [
-  // Future posts go here, most recent first.
-  // Example (remove this comment when adding the first real post):
-  // import firstPost from "./my-first-post.js";
-  // then add: firstPost,
+  // Most recent first.
+  whatAreAustralianEscripts,
 ];
 
 export default posts;
