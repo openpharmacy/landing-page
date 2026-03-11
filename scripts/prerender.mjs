@@ -19,13 +19,18 @@ const DIST = join(__dirname, "..", "dist");
 const PORT = 4173;
 const BASE_URL = `http://localhost:${PORT}`;
 
-// All routes to pre-render
+// All routes to pre-render.
+// When a new blog post is added to src/data/BlogPosts.js, append its
+// route here as "/blog/[slug]" so static HTML is generated at build time.
+// AI crawlers (GPTBot, ClaudeBot, PerplexityBot) do not execute JavaScript
+// and rely entirely on this pre-rendered HTML to index page content.
 const ROUTES = [
   "/",
   "/faq",
   "/how-it-works",
   "/privacy-policy",
   "/terms-of-service",
+  "/blog",
 ];
 
 // MIME types for the local static server
