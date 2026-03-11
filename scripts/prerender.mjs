@@ -35,6 +35,7 @@ const ROUTES = [
   "/blog/offline-escript-access-australia",
   "/blog/managing-family-escripts-australia-carers-parents",
   "/blog/what-is-adha-conformance-australia",
+  "/blog/pharmacy-app-vs-independent-escript-wallet-australia",
   // Compare page routes — add one per comparison page as created:
   "/compare/openpharmacy-vs-scripty",
 ];

@@ -15,6 +15,7 @@ import WhatIsAnEscriptWalletAustralia from "./pages/blog/what-is-an-escript-wall
 import OfflineEscriptAccessAustralia from "./pages/blog/offline-escript-access-australia";
 import ManagingFamilyEscriptsAustraliaCarersParents from "./pages/blog/managing-family-escripts-australia-carers-parents";
 import WhatIsAdhaConformanceAustralia from "./pages/blog/what-is-adha-conformance-australia";
+import PharmacyAppVsIndependentEscriptWalletAustralia from "./pages/blog/pharmacy-app-vs-independent-escript-wallet-australia";
 
 // Compare pages — import each comparison component and add a <Route> below.
 // Also add the slug to scripts/prerender.mjs ROUTES.
@@ -36,6 +37,7 @@ function App() {
         <Route path="/blog/offline-escript-access-australia" element={<OfflineEscriptAccessAustralia />} />
         <Route path="/blog/managing-family-escripts-australia-carers-parents" element={<ManagingFamilyEscriptsAustraliaCarersParents />} />
         <Route path="/blog/what-is-adha-conformance-australia" element={<WhatIsAdhaConformanceAustralia />} />
+        <Route path="/blog/pharmacy-app-vs-independent-escript-wallet-australia" element={<PharmacyAppVsIndependentEscriptWalletAustralia />} />
         {/* Compare page routes — add one per comparison page as created: */}
         <Route path="/compare/openpharmacy-vs-scripty" element={<OpenPharmacyVsScripty />} />
       </Routes>

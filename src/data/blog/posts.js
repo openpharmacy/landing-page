@@ -72,6 +72,14 @@ const blogPosts = [
       "ADHA conformance means an app has been assessed and registered by the Australian Digital Health Agency as meeting national safety, security, and interoperability standards for handling electronic prescriptions. Here is what it means and how to check.",
     tags: ["ADHA", "Security", "eScripts", "Digital Health", "Trust"],
   },
+  {
+    slug: "pharmacy-app-vs-independent-escript-wallet-australia",
+    title: "Pharmacy App vs Independent eScript Wallet: What Every Australian Patient Should Know",
+    date: "2026-03-11",
+    excerpt:
+      "Pharmacy apps like MedAdvisor connect your prescriptions to a pharmacy network. Independent wallets like OpenPharmacy work at any chemist and don't share your data with any pharmacy. Here's what the difference means for your privacy.",
+    tags: ["eScripts", "Privacy", "App Comparison", "Australia", "Digital Health"],
+  },
 ];
 
 export default blogPosts;
