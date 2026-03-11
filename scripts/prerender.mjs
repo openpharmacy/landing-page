@@ -19,13 +19,18 @@ const DIST = join(__dirname, "..", "dist");
 const PORT = 4173;
 const BASE_URL = `http://localhost:${PORT}`;
 
-// All routes to pre-render
+// All routes to pre-render.
+// When adding a new blog post, append its slug here as "/blog/<slug>".
+// Also update src/App.jsx (import + Route) and src/data/blog/posts.js.
 const ROUTES = [
   "/",
   "/faq",
   "/how-it-works",
   "/privacy-policy",
   "/terms-of-service",
+  "/blog",
+  // Blog post routes — add one per post as created:
+  // "/blog/best-escript-apps-australia",
 ];
 
 // MIME types for the local static server
