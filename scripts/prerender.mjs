@@ -19,6 +19,23 @@ const DIST = join(__dirname, "..", "dist");
 const PORT = 4173;
 const BASE_URL = `http://localhost:${PORT}`;
 
+// Import the blog post registry so post routes are pre-rendered automatically.
+// When a new post is added to src/data/posts/index.js, its route is picked up
+// here without any manual changes to this file.
+//
+// NOTE: This is a Node.js (ESM) script, not a browser bundle.
+// The posts registry uses plain JS objects with no browser APIs, so it can
+// be imported directly. If it ever gains browser-only imports, move to a
+// separate posts-manifest.json file instead.
+let blogPostRoutes = [];
+try {
+  const postsModule = await import("../src/data/posts/index.js");
+  const posts = postsModule.default || [];
+  blogPostRoutes = posts.map((p) => `/blog/${p.slug}`);
+} catch (err) {
+  console.warn("Could not load blog post registry for prerender:", err.message);
+}
+
 // All routes to pre-render
 const ROUTES = [
   "/",
@@ -26,6 +43,8 @@ const ROUTES = [
   "/how-it-works",
   "/privacy-policy",
   "/terms-of-service",
+  "/blog",
+  ...blogPostRoutes,
 ];
 
 // MIME types for the local static server
