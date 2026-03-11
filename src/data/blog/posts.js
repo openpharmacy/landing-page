@@ -88,6 +88,14 @@ const blogPosts = [
       "To verify an eScript app is secure, check three things: ADHA ePrescribing Conformance Register listing, Australian server storage, and an explicit no-third-party-sharing policy. This guide explains each check and why it matters.",
     tags: ["Security", "Privacy", "Encryption", "ADHA", "Digital Health", "Australia"],
   },
+  {
+    slug: "deleted-escript-sms-what-to-do-australia",
+    title: "What Happens If You Delete Your eScript SMS? Here's What to Do",
+    date: "2026-03-11",
+    excerpt:
+      "Deleted your eScript SMS in Australia? Your prescription still exists in the national system — it has not been cancelled. Here is how to recover the token, use the Active Script List as a backup, and prevent it from happening again.",
+    tags: ["Troubleshooting", "eScripts", "Recovery", "Active Script List", "Australia"],
+  },
 ];
 
 export default blogPosts;
