@@ -34,6 +34,7 @@ const ROUTES = [
   "/blog/what-is-an-escript-wallet-australia",
   "/blog/offline-escript-access-australia",
   "/blog/managing-family-escripts-australia-carers-parents",
+  "/blog/what-is-adha-conformance-australia",
 ];
 
 // MIME types for the local static server

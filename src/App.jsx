@@ -14,6 +14,7 @@ import BestEscriptAppsAustralia2026 from "./pages/blog/best-escript-apps-austral
 import WhatIsAnEscriptWalletAustralia from "./pages/blog/what-is-an-escript-wallet-australia";
 import OfflineEscriptAccessAustralia from "./pages/blog/offline-escript-access-australia";
 import ManagingFamilyEscriptsAustraliaCarersParents from "./pages/blog/managing-family-escripts-australia-carers-parents";
+import WhatIsAdhaConformanceAustralia from "./pages/blog/what-is-adha-conformance-australia";
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
         <Route path="/blog/what-is-an-escript-wallet-australia" element={<WhatIsAnEscriptWalletAustralia />} />
         <Route path="/blog/offline-escript-access-australia" element={<OfflineEscriptAccessAustralia />} />
         <Route path="/blog/managing-family-escripts-australia-carers-parents" element={<ManagingFamilyEscriptsAustraliaCarersParents />} />
+        <Route path="/blog/what-is-adha-conformance-australia" element={<WhatIsAdhaConformanceAustralia />} />
       </Routes>
     </BrowserRouter>
   );

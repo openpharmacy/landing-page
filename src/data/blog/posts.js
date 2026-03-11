@@ -64,6 +64,14 @@ const blogPosts = [
       "Australian parents and carers can manage eScripts for children, elderly parents, and other family members using OpenPharmacy — separate profiles per person, offline QR codes, and ADHA-registered security in one app.",
     tags: ["Caregivers", "Family Management", "eScripts", "Australia", "Digital Health"],
   },
+  {
+    slug: "what-is-adha-conformance-australia",
+    title: "What Is ADHA Conformance? Why It Matters Before You Trust an App With Your Prescriptions",
+    date: "2026-03-11",
+    excerpt:
+      "ADHA conformance means an app has been assessed and registered by the Australian Digital Health Agency as meeting national safety, security, and interoperability standards for handling electronic prescriptions. Here is what it means and how to check.",
+    tags: ["ADHA", "Security", "eScripts", "Digital Health", "Trust"],
+  },
 ];
 
 export default blogPosts;
