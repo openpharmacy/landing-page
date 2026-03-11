@@ -26,6 +26,8 @@ const ROUTES = [
   "/how-it-works",
   "/privacy-policy",
   "/terms-of-service",
+  "/blog",
+  "/blog/what-is-an-escript-australia",
 ];
 
 // MIME types for the local static server
