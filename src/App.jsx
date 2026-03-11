@@ -16,6 +16,10 @@ import OfflineEscriptAccessAustralia from "./pages/blog/offline-escript-access-a
 import ManagingFamilyEscriptsAustraliaCarersParents from "./pages/blog/managing-family-escripts-australia-carers-parents";
 import WhatIsAdhaConformanceAustralia from "./pages/blog/what-is-adha-conformance-australia";
 
+// Compare pages — import each comparison component and add a <Route> below.
+// Also add the slug to scripts/prerender.mjs ROUTES.
+import OpenPharmacyVsScripty from "./pages/compare/openpharmacy-vs-scripty";
+
 function App() {
   return (
     <BrowserRouter>
@@ -32,6 +36,8 @@ function App() {
         <Route path="/blog/offline-escript-access-australia" element={<OfflineEscriptAccessAustralia />} />
         <Route path="/blog/managing-family-escripts-australia-carers-parents" element={<ManagingFamilyEscriptsAustraliaCarersParents />} />
         <Route path="/blog/what-is-adha-conformance-australia" element={<WhatIsAdhaConformanceAustralia />} />
+        {/* Compare page routes — add one per comparison page as created: */}
+        <Route path="/compare/openpharmacy-vs-scripty" element={<OpenPharmacyVsScripty />} />
       </Routes>
     </BrowserRouter>
   );

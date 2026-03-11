@@ -35,6 +35,8 @@ const ROUTES = [
   "/blog/offline-escript-access-australia",
   "/blog/managing-family-escripts-australia-carers-parents",
   "/blog/what-is-adha-conformance-australia",
+  // Compare page routes — add one per comparison page as created:
+  "/compare/openpharmacy-vs-scripty",
 ];
 
 // MIME types for the local static server
