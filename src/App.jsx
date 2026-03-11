@@ -8,6 +8,7 @@ import HowItWorks from "./pages/HowItWorks";
 import FAQ from "./pages/FAQ";
 import Blog from "./pages/Blog";
 import BlogPost from "./pages/BlogPost";
+import ForCarers from "./pages/ForCarers";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         <Route path="/faq" element={<FAQ />} />
         <Route path="/blog" element={<Blog />} />
         <Route path="/blog/:slug" element={<BlogPost />} />
+        <Route path="/for-carers" element={<ForCarers />} />
       </Routes>
     </BrowserRouter>
   );
