@@ -10,6 +10,7 @@ import Blog from "./pages/Blog";
 import BlogPost from "./pages/BlogPost";
 import ForCarers from "./pages/ForCarers";
 import OfflineAccess from "./pages/OfflineAccess";
+import CompareScripty from "./pages/CompareScripty";
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
         <Route path="/blog/:slug" element={<BlogPost />} />
         <Route path="/for-carers" element={<ForCarers />} />
         <Route path="/offline-escripts" element={<OfflineAccess />} />
+        <Route path="/compare/openpharmacy-vs-scripty" element={<CompareScripty />} />
       </Routes>
     </BrowserRouter>
   );
