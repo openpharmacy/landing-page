@@ -80,6 +80,14 @@ const blogPosts = [
       "Pharmacy apps like MedAdvisor connect your prescriptions to a pharmacy network. Independent wallets like OpenPharmacy work at any chemist and don't share your data with any pharmacy. Here's what the difference means for your privacy.",
     tags: ["eScripts", "Privacy", "App Comparison", "Australia", "Digital Health"],
   },
+  {
+    slug: "escript-app-security-privacy-guide-australia",
+    title: "How to Keep Your eScripts Secure: A Privacy Guide for Australian Patients",
+    date: "2026-03-11",
+    excerpt:
+      "To verify an eScript app is secure, check three things: ADHA ePrescribing Conformance Register listing, Australian server storage, and an explicit no-third-party-sharing policy. This guide explains each check and why it matters.",
+    tags: ["Security", "Privacy", "Encryption", "ADHA", "Digital Health", "Australia"],
+  },
 ];
 
 export default blogPosts;
