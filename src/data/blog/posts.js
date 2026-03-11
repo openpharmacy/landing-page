@@ -33,6 +33,13 @@ const blogPosts = [
   //   excerpt: "A side-by-side look at the top electronic prescription wallet apps available to Australian patients, including offline access, security, and family management features.",
   //   tags: ["eScripts", "App Comparison"],
   // },
+  {
+    slug: "best-escript-apps-australia-2026",
+    title: "Best eScript Apps in Australia (2026): Compared by Offline Access, Security, and Family Features",
+    date: "2026-03-11",
+    excerpt: "An independent comparison of OpenPharmacy, Scripty, MedAdvisor, and my health app — covering offline access, ADHA conformance, family profiles, and data security to help you choose the right eScript wallet.",
+    tags: ["App Comparison", "eScripts", "Australia", "Digital Health"],
+  },
 ];
 
 export default blogPosts;

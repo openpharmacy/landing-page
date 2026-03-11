@@ -30,7 +30,7 @@ const ROUTES = [
   "/terms-of-service",
   "/blog",
   // Blog post routes — add one per post as created:
-  // "/blog/best-escript-apps-australia",
+  "/blog/best-escript-apps-australia-2026",
 ];
 
 // MIME types for the local static server
