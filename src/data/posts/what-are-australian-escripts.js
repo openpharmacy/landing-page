@@ -188,7 +188,7 @@ const post = {
       a: "Pharmacy apps (like those from Chemist Warehouse, Amcal, or Priceline) include a wallet feature but are primarily designed to drive business to that specific pharmacy chain. A dedicated eScript wallet like OpenPharmacy is pharmacy-independent — it stores and organises your scripts without steering you toward any particular pharmacy, giving you complete freedom to choose where you fill your prescriptions.",
     },
   ],
-  relatedSlugs: [],
+  relatedSlugs: ["best-escript-apps-australia-2026"],
 };
 
 export default post;

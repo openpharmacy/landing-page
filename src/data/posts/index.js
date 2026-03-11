@@ -36,11 +36,13 @@
  * }
  */
 
+import bestEscriptAppsAustralia2026 from "./best-escript-apps-australia-2026.js";
 import whatAreAustralianEscripts from "./what-are-australian-escripts.js";
 
 /** @type {PostEntry[]} */
 const posts = [
   // Most recent first.
+  bestEscriptAppsAustralia2026,
   whatAreAustralianEscripts,
 ];
 
