@@ -5,7 +5,7 @@ import BlogCard from "../components/BlogCard";
 import { usePageMeta } from "../hooks/usePageMeta";
 import blogPosts from "../data/blog/posts";
 
-// ─── Compare pages registry ───────────────────────────────────────────────────
+// ─── Compare pages registry ──────────────────────────────────────────────────
 // Add one entry here whenever a new /compare page is created.
 const comparePages = [
   {
@@ -18,7 +18,7 @@ const comparePages = [
   },
 ];
 
-// ─── Post category groupings ──────────────────────────────────────────────────
+// ─── Post category groupings ─────────────────────────────────────────────────
 // Slugs are matched against blogPosts to build each section.
 const SECTION_SLUGS = {
   guides: [
@@ -43,7 +43,7 @@ function getPostsBySlug(slugs) {
     .filter(Boolean);
 }
 
-// ─── Hero compare card ────────────────────────────────────────────────────────
+// ─── Hero compare card ───────────────────────────────────────────────────────
 function HeroCompareCard({ page }) {
   const formattedDate = new Date(page.date).toLocaleDateString("en-AU", {
     year: "numeric",
@@ -97,7 +97,7 @@ function HeroCompareCard({ page }) {
   );
 }
 
-// ─── Section heading ──────────────────────────────────────────────────────────
+// ─── Section heading ─────────────────────────────────────────────────────────
 function SectionHeading({ children }) {
   return (
     <h2 className="text-lg font-semibold text-white/60 uppercase tracking-widest mb-4">
@@ -106,7 +106,7 @@ function SectionHeading({ children }) {
   );
 }
 
-// ─── Page component ───────────────────────────────────────────────────────────
+// ─── Page component ──────────────────────────────────────────────────────────
 function BlogIndex() {
   usePageMeta({
     title: "eScript Guides and Resources | OpenPharmacy Blog",
@@ -151,32 +151,6 @@ function BlogIndex() {
         </p>
       </div>
 
-      {/* App Comparisons section ─ featured at top */}
-      <section>
-        <SectionHeading>App Comparisons</SectionHeading>
-
-        {/* Compare pages */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-          {comparePages.map((page) => (
-            <HeroCompareCard key={page.slug} page={page} />
-          ))}
-        </div>
-
-        {/* Blog comparison posts */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {comparisonPosts.map((post) => (
-            <BlogCard
-              key={post.slug}
-              slug={post.slug}
-              title={post.title}
-              date={post.date}
-              excerpt={post.excerpt}
-              tags={post.tags}
-            />
-          ))}
-        </div>
-      </section>
-
       {/* Guides section */}
       <section>
         <SectionHeading>Guides</SectionHeading>
@@ -199,6 +173,32 @@ function BlogIndex() {
         <SectionHeading>How-To and Troubleshooting</SectionHeading>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {howtoPosts.map((post) => (
+            <BlogCard
+              key={post.slug}
+              slug={post.slug}
+              title={post.title}
+              date={post.date}
+              excerpt={post.excerpt}
+              tags={post.tags}
+            />
+          ))}
+        </div>
+      </section>
+
+      {/* App Comparisons section */}
+      <section>
+        <SectionHeading>App Comparisons</SectionHeading>
+
+        {/* Compare pages */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+          {comparePages.map((page) => (
+            <HeroCompareCard key={page.slug} page={page} />
+          ))}
+        </div>
+
+        {/* Blog comparison posts */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {comparisonPosts.map((post) => (
             <BlogCard
               key={post.slug}
               slug={post.slug}
