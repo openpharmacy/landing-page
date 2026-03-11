@@ -9,6 +9,7 @@ import FAQ from "./pages/FAQ";
 import Blog from "./pages/Blog";
 import BlogPost from "./pages/BlogPost";
 import ForCarers from "./pages/ForCarers";
+import OfflineAccess from "./pages/OfflineAccess";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
         <Route path="/blog" element={<Blog />} />
         <Route path="/blog/:slug" element={<BlogPost />} />
         <Route path="/for-carers" element={<ForCarers />} />
+        <Route path="/offline-escripts" element={<OfflineAccess />} />
       </Routes>
     </BrowserRouter>
   );
