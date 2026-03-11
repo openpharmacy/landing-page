@@ -20,6 +20,183 @@
 
 export const blogPosts = [
   {
+    slug: "best-escript-apps-australia-2026",
+    title: "Best eScript Apps in Australia for 2026: An Honest Comparison",
+    description:
+      "An honest, detailed comparison of the best eScript apps in Australia for 2026 — OpenPharmacy, Scripty, MedAdvisor, 1800MEDICARE and more, ranked by security, offline access, family management, and pharmacy independence.",
+    date: "2026-03-11",
+    updatedDate: null,
+    readingTime: "10 min read",
+    tags: ["comparison", "best apps", "ranking", "competitors", "scripty", "medadvisor", "middle-funnel"],
+    sections: [
+      {
+        heading: null,
+        paragraphs: [
+          "The best eScript apps in Australia for 2026 are OpenPharmacy, Scripty, MedAdvisor, and the government's 1800MEDICARE app — each suited to a different type of user. OpenPharmacy and Scripty are purpose-built independent eScript wallets: both are free, ADHA-conformant, work completely offline, and store data on Australian servers. MedAdvisor is the better choice if you want pharmacy ordering, pill reminders, and delivery built into one place. The 1800MEDICARE app is the official government option, tied to your My Health Record, but it requires an internet connection and isn't primarily designed as a script wallet.",
+          "Australia has issued over 219 million electronic prescriptions since national rollout began in May 2020. As of 2026, the Australian Government is trialling electronic prescribing by default in primary care — meaning eScripts are rapidly becoming the norm, not the exception. With more prescriptions arriving digitally every month, choosing the right app matters more than ever.",
+          "This comparison covers the five most relevant options: what each app does well, where it falls short, who it's best suited to, and how to choose between them. App information was verified in March 2026.",
+        ],
+        list: null,
+      },
+      {
+        heading: "How We Evaluated These Apps",
+        paragraphs: [
+          "A useful eScript app needs to do one thing reliably: make sure your prescription QR code is available and scannable at the pharmacy counter, every time. Everything else is secondary. With that core requirement in mind, we evaluated each app across five dimensions that matter most to Australian patients.",
+        ],
+        list: [
+          "ADHA conformance — is the app officially registered with the Australian Digital Health Agency's ePrescribing conformance register? This is the non-negotiable baseline for any app handling real prescription tokens.",
+          "Offline access — does the app display prescription QR codes without an internet connection? This is critical in rural and regional areas, and for pharmacies with poor in-store connectivity.",
+          "Security and data storage — what encryption standard is used, and where is your data stored? Prescription data is sensitive health information and should never be stored offshore.",
+          "Family and carer management — can you manage prescriptions for children, parents, or a partner from a single account?",
+          "Pharmacy independence — does the app work at any pharmacy in Australia, or does it push you toward a specific chain?",
+        ],
+      },
+      {
+        heading: "1. OpenPharmacy — Best for Security and Offline Access",
+        paragraphs: [
+          "OpenPharmacy is a free, ADHA-conformant eScript wallet built by Easy As Health Pty Ltd in Brisbane, Australia. It is purpose-built for one job: securely storing and displaying your prescription QR codes, with a particular focus on security and guaranteed offline access. OpenPharmacy uses end-to-end ASD-approved encryption — the encryption standard defined by the Australian Signals Directorate — and stores all data exclusively on Australian servers, never shared with third parties.",
+          "The offline-first design is a genuine differentiator. Once your eScripts are loaded, the QR codes are stored locally on your device and available without any internet connection. This makes it uniquely reliable in rural and regional settings, pharmacies with poor signal, or any situation where mobile data is unreliable. The app is protected by a 4-digit PIN and requires no pharmacy registration to get started.",
+          "OpenPharmacy supports Active Script List (ASL) connection via an activation code from your pharmacist, enabling automatic syncing of all your active scripts and repeats. Family management allows caregivers to manage prescriptions for multiple people — children, parents, partners — from a single account without separate logins.",
+        ],
+        list: [
+          "Best for: patients in rural and regional areas, security-conscious users, caregivers managing multiple family members' scripts",
+          "Cost: free, no ads, no subscription fees",
+          "Pharmacy independence: complete — works at any Australian pharmacy",
+          "ADHA conformance: yes, registered on the official ePrescribing conformance register",
+          "Offline access: yes — QR codes available without any internet connection",
+          "Security: end-to-end ASD-approved encryption, PIN-protected, data stored exclusively on Australian servers",
+          "ASL/MySL integration: yes, via pharmacy activation code",
+          "Family management: yes — manage scripts for multiple family members from one account",
+          "Available on: iOS and Android",
+        ],
+      },
+      {
+        heading: "2. Scripty — Best for Active Script List Integration",
+        paragraphs: [
+          "Scripty is a free, ADHA-conformant eScript wallet developed by Oexa, also based in Brisbane, Australia. It is one of the most feature-complete independent eScript wallets available to Australian patients, and was among the first consumer apps to integrate with the My Script List (MySL) national Active Script List system. Once connected to the ASL, scripts and repeats are added automatically — no manual token entry needed.",
+          "Scripty's standout feature for busy users is Smart Import: you can add multiple scripts at once by taking screenshots of your eScript messages and letting the app extract the tokens automatically. It also offers automatic archiving of used and expired scripts, the ability to add personalised nicknames to medications, and a Scan and Swipe feature for presenting multiple QR codes in sequence at the pharmacy counter. Like OpenPharmacy, it works offline and is not tied to any pharmacy chain.",
+          "On security, Scripty stores data on Australian servers, uses end-to-end encryption in transit, and encrypts data at rest. Device-stored data is encrypted when the app is not in use, with optional biometric lock (fingerprint or Face ID). No pharmacy activation code is needed to sign up — you simply use a Google or Apple login.",
+        ],
+        list: [
+          "Best for: users who want frictionless ASL syncing, those importing many scripts at once, users who want biometric lock",
+          "Cost: free, ad-free",
+          "Pharmacy independence: complete — works at any Australian pharmacy",
+          "ADHA conformance: yes, listed on the ADHA ePrescribing conformance register",
+          "Offline access: yes — QR codes available without an internet connection",
+          "Security: end-to-end encryption, Australian-hosted data, optional biometric lock",
+          "ASL/MySL integration: yes, direct integration — no pharmacy activation code required to set up your account",
+          "Family management: yes — auto-organises scripts by family member",
+          "Available on: iOS and Android",
+        ],
+      },
+      {
+        heading: "3. MedAdvisor — Best for Pharmacy Ordering and Medication Reminders",
+        paragraphs: [
+          "MedAdvisor is a broader medication management platform used by nearly 4 million Australians, connected to over 95% of Australian pharmacies (5,500+ locations). It is not primarily an eScript wallet — it is a full medication management platform that includes eScript storage alongside pharmacy ordering, medication delivery, pill reminders, refill alerts, telehealth consultations, and integration with pharmacist health services.",
+          "For patients who want to pre-order medications for pickup or home delivery, skip the queue at their regular pharmacy, and receive reminders when it's time to refill, MedAdvisor offers significantly more than a dedicated eScript wallet. The app added Active Script List integration in December 2025, enabling automatic syncing for patients registered on ASL. MedAdvisor is also ISO 27001 certified, demonstrating adherence to international information security standards.",
+          "The tradeoffs are worth understanding. MedAdvisor's eScript functionality is part of a larger platform focused on the pharmacy-ordering workflow — it is not primarily designed as a portable wallet for presenting QR codes at any counter. The app requires pharmacy registration and approval to access ordering features, and the ASL setup requires a pharmacy-issued activation code. MedAdvisor does not publish explicit offline access details for its QR code display, which is worth confirming before relying on it in low-connectivity settings.",
+        ],
+        list: [
+          "Best for: patients on regular medications at a consistent pharmacy who want ordering, reminders, and delivery in one app",
+          "Cost: free to download and use",
+          "Pharmacy independence: works across 95%+ of Australian pharmacies, but optimised for ordering at a registered pharmacy",
+          "ADHA conformance: yes",
+          "Offline access: not explicitly confirmed for QR code display — verify before use in low-signal settings",
+          "Security: ISO 27001 certified, ADHA-compliant encryption, pharmacy data protection standards",
+          "ASL/MySL integration: yes, launched December 2025, requires pharmacy activation code",
+          "Family management: yes — manage medications for family members and carers",
+          "Available on: iOS and Android",
+        ],
+      },
+      {
+        heading: "4. 1800MEDICARE App — Best for My Health Record Integration",
+        paragraphs: [
+          "The 1800MEDICARE app is the Australian Government's official health app, operated by the Australian Digital Health Agency. It was renamed from 'my health app' on 1 January 2026 as part of a broader government initiative to expand access to primary care. The app provides access to your My Health Record, electronic prescriptions, and the Active Script List, alongside features like healthcare service finder, immunisation history, and Medicare information.",
+          "For patients who already use My Health Record and want a single government-backed app for all their health information, the 1800MEDICARE app provides a useful baseline. It supports authorised representatives, meaning carers and parents can view and help manage a family member's health information using their own login. The app requires a myGov account linked to My Health Record to set up.",
+          "The 1800MEDICARE app is not a dedicated eScript wallet and has a meaningful limitation for pharmacy visits: it requires an internet connection to function. There is no offline access to prescription QR codes. This makes it unsuitable as a standalone eScript management solution for patients in areas with unreliable connectivity, and less convenient at pharmacy counters where signal can be inconsistent. It is best understood as a health records portal that includes eScript access, rather than a wallet optimised for daily prescription management.",
+        ],
+        list: [
+          "Best for: patients who primarily want access to My Health Record alongside their eScripts, and who have reliable internet access",
+          "Cost: free",
+          "Pharmacy independence: works at any pharmacy accepting electronic prescriptions",
+          "ADHA conformance: yes — operated directly by the Australian Digital Health Agency",
+          "Offline access: no — requires an internet connection",
+          "Security: government-grade security, myGov authentication, 6-digit PIN",
+          "ASL/MySL integration: yes — directly connected",
+          "Family management: yes — authorised representatives can manage family members' records",
+          "Available on: iOS and Android (requires myGov account and linked My Health Record)",
+        ],
+      },
+      {
+        heading: "5. Pharmacy-Linked Wallets — Best for Chain Loyalty Users",
+        paragraphs: [
+          "Several major pharmacy groups offer their own eScript wallet apps: Healthylife Script Wallet (Chemist Warehouse group), Chemist2U MyScripts, and honahlee eScript Wallet+. These apps are designed to make it easy to fill scripts at their affiliated pharmacies, with features like online ordering, delivery, and automatic ASL syncing for the platforms that support it.",
+          "The core limitation of pharmacy-linked wallets is in the name: they work best when you fill scripts at their pharmacy. If you switch pharmacies, travel, or simply want to compare prices and services, a pharmacy-linked wallet creates friction that an independent app avoids entirely. They are a reasonable choice for patients who fill all their scripts at one chain and value the integrated ordering experience — but for anyone who wants genuine pharmacy choice, an independent app like OpenPharmacy or Scripty is the more flexible option.",
+          "honahlee eScript Wallet+ is notable for its ASL integration, which automatically carries all your prescriptions in real time without manual token uploads. It is primarily designed for medicinal cannabis patients and users of the honahlee online pharmacy platform.",
+        ],
+        list: [
+          "Best for: patients who consistently use one pharmacy chain and want an integrated ordering experience",
+          "Cost: free",
+          "Pharmacy independence: limited — optimised for the affiliated pharmacy chain",
+          "ADHA conformance: varies by app — verify individually",
+          "Offline access: varies — verify before relying on in low-signal settings",
+        ],
+      },
+      {
+        heading: "Side-by-Side Comparison",
+        paragraphs: [
+          "Here is a summary of how the five main options compare across the criteria that matter most to Australian patients choosing an eScript app in 2026.",
+        ],
+        list: [
+          "OpenPharmacy: ADHA conformant | offline access YES | Australian data storage YES | family management YES | pharmacy independent YES | cost FREE",
+          "Scripty: ADHA conformant | offline access YES | Australian data storage YES | family management YES | pharmacy independent YES | cost FREE",
+          "MedAdvisor: ADHA conformant | offline access UNCONFIRMED | data storage protected | family management YES | pharmacy network 95%+ | cost FREE",
+          "1800MEDICARE app: ADHA conformant (government-operated) | offline access NO | data storage Australian government | family management YES (authorised reps) | pharmacy independent YES | cost FREE",
+          "Pharmacy-linked wallets (Healthylife, Chemist2U, honahlee): conformance varies | offline access varies | family management varies | pharmacy independent LIMITED | cost FREE",
+        ],
+      },
+      {
+        heading: "How to Choose the Right App for Your Situation",
+        paragraphs: [
+          "The right app depends on what frustrates you most about managing prescriptions today. Here is a straightforward guide.",
+        ],
+        list: [
+          "You want the most secure, private option with guaranteed offline access: OpenPharmacy. ASD-approved encryption, Australian servers, no pharmacy affiliation, complete offline QR code access.",
+          "You want frictionless ASL syncing with no pharmacy visit to set up: Scripty. ASL connects without a pharmacy activation code, and Smart Import lets you add multiple scripts from screenshots at once.",
+          "You want to pre-order medications, get reminders, and have scripts delivered: MedAdvisor. It is the most feature-complete platform for the pharmacy-ordering workflow.",
+          "You want the official government app connected to your My Health Record: 1800MEDICARE app. Requires myGov setup and a reliable internet connection.",
+          "You always use the same pharmacy chain and want ordering integration: try their own wallet app (Healthylife, Chemist2U, or honahlee). Just be aware it limits your flexibility.",
+          "You are a caregiver managing scripts for children, parents, or a partner: both OpenPharmacy and Scripty support family management. OpenPharmacy requires no pharmacy registration and has the most explicit offline guarantee.",
+          "You live in a rural or regional area with unreliable mobile signal: OpenPharmacy is the most explicit about offline QR code availability without any internet connection.",
+        ],
+      },
+      {
+        heading: "What All Good eScript Apps Have in Common",
+        paragraphs: [
+          "Regardless of which app you choose, look for these baseline features before trusting any app with your prescription data.",
+          "ADHA conformance is the non-negotiable starting point. Only apps listed on the Australian Digital Health Agency's official ePrescribing conformance register have been independently assessed to meet the security and interoperability standards required to handle prescription tokens within Australia's national system. You can verify any app's conformance status at digitalhealth.gov.au.",
+          "Australian data storage matters because prescription information is sensitive health data governed by the Privacy Act 1988 and the Australian Privacy Principles. An app that stores your data offshore removes your data from Australian legal protections. Both OpenPharmacy and Scripty explicitly confirm all data is hosted on Australian servers.",
+        ],
+        list: null,
+      },
+      {
+        heading: "Frequently Asked Questions",
+        paragraphs: [
+          "These are the questions Australians most commonly ask when comparing eScript apps.",
+        ],
+        list: [
+          "Is there a best eScript app for Australia in 2026? OpenPharmacy and Scripty are the strongest dedicated eScript wallets: both are free, ADHA-conformant, offline-capable, and pharmacy-independent. MedAdvisor is better if you want a full medication management platform with ordering. The 1800MEDICARE app suits users who want government-integrated My Health Record access.",
+          "Do I need a My Health Record to use an eScript wallet? No. eScript tokens and the Active Script List operate independently of My Health Record. You do not need a My Health Record account to receive, store, or present eScripts.",
+          "What is ADHA conformance? It is the Australian Digital Health Agency's certification that an app meets the mandatory security, technical, and interoperability standards required to participate in Australia's national digital health infrastructure. Only conformant apps can legally connect to the National Prescription Delivery Service.",
+          "Can I use any pharmacy with an independent eScript wallet? Yes. ADHA-conformant eScript wallets like OpenPharmacy and Scripty work at any Australian pharmacy that accepts electronic prescriptions — the vast majority of community pharmacies. You are not locked into any specific chain.",
+          "Which eScript app works offline? OpenPharmacy and Scripty both work offline — QR codes are stored locally on your device and accessible without internet. The 1800MEDICARE app requires an internet connection.",
+          "Which eScript app is the most secure? OpenPharmacy uses end-to-end ASD-approved encryption with all data stored exclusively on Australian servers. Scripty also uses end-to-end encryption with Australian-hosted data. MedAdvisor is ISO 27001 certified. All three are ADHA conformant.",
+          "Are eScript apps free? Yes — OpenPharmacy, Scripty, MedAdvisor, and the 1800MEDICARE app are all free to download and use with no subscription fees.",
+        ],
+      },
+    ],
+  },
+  {
     slug: "australian-escript-wallets-complete-guide",
     title: "Australian eScript Wallets: The Complete Guide (2026)",
     description:
