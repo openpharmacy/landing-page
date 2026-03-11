@@ -517,7 +517,7 @@ function OpenPharmacyVsScripty() {
           {/* CTA */}
           <div className="mt-12 rounded-2xl bg-[var(--color-secondary)] border border-white/10 p-6 md:p-8 text-center">
             <h2 className="font-grifter text-xl md:text-2xl font-bold text-white mb-2">
-              Download OpenPharmacy — Free on iOS and Android
+              Download OpenPharmacy. Free on iOS and Android.
             </h2>
             <p className="text-white/70 text-sm md:text-base mb-6 max-w-lg mx-auto">
               Store, manage, and present your eScripts at any Australian pharmacy. Works completely
@@ -525,7 +525,7 @@ function OpenPharmacyVsScripty() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a
-                href="https://apps.apple.com/au/app/openpharmacy/id6470228865"
+                href="https://apps.apple.com/au/app/openpharmacy/id6751562406"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center justify-center gap-2 bg-[var(--color-accent)] text-white font-semibold px-6 py-3 rounded-xl hover:opacity-90 transition-opacity text-sm"
@@ -534,7 +534,7 @@ function OpenPharmacyVsScripty() {
                 Download on the App Store
               </a>
               <a
-                href="https://play.google.com/store/apps/details?id=com.easyashealth.openpharmacy"
+                href="https://play.google.com/store/apps/details?id=com.openpharmacy.production&hl=en_AU"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center justify-center gap-2 bg-white/10 text-white font-semibold px-6 py-3 rounded-xl hover:bg-white/20 transition-colors text-sm"

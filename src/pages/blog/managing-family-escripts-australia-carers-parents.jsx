@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import BlogLayout from "../../components/BlogLayout";
 import post from "../../data/blog/managing-family-escripts-australia-carers-parents";
 
@@ -239,23 +240,33 @@ function ManagingFamilyEscriptsAustraliaCarersParents() {
       <p className="text-white/75 text-sm leading-relaxed mt-8">
         For a full comparison of all major Australian eScript apps including security and offline
         access ratings, see:{" "}
-        <a
-          href="/blog/best-escript-apps-australia-2026"
+        <Link
+          to="/blog/best-escript-apps-australia-2026"
           className="text-[var(--color-accent)] underline hover:opacity-80 transition-opacity"
         >
           Best eScript Apps in Australia (2026): Compared by Offline Access, Security, and Family
           Features
-        </a>
+        </Link>
         .
       </p>
       <p className="text-white/75 text-sm leading-relaxed mt-3">
         New to eScripts? Start here:{" "}
-        <a
-          href="/blog/what-is-an-escript-wallet-australia"
+        <Link
+          to="/blog/what-is-an-escript-wallet-australia"
           className="text-[var(--color-accent)] underline hover:opacity-80 transition-opacity"
         >
           What Is an eScript Wallet? A Plain-English Guide for Australians
-        </a>
+        </Link>
+        .
+      </p>
+      <p className="text-white/75 text-sm leading-relaxed mt-3">
+        Comparing OpenPharmacy and Scripty for family management? See:{" "}
+        <Link
+          to="/compare/openpharmacy-vs-scripty"
+          className="text-[var(--color-accent)] underline hover:opacity-80 transition-opacity"
+        >
+          OpenPharmacy vs Scripty: Which eScript Wallet Is Right for You?
+        </Link>
         .
       </p>
 
@@ -275,7 +286,7 @@ function ManagingFamilyEscriptsAustraliaCarersParents() {
       {/* CTA */}
       <div className="mt-12 rounded-2xl bg-[var(--color-secondary)] border border-white/10 p-6 md:p-8 text-center">
         <h2 className="font-grifter text-xl md:text-2xl font-bold text-white mb-2">
-          Download OpenPharmacy — Free on iOS and Android
+          Download OpenPharmacy. Free on iOS and Android.
         </h2>
         <p className="text-white/70 text-sm md:text-base mb-6 max-w-lg mx-auto">
           Manage eScripts for your whole family in one place. Separate profiles per person,
@@ -283,7 +294,7 @@ function ManagingFamilyEscriptsAustraliaCarersParents() {
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <a
-            href="https://apps.apple.com/au/app/openpharmacy/id6470228865"
+            href="https://apps.apple.com/au/app/openpharmacy/id6751562406"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center justify-center gap-2 bg-[var(--color-accent)] text-white font-semibold px-6 py-3 rounded-xl hover:opacity-90 transition-opacity text-sm"
@@ -292,7 +303,7 @@ function ManagingFamilyEscriptsAustraliaCarersParents() {
             Download on the App Store
           </a>
           <a
-            href="https://play.google.com/store/apps/details?id=com.easyashealth.openpharmacy"
+            href="https://play.google.com/store/apps/details?id=com.openpharmacy.production&hl=en_AU"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center justify-center gap-2 bg-white/10 text-white font-semibold px-6 py-3 rounded-xl hover:bg-white/20 transition-colors text-sm"

@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import BlogLayout from "../../components/BlogLayout";
 import post from "../../data/blog/best-escript-apps-australia-2026";
 
@@ -221,10 +222,25 @@ function BestEscriptAppsAustralia2026() {
         ))}
       </div>
 
+      {/* Cross-link to detailed comparison */}
+      <div className="mt-10 rounded-xl border border-white/10 bg-white/[0.03] p-5">
+        <p className="text-sm font-semibold text-white/70 mb-3">Detailed comparison</p>
+        <ul className="space-y-2">
+          <li>
+            <Link
+              to="/compare/openpharmacy-vs-scripty"
+              className="text-[var(--color-accent)] hover:opacity-80 transition-opacity text-sm"
+            >
+              OpenPharmacy vs Scripty: in-depth breakdown of offline storage, ASL sync, security, and family features
+            </Link>
+          </li>
+        </ul>
+      </div>
+
       {/* CTA */}
       <div className="mt-12 rounded-2xl bg-[var(--color-secondary)] border border-white/10 p-6 md:p-8 text-center">
         <h2 className="font-grifter text-xl md:text-2xl font-bold text-white mb-2">
-          Download OpenPharmacy — Free on iOS and Android
+          Download OpenPharmacy. Free on iOS and Android.
         </h2>
         <p className="text-white/70 text-sm md:text-base mb-6 max-w-lg mx-auto">
           Store, manage, and present your eScripts at any Australian pharmacy. Works completely
@@ -232,7 +248,7 @@ function BestEscriptAppsAustralia2026() {
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <a
-            href="https://apps.apple.com/au/app/openpharmacy/id6470228865"
+            href="https://apps.apple.com/au/app/openpharmacy/id6751562406"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center justify-center gap-2 bg-[var(--color-accent)] text-white font-semibold px-6 py-3 rounded-xl hover:opacity-90 transition-opacity text-sm"
@@ -241,7 +257,7 @@ function BestEscriptAppsAustralia2026() {
             Download on the App Store
           </a>
           <a
-            href="https://play.google.com/store/apps/details?id=com.easyashealth.openpharmacy"
+            href="https://play.google.com/store/apps/details?id=com.openpharmacy.production&hl=en_AU"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center justify-center gap-2 bg-white/10 text-white font-semibold px-6 py-3 rounded-xl hover:bg-white/20 transition-colors text-sm"

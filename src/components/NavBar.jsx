@@ -44,6 +44,12 @@ const NavBar = () => {
             >
               Blog
             </Link>
+            <Link
+              to="/blog#comparisons"
+              className="text-white/80 hover:text-white text-base lg:text-lg transition-opacity"
+            >
+              Compare
+            </Link>
           </div>
         </div>
         {/* Desktop Contact button */}
@@ -124,7 +130,14 @@ const NavBar = () => {
           >
             Blog
           </Link>
-          {/* Mobile Contact button directly below Blog */}
+          <Link
+            to="/blog#comparisons"
+            onClick={() => setMenuOpen(false)}
+            className="text-white text-lg py-1"
+          >
+            Compare
+          </Link>
+          {/* Mobile Contact button directly below Compare */}
           <a
             href="mailto:hello@openpharmacy.com"
             onClick={() => setMenuOpen(false)}

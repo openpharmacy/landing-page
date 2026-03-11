@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import BlogLayout from "../../components/BlogLayout";
 import post from "../../data/blog/deleted-escript-sms-what-to-do-australia";
 
@@ -219,32 +220,32 @@ function DeletedEscriptSmsWhatToDoAustralia() {
       {/* Internal links to related posts */}
       <p className="text-white/75 text-sm leading-relaxed mt-8">
         Want to understand eScript wallets in more detail? See:{" "}
-        <a
-          href="/blog/what-is-an-escript-wallet-australia"
+        <Link
+          to="/blog/what-is-an-escript-wallet-australia"
           className="text-[var(--color-accent)] underline hover:opacity-80 transition-opacity"
         >
           What Is an eScript Wallet? A Plain-English Guide for Australians
-        </a>
+        </Link>
         .
       </p>
       <p className="text-white/75 text-sm leading-relaxed mt-3">
         Need to access your script without internet? Read:{" "}
-        <a
-          href="/blog/offline-escript-access-australia"
+        <Link
+          to="/blog/offline-escript-access-australia"
           className="text-[var(--color-accent)] underline hover:opacity-80 transition-opacity"
         >
           Offline eScript Access in Australia: Why Your QR Code Must Be Available Without Internet
-        </a>
+        </Link>
         .
       </p>
       <p className="text-white/75 text-sm leading-relaxed mt-3">
         Concerned about the security of your prescriptions? Read:{" "}
-        <a
-          href="/blog/escript-app-security-privacy-guide-australia"
+        <Link
+          to="/blog/escript-app-security-privacy-guide-australia"
           className="text-[var(--color-accent)] underline hover:opacity-80 transition-opacity"
         >
           How to Keep Your eScripts Secure: A Privacy Guide for Australian Patients
-        </a>
+        </Link>
         .
       </p>
 
@@ -264,7 +265,7 @@ function DeletedEscriptSmsWhatToDoAustralia() {
       {/* CTA */}
       <div className="mt-12 rounded-2xl bg-[var(--color-secondary)] border border-white/10 p-6 md:p-8 text-center">
         <h2 className="font-grifter text-xl md:text-2xl font-bold text-white mb-2">
-          Never lose an eScript again — download OpenPharmacy free
+          Never lose an eScript again. Download OpenPharmacy free.
         </h2>
         <p className="text-white/70 text-sm md:text-base mb-6 max-w-lg mx-auto">
           Save scripts from your SMS into a secure, encrypted wallet in seconds. Works offline.
@@ -272,7 +273,7 @@ function DeletedEscriptSmsWhatToDoAustralia() {
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <a
-            href="https://apps.apple.com/au/app/openpharmacy/id6470228865"
+            href="https://apps.apple.com/au/app/openpharmacy/id6751562406"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center justify-center gap-2 bg-[var(--color-accent)] text-white font-semibold px-6 py-3 rounded-xl hover:opacity-90 transition-opacity text-sm"
@@ -281,7 +282,7 @@ function DeletedEscriptSmsWhatToDoAustralia() {
             Download on the App Store
           </a>
           <a
-            href="https://play.google.com/store/apps/details?id=com.easyashealth.openpharmacy"
+            href="https://play.google.com/store/apps/details?id=com.openpharmacy.production&hl=en_AU"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center justify-center gap-2 bg-white/10 text-white font-semibold px-6 py-3 rounded-xl hover:bg-white/20 transition-colors text-sm"

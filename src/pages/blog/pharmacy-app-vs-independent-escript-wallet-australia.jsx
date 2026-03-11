@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import BlogLayout from "../../components/BlogLayout";
 import post from "../../data/blog/pharmacy-app-vs-independent-escript-wallet-australia";
 
@@ -240,12 +241,12 @@ function PharmacyAppVsIndependentEscriptWalletAustralia() {
       {/* Internal link: best eScript apps */}
       <p className="text-white/70 text-sm leading-relaxed mt-2">
         For a deeper comparison including offline access and ADHA conformance ratings, see:{" "}
-        <a
-          href="/blog/best-escript-apps-australia-2026"
+        <Link
+          to="/blog/best-escript-apps-australia-2026"
           className="text-[var(--color-accent)] underline hover:opacity-80 transition-opacity"
         >
           Best eScript Apps in Australia (2026)
-        </a>
+        </Link>
         .
       </p>
 
@@ -285,26 +286,33 @@ function PharmacyAppVsIndependentEscriptWalletAustralia() {
       {/* Internal links: related posts */}
       <p className="text-white/70 text-sm leading-relaxed mt-6">
         Related guides:{" "}
-        <a
-          href="/blog/what-is-an-escript-wallet-australia"
+        <Link
+          to="/blog/what-is-an-escript-wallet-australia"
           className="text-[var(--color-accent)] underline hover:opacity-80 transition-opacity"
         >
           What Is an eScript Wallet?
-        </a>
+        </Link>
         {" "}&middot;{" "}
-        <a
-          href="/blog/what-is-adha-conformance-australia"
+        <Link
+          to="/blog/what-is-adha-conformance-australia"
           className="text-[var(--color-accent)] underline hover:opacity-80 transition-opacity"
         >
           What Is ADHA Conformance?
-        </a>
+        </Link>
         {" "}&middot;{" "}
-        <a
-          href="/blog/offline-escript-access-australia"
+        <Link
+          to="/blog/offline-escript-access-australia"
           className="text-[var(--color-accent)] underline hover:opacity-80 transition-opacity"
         >
           Offline eScript Access in Australia
-        </a>
+        </Link>
+        {" "}&middot;{" "}
+        <Link
+          to="/compare/openpharmacy-vs-scripty"
+          className="text-[var(--color-accent)] underline hover:opacity-80 transition-opacity"
+        >
+          OpenPharmacy vs Scripty
+        </Link>
       </p>
 
       {/* External authority reference */}
@@ -336,7 +344,7 @@ function PharmacyAppVsIndependentEscriptWalletAustralia() {
       {/* CTA */}
       <div className="mt-12 rounded-2xl bg-[var(--color-secondary)] border border-white/10 p-6 md:p-8 text-center">
         <h2 className="font-grifter text-xl md:text-2xl font-bold text-white mb-2">
-          Download OpenPharmacy — Free on iOS and Android
+          Download OpenPharmacy. Free on iOS and Android.
         </h2>
         <p className="text-white/70 text-sm md:text-base mb-6 max-w-lg mx-auto">
           An independent eScript wallet that works at any Australian pharmacy. ADHA conformant,
@@ -344,7 +352,7 @@ function PharmacyAppVsIndependentEscriptWalletAustralia() {
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <a
-            href="https://apps.apple.com/au/app/openpharmacy/id6470228865"
+            href="https://apps.apple.com/au/app/openpharmacy/id6751562406"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center justify-center gap-2 bg-[var(--color-accent)] text-white font-semibold px-6 py-3 rounded-xl hover:opacity-90 transition-opacity text-sm"
@@ -353,7 +361,7 @@ function PharmacyAppVsIndependentEscriptWalletAustralia() {
             Download on the App Store
           </a>
           <a
-            href="https://play.google.com/store/apps/details?id=com.easyashealth.openpharmacy"
+            href="https://play.google.com/store/apps/details?id=com.openpharmacy.production&hl=en_AU"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center justify-center gap-2 bg-white/10 text-white font-semibold px-6 py-3 rounded-xl hover:bg-white/20 transition-colors text-sm"
