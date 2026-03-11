@@ -20,6 +20,135 @@
 
 export const blogPosts = [
   {
+    slug: "what-is-adha-conformance",
+    title: "What Is ADHA Conformance? A Plain-English Guide for Australians",
+    description:
+      "ADHA conformance is the Australian Digital Health Agency's certification that a health app meets mandatory security and technical standards. This plain-English guide explains what it means, why it matters, and how to check if an app is conformant.",
+    date: "2026-03-11",
+    updatedDate: null,
+    readingTime: "8 min read",
+    tags: ["adha", "conformance", "security", "trust", "educational", "top-of-funnel"],
+    sections: [
+      {
+        heading: null,
+        paragraphs: [
+          "ADHA conformance is the Australian Digital Health Agency's official certification that a health app or software system meets Australia's mandatory security, technical, and interoperability standards for electronic prescribing. For Australians choosing an eScript wallet, it is the single most important trust signal: an app with ADHA conformance has been assessed against national digital health standards and is legally authorised to handle your prescription tokens within Australia's national health infrastructure. An app without it is not.",
+          "If you have ever wondered whether the app storing your prescriptions is actually safe, this is the question that answers it. This guide explains what ADHA conformance means in plain English, what it actually requires of a health app, why it matters for your privacy and security, and how to verify whether any app you're considering has it.",
+        ],
+        list: null,
+      },
+      {
+        heading: "What Is the Australian Digital Health Agency (ADHA)?",
+        paragraphs: [
+          "The Australian Digital Health Agency (ADHA) is a government agency jointly funded by the Australian Government and all state and territory governments. It is responsible for designing, building, and operating Australia's national digital health infrastructure, including the My Health Record system, the National Prescription Delivery Service (NPDS), and the Active Script List (ASL).",
+          "The ADHA also sets and enforces the technical standards that any software must meet before it can connect to this national infrastructure. These standards are published in the Electronic Prescribing Conformance Profile and enforced through the Electronic Prescribing Conformance Assessment Scheme. When a product successfully meets all requirements, the ADHA adds it to the publicly available Electronic Prescribing Conformance Register and issues the product a Conformance ID.",
+          "The ADHA operates this framework on behalf of the entire Australian healthcare community, covering prescribers, dispensers, and the patient-facing apps that connect them. It is not a voluntary industry certification. It is the official government mechanism for ensuring every piece of software in Australia's electronic prescribing chain meets a consistent, auditable standard.",
+        ],
+        list: null,
+      },
+      {
+        heading: "What Does ADHA Conformance Actually Require?",
+        paragraphs: [
+          "ADHA conformance for a mobile eScript app involves meeting a detailed set of technical and security requirements set out in the Electronic Prescribing Conformance Profile. The profile covers both functional requirements (how the app interacts with prescription data) and non-functional requirements (the security and privacy standards it must maintain). Here is what those requirements mean in practice for a patient-facing app.",
+        ],
+        list: [
+          "Approved encryption: the app must use encryption methods that meet Australian Signals Directorate (ASD) standards for protecting data in transit and at rest. ASD is Australia's national cybersecurity authority, and its encryption standards are among the most rigorous applied to civilian software in the country.",
+          "Secure connection to national infrastructure: the app must be able to securely connect to the National Prescription Delivery Service (NPDS) and, where relevant, the Active Script List Registry (ASLR). These are the government-operated systems that store and transfer your prescription data.",
+          "Correct handling of prescription tokens: the app must manage prescription tokens accurately, ensuring scripts are presented, retrieved, and archived in ways that match the legal requirements of Australia's electronic prescribing system.",
+          "Data sovereignty: prescription data must be stored and handled in ways that comply with Australian privacy law, including the Privacy Act 1988 and the Australian Privacy Principles (APPs). Personal health information is classified as sensitive information under Australian law, attracting the strongest data protection requirements.",
+          "Ongoing compliance: conformance is not a one-time badge. The ADHA has the ability to remove non-conformant systems from the register if a product fails to maintain its obligations. Conformance must be actively maintained as the technical framework is updated.",
+        ],
+      },
+      {
+        heading: "Why ADHA Conformance Matters for Your Prescriptions",
+        paragraphs: [
+          "Under Australia's electronic prescribing legislative framework, only software listed on the ADHA Electronic Prescribing Conformance Register with a valid Conformance ID can legally participate in dispensing electronic prescriptions. In NSW, for example, health.nsw.gov.au states explicitly that a prescription created, transmitted, or dispensed using a system not listed on the register is not legally valid for dispensing.",
+          "For a patient, this has a direct practical meaning. If your eScript wallet app is not ADHA conformant, two things follow. First, any prescription token it handles sits outside the nationally audited, secure infrastructure, meaning the security protections that apply to conformant apps may not apply to yours. Second, the app cannot correctly connect to the Active Script List or the NPDS, which means features like automatic ASL syncing simply do not work through official channels.",
+          "ADHA conformance is also the clearest indicator that an app takes prescription data seriously. Achieving conformance requires a formal testing and assessment process, an observed conformance session with the NPDS or ASLR provider, and a signed Declaration of Conformance submitted to the Agency. It is a meaningful commitment, not a checkbox.",
+        ],
+        list: null,
+      },
+      {
+        heading: "How the ADHA Conformance Process Works",
+        paragraphs: [
+          "The conformance process is designed for software developers and vendors, not patients. But understanding it helps explain why conformant apps deserve more trust than unassessed alternatives.",
+          "To achieve conformance, a software vendor must first complete the ADHA's Electronic Prescribing Introductory Program to demonstrate they understand Australia's prescribing system architecture and security requirements. They then develop their product against the technical specifications provided by the National Prescription Delivery Service, and self-assess against all mandatory requirements in the Conformance Profile.",
+          "Before release, the vendor undergoes an observed testing session with the NPDS or ASLR provider, who validates the results of their self-assessment and verifies the product meets all technical obligations. The vendor then submits a formal Declaration of Conformance to the ADHA. According to the ADHA's implementer hub, the Agency typically takes around 20 business days to process a conformance declaration, after which the product is added to the public register. The ADHA then notifies Services Australia and all relevant state and territory health departments of the outcome.",
+          "The conformance register is publicly available at digitalhealth.gov.au/about-us/policies-privacy-and-reporting/registers. Any patient can download it and verify whether an app they are considering appears on it.",
+        ],
+        list: null,
+      },
+      {
+        heading: "Conformant vs Non-Conformant Apps: A Practical Comparison",
+        paragraphs: [
+          "The clearest way to understand what ADHA conformance means is to compare what each type of app can and cannot do.",
+        ],
+        list: [
+          "Conformant app: legally authorised to participate in Australia's national electronic prescribing system. Non-conformant app: not authorised; any interaction with prescription tokens operates outside the official system.",
+          "Conformant app: uses ASD-approved encryption for all prescription data in transit and at rest. Non-conformant app: no standardised encryption requirements enforced.",
+          "Conformant app: can connect to the Active Script List (ASL) for automatic syncing of all your active scripts. Non-conformant app: cannot connect to the official ASL infrastructure.",
+          "Conformant app: subject to ongoing oversight; the ADHA can remove it from the register if it fails to maintain standards. Non-conformant app: no ongoing oversight mechanism.",
+          "Conformant app: listed on the ADHA's publicly downloadable register, verifiable by any patient. Non-conformant app: no public verification possible.",
+          "Conformant app: complies with Australian Privacy Principles (APPs) for sensitive health information. Non-conformant app: no verified compliance with Australian data protection standards.",
+        ],
+      },
+      {
+        heading: "What Is ASD-Approved Encryption?",
+        paragraphs: [
+          "Several ADHA-conformant apps, including OpenPharmacy, describe their encryption as 'ASD-approved'. This refers to encryption standards endorsed or specified by the Australian Signals Directorate, Australia's national cybersecurity authority and the government body responsible for the Essential Eight framework and the Information Security Manual (ISM).",
+          "In the context of health apps, ASD-approved encryption means the app uses cryptographic methods that the ASD has assessed as appropriate for protecting sensitive Australian government and health sector data. These standards are substantially stronger than what a generic app developer might implement independently. For prescription data specifically, this matters because eScript tokens, while not containing clinical data themselves, are the keys that unlock access to your prescription records on government infrastructure.",
+          "When OpenPharmacy describes its encryption as ASD-approved, it means the encryption implemented in the app aligns with the standards the Australian Signals Directorate specifies for health sector data protection, not just commercially common encryption choices.",
+        ],
+        list: null,
+      },
+      {
+        heading: "ADHA Conformance and the Active Script List (ASL)",
+        paragraphs: [
+          "The Active Script List is a government-operated system that consolidates all your active electronic prescriptions in one place. Once you register for an ASL at a participating pharmacy, every new electronic prescription your doctor issues is automatically added to your list. You no longer need to track individual tokens sent via SMS or email.",
+          "Only ADHA-conformant apps can connect to the Active Script List Registry (ASLR). This is because ASL access requires a secure, authenticated connection to national health infrastructure, and only apps that have passed the conformance assessment are authorised to establish that connection. An app that claims to support ASL but is not on the conformance register either cannot actually connect, or is connecting through unofficial means.",
+          "For patients deciding which eScript wallet to use, ASL compatibility is increasingly important as more Australians register for the service. As of March 2025, new regulations allow patients to self-register for the ASL without visiting a pharmacy. Both OpenPharmacy and Scripty support ASL connectivity as ADHA-conformant apps. The government's 1800MEDICARE app (formerly the my health app) is also directly connected, as it is operated by the ADHA itself.",
+        ],
+        list: null,
+      },
+      {
+        heading: "How to Check If an eScript App Is ADHA Conformant",
+        paragraphs: [
+          "Verifying an app's ADHA conformance takes less than two minutes and requires no technical knowledge. Here is how to do it.",
+        ],
+        list: [
+          "Go to digitalhealth.gov.au/about-us/policies-privacy-and-reporting/registers.",
+          "Download the 'Electronic Prescribing - External Conformance Register' PDF.",
+          "Search the document for the app name or the developer's company name.",
+          "Check the 'Product Type' column to confirm the entry is a Mobile Application (MA) or Mobile Intermediary System (MIS), and that the Conformance Profile version is current (v3.0.1 entries have no end date and remain active).",
+          "If the app is not listed, it is not ADHA conformant. Look for an alternative.",
+        ],
+      },
+      {
+        heading: "OpenPharmacy and ADHA Conformance",
+        paragraphs: [
+          "OpenPharmacy is a free eScript wallet app built by Easy As Health Pty Ltd in Brisbane, Australia. It is registered with the Australian Digital Health Agency and is fully conformant with ADHA's ePrescribing standards for mobile applications.",
+          "OpenPharmacy uses end-to-end ASD-approved encryption for all prescription data, with all data stored exclusively on Australian servers and never shared with third parties. The app is protected by a 4-digit PIN, works completely offline so QR codes are accessible without any internet connection, and supports Active Script List connectivity. It can manage prescriptions for multiple family members, making it suitable for caregivers as well as individual patients.",
+          "For Australians who want an eScript wallet that combines ADHA conformance, ASD-grade encryption, verified Australian data storage, and guaranteed offline access in one free app, OpenPharmacy was built with exactly those requirements in mind.",
+        ],
+        list: null,
+      },
+      {
+        heading: "Common Questions About ADHA Conformance",
+        paragraphs: [
+          "These are the questions Australians most commonly ask about ADHA conformance and health app security.",
+        ],
+        list: [
+          "Is ADHA conformance the same as being approved by the government? Not exactly. ADHA conformance means an app has been assessed and meets the technical and security standards required to participate in Australia's national electronic prescribing system. The ADHA is a government agency, so conformance does reflect government-set standards, but it is not the same as a general government 'approval' or recommendation.",
+          "Does my eScript app need to be ADHA conformant? Yes, if you want to use the Active Script List or have any confidence that your prescription data is handled to national security standards. An app that is not on the conformance register has not been assessed against those standards.",
+          "Can a conformant app lose its status? Yes. The ADHA can remove a product from the conformance register if it fails to maintain its obligations. This ongoing oversight is one of the reasons conformance is a meaningful standard rather than a one-time certification.",
+          "Does ADHA conformance cover data privacy? Conformance requires compliance with the Australian Privacy Principles (APPs) under the Privacy Act 1988, which is Australia's core data privacy framework. However, conformance is primarily a technical and security standard. For detailed privacy practices, also review the app's published privacy policy.",
+          "What is the difference between ADHA conformance and being listed on the My Health Record conformance register? The ADHA maintains separate conformance registers for different parts of Australia's digital health system. The Electronic Prescribing conformance register covers apps that handle prescription tokens and connect to the NPDS or ASL. The My Health Record conformance register covers systems that connect to the My Health Record platform. An app can appear on one, both, or neither register.",
+          "Which eScript apps are ADHA conformant? You can verify the current list by downloading the Electronic Prescribing External Conformance Register from digitalhealth.gov.au. OpenPharmacy is listed on the register as a conformant mobile application.",
+        ],
+      },
+    ],
+  },
+  {
     slug: "best-escript-apps-australia-2026",
     title: "Best eScript Apps in Australia for 2026: An Honest Comparison",
     description:
