@@ -40,6 +40,14 @@ const blogPosts = [
     excerpt: "An independent comparison of OpenPharmacy, Scripty, MedAdvisor, and my health app — covering offline access, ADHA conformance, family profiles, and data security to help you choose the right eScript wallet.",
     tags: ["App Comparison", "eScripts", "Australia", "Digital Health"],
   },
+  {
+    slug: "what-is-an-escript-wallet-australia",
+    title: "What Is an eScript Wallet? A Plain-English Guide for Australians",
+    date: "2026-03-11",
+    excerpt:
+      "An eScript wallet stores your electronic prescription QR codes securely on your phone, so they are always available at the pharmacy — even offline. Here is how they work and what to look for.",
+    tags: ["Educational", "eScripts", "How It Works", "Australia", "Digital Health"],
+  },
 ];
 
 export default blogPosts;

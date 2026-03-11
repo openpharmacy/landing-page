@@ -11,6 +11,7 @@ import BlogIndex from "./pages/BlogIndex";
 // Blog post pages — import each post component and add a <Route> below.
 // Also add the slug to scripts/prerender.mjs ROUTES and src/data/blog/posts.js.
 import BestEscriptAppsAustralia2026 from "./pages/blog/best-escript-apps-australia-2026";
+import WhatIsAnEscriptWalletAustralia from "./pages/blog/what-is-an-escript-wallet-australia";
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
         <Route path="/blog" element={<BlogIndex />} />
         {/* Individual blog post routes — add one per post as created: */}
         <Route path="/blog/best-escript-apps-australia-2026" element={<BestEscriptAppsAustralia2026 />} />
+        <Route path="/blog/what-is-an-escript-wallet-australia" element={<WhatIsAnEscriptWalletAustralia />} />
       </Routes>
     </BrowserRouter>
   );

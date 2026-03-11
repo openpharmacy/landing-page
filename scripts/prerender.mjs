@@ -31,6 +31,7 @@ const ROUTES = [
   "/blog",
   // Blog post routes — add one per post as created:
   "/blog/best-escript-apps-australia-2026",
+  "/blog/what-is-an-escript-wallet-australia",
 ];
 
 // MIME types for the local static server
