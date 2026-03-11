@@ -13,6 +13,7 @@ import BlogIndex from "./pages/BlogIndex";
 import BestEscriptAppsAustralia2026 from "./pages/blog/best-escript-apps-australia-2026";
 import WhatIsAnEscriptWalletAustralia from "./pages/blog/what-is-an-escript-wallet-australia";
 import OfflineEscriptAccessAustralia from "./pages/blog/offline-escript-access-australia";
+import ManagingFamilyEscriptsAustraliaCarersParents from "./pages/blog/managing-family-escripts-australia-carers-parents";
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
         <Route path="/blog/best-escript-apps-australia-2026" element={<BestEscriptAppsAustralia2026 />} />
         <Route path="/blog/what-is-an-escript-wallet-australia" element={<WhatIsAnEscriptWalletAustralia />} />
         <Route path="/blog/offline-escript-access-australia" element={<OfflineEscriptAccessAustralia />} />
+        <Route path="/blog/managing-family-escripts-australia-carers-parents" element={<ManagingFamilyEscriptsAustraliaCarersParents />} />
       </Routes>
     </BrowserRouter>
   );

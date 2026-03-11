@@ -56,6 +56,14 @@ const blogPosts = [
       "SMS and email eScripts fail without a signal — at rural pharmacies, underground, or when your data runs out. OpenPharmacy stores QR codes directly on your device so they are always accessible, even in airplane mode.",
     tags: ["Offline Access", "Rural Australia", "eScripts", "QR Code", "Digital Health"],
   },
+  {
+    slug: "managing-family-escripts-australia-carers-parents",
+    title: "Managing Family eScripts in Australia: A Practical Guide for Parents and Carers",
+    date: "2026-03-11",
+    excerpt:
+      "Australian parents and carers can manage eScripts for children, elderly parents, and other family members using OpenPharmacy — separate profiles per person, offline QR codes, and ADHA-registered security in one app.",
+    tags: ["Caregivers", "Family Management", "eScripts", "Australia", "Digital Health"],
+  },
 ];
 
 export default blogPosts;
