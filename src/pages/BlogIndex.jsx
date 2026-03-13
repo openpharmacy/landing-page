@@ -7,16 +7,7 @@ import blogPosts from "../data/blog/posts";
 
 // ─── Compare pages registry ──────────────────────────────────────────────────
 // Add one entry here whenever a new /compare page is created.
-const comparePages = [
-  {
-    slug: "openpharmacy-vs-scripty",
-    title: "OpenPharmacy vs Scripty",
-    excerpt:
-      "Both are ADHA-conformant, free, and pharmacy-independent. The key difference: on-device offline storage vs Active Script List auto-sync. Find out which suits your needs.",
-    tags: ["Comparison", "Scripty", "Offline", "ADHA"],
-    date: "2026-03-11",
-  },
-];
+const comparePages = [];
 
 // ─── Post category groupings ─────────────────────────────────────────────────
 // Slugs are matched against blogPosts to build each section.
