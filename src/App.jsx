@@ -6,6 +6,25 @@ import PrivacyPolicy from "./pages/PrivacyPolicy";
 import TermsOfService from "./pages/TermsOfService";
 import HowItWorks from "./pages/HowItWorks";
 import FAQ from "./pages/FAQ";
+import BlogIndex from "./pages/BlogIndex";
+
+// Blog post pages — import each post component and add a <Route> below.
+// Also add the slug to scripts/prerender.mjs ROUTES and src/data/blog/posts.js.
+import BestEscriptAppsAustralia2026 from "./pages/blog/best-escript-apps-australia-2026";
+import WhatIsAnEscriptWalletAustralia from "./pages/blog/what-is-an-escript-wallet-australia";
+import OfflineEscriptAccessAustralia from "./pages/blog/offline-escript-access-australia";
+import ManagingFamilyEscriptsAustraliaCarersParents from "./pages/blog/managing-family-escripts-australia-carers-parents";
+import WhatIsAdhaConformanceAustralia from "./pages/blog/what-is-adha-conformance-australia";
+import PharmacyAppVsIndependentEscriptWalletAustralia from "./pages/blog/pharmacy-app-vs-independent-escript-wallet-australia";
+import EscriptAppSecurityPrivacyGuideAustralia from "./pages/blog/escript-app-security-privacy-guide-australia";
+import DeletedEscriptSmsWhatToDoAustralia from "./pages/blog/deleted-escript-sms-what-to-do-australia";
+
+// Compare pages — import each comparison component and add a <Route> below.
+// Also add the slug to scripts/prerender.mjs ROUTES.
+// NOTE: OpenPharmacy vs Scripty comparison is intentionally not linked or routed
+// until we have stronger differentiating features to publish. File is preserved
+// at src/pages/compare/openpharmacy-vs-scripty.jsx but not registered.
+// import OpenPharmacyVsScripty from "./pages/compare/openpharmacy-vs-scripty";
 
 function App() {
   return (
@@ -16,6 +35,18 @@ function App() {
         <Route path="/terms-of-service" element={<TermsOfService />} />
         <Route path="/how-it-works" element={<HowItWorks />} />
         <Route path="/faq" element={<FAQ />} />
+        <Route path="/blog" element={<BlogIndex />} />
+        {/* Individual blog post routes — add one per post as created: */}
+        <Route path="/blog/best-escript-apps-australia-2026" element={<BestEscriptAppsAustralia2026 />} />
+        <Route path="/blog/what-is-an-escript-wallet-australia" element={<WhatIsAnEscriptWalletAustralia />} />
+        <Route path="/blog/offline-escript-access-australia" element={<OfflineEscriptAccessAustralia />} />
+        <Route path="/blog/managing-family-escripts-australia-carers-parents" element={<ManagingFamilyEscriptsAustraliaCarersParents />} />
+        <Route path="/blog/what-is-adha-conformance-australia" element={<WhatIsAdhaConformanceAustralia />} />
+        <Route path="/blog/pharmacy-app-vs-independent-escript-wallet-australia" element={<PharmacyAppVsIndependentEscriptWalletAustralia />} />
+        <Route path="/blog/escript-app-security-privacy-guide-australia" element={<EscriptAppSecurityPrivacyGuideAustralia />} />
+        <Route path="/blog/deleted-escript-sms-what-to-do-australia" element={<DeletedEscriptSmsWhatToDoAustralia />} />
+        {/* Compare page routes — add one per comparison page as created: */}
+        {/* OpenPharmacy vs Scripty is intentionally hidden — see import comment above */}
       </Routes>
     </BrowserRouter>
   );

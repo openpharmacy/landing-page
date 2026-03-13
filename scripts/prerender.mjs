@@ -19,13 +19,28 @@ const DIST = join(__dirname, "..", "dist");
 const PORT = 4173;
 const BASE_URL = `http://localhost:${PORT}`;
 
-// All routes to pre-render
+// All routes to pre-render.
+// When adding a new blog post, append its slug here as "/blog/<slug>".
+// Also update src/App.jsx (import + Route) and src/data/blog/posts.js.
 const ROUTES = [
   "/",
   "/faq",
   "/how-it-works",
   "/privacy-policy",
   "/terms-of-service",
+  "/blog",
+  // Blog post routes — add one per post as created:
+  "/blog/best-escript-apps-australia-2026",
+  "/blog/what-is-an-escript-wallet-australia",
+  "/blog/offline-escript-access-australia",
+  "/blog/managing-family-escripts-australia-carers-parents",
+  "/blog/what-is-adha-conformance-australia",
+  "/blog/pharmacy-app-vs-independent-escript-wallet-australia",
+  "/blog/escript-app-security-privacy-guide-australia",
+  "/blog/deleted-escript-sms-what-to-do-australia",
+  // Compare page routes — add one per comparison page as created:
+  // NOTE: "/compare/openpharmacy-vs-scripty" is intentionally excluded until
+  // we have stronger differentiating features to publish.
 ];
 
 // MIME types for the local static server
