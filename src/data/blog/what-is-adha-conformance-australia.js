@@ -53,7 +53,7 @@ const post = {
       {
         label: "The app has been tested to correctly handle your prescriptions",
         detail:
-          "Functional testing during the conformance process verifies that the app correctly reads, stores, and presents eScript tokens. A faulty or non-conformant implementation could result in tokens being corrupted, QR codes being unreadable at the pharmacy, or repeat counts being displayed incorrectly — meaning you might arrive at the pharmacy without a working script.",
+          "Functional testing during the conformance process verifies that the app correctly reads, stores, and presents eScript tokens. A faulty or non-conformant implementation could result in tokens being corrupted, QR codes being unreadable at the pharmacy, or repeat counts being displayed incorrectly \u2014 meaning you might arrive at the pharmacy without a working script.",
       },
       {
         label: "Your prescription data cannot be legally shared with third parties",
@@ -65,7 +65,7 @@ const post = {
 
   howToVerify: {
     heading: "How to verify an app is ADHA-conformant",
-    intro: `The word 'compliant' appears frequently in app store listings. It means almost nothing on its own — any developer can write it. Conformance means registered. Here is how to check.`,
+    intro: `The word 'compliant' appears frequently in app store listings. It means almost nothing on its own \u2014 any developer can write it. Conformance means registered. Here is how to check.`,
     steps: [
       {
         number: 1,
@@ -94,8 +94,8 @@ const post = {
     body: [
       `OpenPharmacy is developed by Easy As Health Pty Ltd, a Brisbane-based digital health company. The app is registered on the ADHA ePrescribing Conformance Register, confirming it has completed the formal assessment for handling Australian electronic prescriptions.`,
       `On the security side, OpenPharmacy uses end-to-end ASD-approved encryption for all prescription data. ASD-approved encryption is the benchmark standard set by the Australian Signals Directorate for protecting sensitive government and health data. All data is stored on Australian servers and is never shared with third parties.`,
-      `The app is built around a specific design principle: your prescription QR codes must always be available, including without an internet connection. Scripts are stored directly on your device so they are accessible in areas with no mobile signal — rural pharmacies, underground car parks, hospital basements — without any dependency on a server connection at the point of dispensing.`,
-      `OpenPharmacy also supports separate profiles for family members. Parents can manage their children's scripts and carers can manage scripts for elderly parents within one account, all behind a 4-digit PIN, without compromising the privacy separation between profiles.`,
+      `The app is built around a specific design principle: your prescription QR codes must always be available, including without an internet connection. Scripts are stored directly on your device so they are accessible in areas with no mobile signal \u2014 rural pharmacies, underground car parks, hospital basements \u2014 without any dependency on a server connection at the point of dispensing.`,
+      `OpenPharmacy also makes it effortless to manage scripts for family members. Simply upload any eScript and the app automatically groups and sorts scripts by individual, so parents and carers can manage prescriptions for children and elderly parents within one account, all behind a 4-digit PIN.`,
     ],
   },
 
@@ -130,7 +130,7 @@ const post = {
     {
       question: "What is the ADHA ePrescribing Conformance Register?",
       answer:
-        "The ADHA ePrescribing Conformance Register is a publicly accessible list maintained by the Australian Digital Health Agency at digitalhealth.gov.au. It records every software product that has completed the formal conformance assessment for handling Australian electronic prescriptions. This includes patient-facing eScript wallet apps, clinical prescribing software used by doctors, and dispensing software used by pharmacies. Appearing on the register confirms that the product has been independently assessed against the national electronic prescribing standard — it is not a self-certification.",
+        "The ADHA ePrescribing Conformance Register is a publicly accessible list maintained by the Australian Digital Health Agency at digitalhealth.gov.au. It records every software product that has completed the formal conformance assessment for handling Australian electronic prescriptions. This includes patient-facing eScript wallet apps, clinical prescribing software used by doctors, and dispensing software used by pharmacies. Appearing on the register confirms that the product has been independently assessed against the national electronic prescribing standard \u2014 it is not a self-certification.",
     },
     {
       question: "Is OpenPharmacy ADHA-conformant?",

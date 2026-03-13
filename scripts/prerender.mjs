@@ -39,7 +39,8 @@ const ROUTES = [
   "/blog/escript-app-security-privacy-guide-australia",
   "/blog/deleted-escript-sms-what-to-do-australia",
   // Compare page routes — add one per comparison page as created:
-  "/compare/openpharmacy-vs-scripty",
+  // NOTE: "/compare/openpharmacy-vs-scripty" is intentionally excluded until
+  // we have stronger differentiating features to publish.
 ];
 
 // MIME types for the local static server

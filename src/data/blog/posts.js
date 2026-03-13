@@ -37,7 +37,7 @@ const blogPosts = [
     slug: "best-escript-apps-australia-2026",
     title: "Best eScript Apps in Australia (2026): Compared by Offline Access, Security, and Family Features",
     date: "2026-03-11",
-    excerpt: "An independent comparison of OpenPharmacy, Scripty, MedAdvisor, and my health app — covering offline access, ADHA conformance, family profiles, and data security to help you choose the right eScript wallet.",
+    excerpt: "An independent comparison of OpenPharmacy, Scripty, MedAdvisor, and my health app — covering offline access, ADHA conformance, family management, and data security to help you choose the right eScript wallet.",
     tags: ["App Comparison", "eScripts", "Australia", "Digital Health"],
   },
   {
@@ -61,7 +61,7 @@ const blogPosts = [
     title: "Managing Family eScripts in Australia: A Practical Guide for Parents and Carers",
     date: "2026-03-11",
     excerpt:
-      "Australian parents and carers can manage eScripts for children, elderly parents, and other family members using OpenPharmacy — separate profiles per person, offline QR codes, and ADHA-registered security in one app.",
+      "Australian parents and carers can manage eScripts for children, elderly parents, and other family members using OpenPharmacy — scripts automatically grouped by individual, offline QR codes, and ADHA-registered security in one app.",
     tags: ["Caregivers", "Family Management", "eScripts", "Australia", "Digital Health"],
   },
   {

@@ -21,7 +21,10 @@ import DeletedEscriptSmsWhatToDoAustralia from "./pages/blog/deleted-escript-sms
 
 // Compare pages — import each comparison component and add a <Route> below.
 // Also add the slug to scripts/prerender.mjs ROUTES.
-import OpenPharmacyVsScripty from "./pages/compare/openpharmacy-vs-scripty";
+// NOTE: OpenPharmacy vs Scripty comparison is intentionally not linked or routed
+// until we have stronger differentiating features to publish. File is preserved
+// at src/pages/compare/openpharmacy-vs-scripty.jsx but not registered.
+// import OpenPharmacyVsScripty from "./pages/compare/openpharmacy-vs-scripty";
 
 function App() {
   return (
@@ -43,7 +46,7 @@ function App() {
         <Route path="/blog/escript-app-security-privacy-guide-australia" element={<EscriptAppSecurityPrivacyGuideAustralia />} />
         <Route path="/blog/deleted-escript-sms-what-to-do-australia" element={<DeletedEscriptSmsWhatToDoAustralia />} />
         {/* Compare page routes — add one per comparison page as created: */}
-        <Route path="/compare/openpharmacy-vs-scripty" element={<OpenPharmacyVsScripty />} />
+        {/* OpenPharmacy vs Scripty is intentionally hidden — see import comment above */}
       </Routes>
     </BrowserRouter>
   );

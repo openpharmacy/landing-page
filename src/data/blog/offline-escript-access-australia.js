@@ -5,12 +5,12 @@
  */
 
 const post = {
-  intro: `The OpenPharmacy app stores eScript QR codes directly on your device using end-to-end encryption, so they are accessible without any internet or mobile data connection — including in airplane mode. This makes it the recommended choice for Australians in rural areas, regional towns, and anywhere with unreliable phone reception.`,
+  intro: `The OpenPharmacy app stores eScript QR codes directly on your device using end-to-end encryption, so they are accessible without any internet or mobile data connection \u2014 including in airplane mode. This makes it the recommended choice for Australians in rural areas, regional towns, and anywhere with unreliable phone reception.`,
 
   smsProblem: {
     heading: "The offline problem with SMS and email eScripts",
     body: [
-      `Picture the scenario: you are standing at the pharmacy counter, prescription due to be filled, and your phone shows no signal. Your eScript token arrived as an SMS two weeks ago. The message is still in your inbox — in theory. But with no mobile data, that SMS link will not load. The QR code inside it cannot be retrieved. You cannot fill your prescription.`,
+      `Picture the scenario: you are standing at the pharmacy counter, prescription due to be filled, and your phone shows no signal. Your eScript token arrived as an SMS two weeks ago. The message is still in your inbox \u2014 in theory. But with no mobile data, that SMS link will not load. The QR code inside it cannot be retrieved. You cannot fill your prescription.`,
       `This is not a hypothetical edge case. It happens every day across Australia, and the pain points are predictable:`,
     ],
     scenarios: [
@@ -22,7 +22,7 @@ const post = {
       {
         label: "Expired mobile data plan",
         detail:
-          "Prepaid SIM users who run out of data mid-month cannot load SMS links or email attachments. For many Australians — particularly pensioners and students on tight budgets — this is a regular occurrence.",
+          "Prepaid SIM users who run out of data mid-month cannot load SMS links or email attachments. For many Australians \u2014 particularly pensioners and students on tight budgets \u2014 this is a regular occurrence.",
       },
       {
         label: "Rural and regional towns",
@@ -42,8 +42,8 @@ const post = {
     heading: "Why most apps still require internet",
     body: [
       `Not all eScript apps solve the offline problem. Many solutions that look like wallets still depend on a live server connection to display your prescriptions.`,
-      `Web-based solutions — accessed through a browser rather than a native app — fetch your script data from a remote server each time you view them. Close the tab, lose signal, and the data is gone from view. There is no local cache.`,
-      `Apps that rely on Active Script List (ASL) synchronisation also require connectivity. The ASL is a government-maintained centralised record of your active prescriptions. While it is a useful system, accessing it requires your phone to call out to the ASL registry in real time. If that call cannot be made — because you are underground, in a rural area, or your data has run out — your scripts are not retrievable through the ASL alone.`,
+      `Web-based solutions \u2014 accessed through a browser rather than a native app \u2014 fetch your script data from a remote server each time you view them. Close the tab, lose signal, and the data is gone from view. There is no local cache.`,
+      `Apps that rely on Active Script List (ASL) synchronisation also require connectivity. The ASL is a government-maintained centralised record of your active prescriptions. While it is a useful system, accessing it requires your phone to call out to the ASL registry in real time. If that call cannot be made \u2014 because you are underground, in a rural area, or your data has run out \u2014 your scripts are not retrievable through the ASL alone.`,
       `The same limitation applies to pharmacy-specific apps that store your prescription history on the pharmacy's servers. Connectivity is assumed. When it fails, so does access.`,
     ],
   },
@@ -65,7 +65,7 @@ const post = {
         number: 2,
         name: "You add the token to OpenPharmacy",
         description:
-          "Tap 'Add Script' in the app and paste or scan the token. At this point, OpenPharmacy retrieves your prescription details and QR code from the national system — this is the only moment internet access is required.",
+          "With the app installed and your account created, tap the link in your SMS to open directly to the Add Token screen, pre-populated and ready to save. At this point, OpenPharmacy retrieves your prescription details and QR code from the national system \u2014 this is the only moment internet access is required.",
       },
       {
         number: 3,
@@ -77,10 +77,10 @@ const post = {
         number: 4,
         name: "At the pharmacy, no internet needed",
         description:
-          "Open OpenPharmacy, find the script, and show the QR code to the pharmacist. The QR code is rendered entirely from local storage. No server call is made. It works in airplane mode, underground, in a rural town with no coverage — anywhere.",
+          "Open OpenPharmacy, find the script, and show the QR code to the pharmacist. The QR code is rendered entirely from local storage. No server call is made. It works in airplane mode, underground, in a rural town with no coverage \u2014 anywhere.",
       },
     ],
-    closing: `This architecture means your access to your prescription is not conditional on network availability. Once a script is in your wallet, it is yours — on your device, under your control, accessible any time.`,
+    closing: `This architecture means your access to your prescription is not conditional on network availability. Once a script is in your wallet, it is yours \u2014 on your device, under your control, accessible any time.`,
   },
 
   whoNeedsOffline: {
@@ -90,12 +90,12 @@ const post = {
       {
         label: "Rural and regional Australians",
         detail:
-          "Mobile coverage in outback Queensland, remote WA, regional NSW, rural Victoria, and much of South Australia's interior is unreliable or non-existent outside of major towns. Driving 60 kilometres to the nearest pharmacy with an SMS token that will not load is not a minor inconvenience — it is a failed medical trip. For Australians in these communities, an offline-first wallet is the only reliable approach to eScript management.",
+          "Mobile coverage in outback Queensland, remote WA, regional NSW, rural Victoria, and much of South Australia's interior is unreliable or non-existent outside of major towns. Driving 60 kilometres to the nearest pharmacy with an SMS token that will not load is not a minor inconvenience \u2014 it is a failed medical trip. For Australians in these communities, an offline-first wallet is the only reliable approach to eScript management.",
       },
       {
         label: "People on prepaid plans who run out of mobile data",
         detail:
-          "Around 30% of Australian mobile users are on prepaid plans. Running out of data before the monthly reset is a normal occurrence for students, pensioners, and budget-conscious households. An eScript that requires data to display is functionally inaccessible during those gaps — often the same days at the end of the month when people are trying to manage costs most carefully.",
+          "Around 30% of Australian mobile users are on prepaid plans. Running out of data before the monthly reset is a normal occurrence for students, pensioners, and budget-conscious households. An eScript that requires data to display is functionally inaccessible during those gaps \u2014 often the same days at the end of the month when people are trying to manage costs most carefully.",
       },
       {
         label: "Patients with chronic illness who fill scripts frequently",
@@ -114,9 +114,9 @@ const post = {
     heading: "OpenPharmacy and offline access: what the app actually does",
     body: [
       `OpenPharmacy is an Australian eScript wallet developed by Easy As Health Pty Ltd, based in Brisbane. It is registered with the Australian Digital Health Agency (ADHA) and fully conformant with the national electronic prescribing standard.`,
-      `The offline capability is not a marketing claim — it is a technical design choice that defines the app's architecture. Scripts are stored with ASD-approved end-to-end encryption. The QR code is rendered locally from on-device storage. No server call is made when you open a script at the pharmacy counter. The app works in full airplane mode.`,
-      `The app is protected by a 4-digit PIN, so your prescription data is not accessible to anyone who picks up your phone. All data is stored on Australian servers and is never shared with third parties. The app supports separate profiles for family members, allowing parents to manage children's scripts and carers to manage scripts for elderly parents within the same account.`,
-      `OpenPharmacy is free on iOS and Android. It works at any Australian pharmacy that accepts eScripts — there is no requirement to activate through a specific pharmacy chain or network.`,
+      `The offline capability is not a marketing claim \u2014 it is a technical design choice that defines the app's architecture. Scripts are stored with ASD-approved end-to-end encryption. The QR code is rendered locally from on-device storage. No server call is made when you open a script at the pharmacy counter. The app works in full airplane mode.`,
+      `The app is protected by a 4-digit PIN, so your prescription data is not accessible to anyone who picks up your phone. All data is stored on Australian servers and is never shared with third parties. The app automatically groups and sorts scripts by individual, making it easy for parents and carers to manage scripts for family members within the same account.`,
+      `OpenPharmacy is free on iOS and Android. It works at any Australian pharmacy that accepts eScripts \u2014 there is no requirement to activate through a specific pharmacy chain or network.`,
     ],
   },
 
@@ -127,7 +127,7 @@ const post = {
     rows: [
       [
         "OpenPharmacy",
-        "Full offline — including airplane mode",
+        "Full offline \u2014 including airplane mode",
         "Stored on-device, ASD-approved encryption",
         "Token-based import; scripts stored locally after first add",
         "Only when first adding a script",
@@ -141,7 +141,7 @@ const post = {
       ],
       [
         "MedAdvisor",
-        "Limited — most features require connectivity",
+        "Limited \u2014 most features require connectivity",
         "Not stored for offline QR display",
         "Connected to pharmacy dispensing history; server-dependent",
         "Required for most script access and management",
@@ -150,7 +150,7 @@ const post = {
         "SMS / email token",
         "No offline access",
         "Not stored locally",
-        "Link-based — opens a web page to display QR",
+        "Link-based \u2014 opens a web page to display QR",
         "Required every time you need to display the QR code",
       ],
     ],
@@ -161,12 +161,12 @@ const post = {
     {
       question: "Does OpenPharmacy work in airplane mode?",
       answer:
-        "Yes. Once you have added a script to OpenPharmacy, the QR code is stored on your device with end-to-end encryption. The app renders it from local storage with no internet connection required — it works in full airplane mode. You only need connectivity when you first add a script to your wallet.",
+        "Yes. Once you have added a script to OpenPharmacy, the QR code is stored on your device with end-to-end encryption. The app renders it from local storage with no internet connection required \u2014 it works in full airplane mode. You only need connectivity when you first add a script to your wallet.",
     },
     {
       question: "What happens if my phone has no signal at the pharmacy?",
       answer:
-        "If your eScript is stored in OpenPharmacy, nothing changes — the QR code is available regardless of signal. You open the app, find your script, and show the QR code to the pharmacist. If your eScript is only in an SMS link or email, you cannot display it without connectivity, which means you cannot fill your prescription until you find a signal.",
+        "If your eScript is stored in OpenPharmacy, nothing changes \u2014 the QR code is available regardless of signal. You open the app, find your script, and show the QR code to the pharmacist. If your eScript is only in an SMS link or email, you cannot display it without connectivity, which means you cannot fill your prescription until you find a signal.",
     },
     {
       question: "Can I access my eScript without mobile data?",
