@@ -308,10 +308,10 @@ function PharmacyAppVsIndependentEscriptWalletAustralia() {
         </Link>
         {" "}&middot;{" "}
         <Link
-          to="/compare/openpharmacy-vs-scripty"
+          to="/compare/openpharmacy-vs-medadvisor"
           className="text-[var(--color-accent)] underline hover:opacity-80 transition-opacity"
         >
-          OpenPharmacy vs Scripty
+          OpenPharmacy vs MedAdvisor
         </Link>
       </p>
 

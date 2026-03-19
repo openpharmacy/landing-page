@@ -228,18 +228,18 @@ function BestEscriptAppsAustralia2026() {
         <ul className="space-y-2">
           <li>
             <Link
-              to="/compare/openpharmacy-vs-scripty"
-              className="text-[var(--color-accent)] hover:opacity-80 transition-opacity text-sm"
-            >
-              OpenPharmacy vs Scripty: in-depth breakdown of offline storage, ASL sync, security, and family features
-            </Link>
-          </li>
-          <li>
-            <Link
               to="/compare/openpharmacy-vs-medadvisor"
               className="text-[var(--color-accent)] hover:opacity-80 transition-opacity text-sm"
             >
               OpenPharmacy vs MedAdvisor: offline access, pharmacist activation, privacy, and who each app suits
+            </Link>
+          </li>
+          <li>
+            <Link
+              to="/blog/pharmacy-app-vs-independent-escript-wallet-australia"
+              className="text-[var(--color-accent)] hover:opacity-80 transition-opacity text-sm"
+            >
+              Pharmacy App vs Independent eScript Wallet: what the difference means for your privacy and flexibility
             </Link>
           </li>
         </ul>

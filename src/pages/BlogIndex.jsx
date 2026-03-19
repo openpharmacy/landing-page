@@ -7,7 +7,16 @@ import blogPosts from "../data/blog/posts";
 
 // ─── Compare pages registry ──────────────────────────────────────────────────
 // Add one entry here whenever a new /compare page is created.
-const comparePages = [];
+const comparePages = [
+  {
+    slug: "openpharmacy-vs-medadvisor",
+    title: "OpenPharmacy vs MedAdvisor: Which Is Right for You?",
+    date: "2026-03-19",
+    excerpt:
+      "MedAdvisor connects to over 95% of Australian pharmacies with ordering and delivery. OpenPharmacy is an ADHA-conformant eScript wallet with full offline access and no pharmacy affiliation. Here's how to decide which suits you.",
+    tags: ["Comparison", "MedAdvisor", "eScript Wallet", "Offline", "Privacy", "Australia"],
+  },
+];
 
 // ─── Post category groupings ─────────────────────────────────────────────────
 // Slugs are matched against blogPosts to build each section.
@@ -17,6 +26,11 @@ const SECTION_SLUGS = {
     "what-is-adha-conformance-australia",
     "offline-escript-access-australia",
     "managing-family-escripts-australia-carers-parents",
+    "active-script-list-vs-escript-wallet-australia",
+    "health-app-data-privacy-laws-australia",
+    "managing-chronic-illness-escripts-australia",
+    "adhd-escript-management-australia",
+    "adhd-medication-management-parents-australia",
   ],
   comparisons: [
     "best-escript-apps-australia-2026",
@@ -25,6 +39,8 @@ const SECTION_SLUGS = {
   howto: [
     "escript-app-security-privacy-guide-australia",
     "deleted-escript-sms-what-to-do-australia",
+    "how-to-track-escript-repeats-australia",
+    "how-to-share-escript-with-carer-australia",
   ],
 };
 
