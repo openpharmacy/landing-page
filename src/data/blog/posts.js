@@ -104,6 +104,14 @@ const blogPosts = [
       "Managing Australian eScripts with ADHD means navigating SMS tokens, Schedule 8 repeat rules, and repeat tracking with impaired executive function. Here is what the system demands, why it is harder with ADHD, and what actually helps.",
     tags: ["ADHD", "eScripts", "Accessibility", "Executive Function", "Australia", "Digital Health"],
   },
+  {
+    slug: "adhd-medication-management-parents-australia",
+    title: "Managing ADHD Medication in Australia: A Parent's Practical Guide",
+    date: "2026-03-19",
+    excerpt:
+      "How Australian parents navigate Schedule 8 ADHD prescribing rules, track individual eScript tokens for every repeat, manage specialist review deadlines, and keep their child's medication accessible — using OpenPharmacy.",
+    tags: ["ADHD", "Parents", "Caregivers", "Schedule 8", "eScripts", "Children", "Australia"],
+  },
 ];
 
 export default blogPosts;
