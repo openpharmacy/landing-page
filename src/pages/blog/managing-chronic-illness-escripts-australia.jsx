@@ -253,6 +253,45 @@ function ManagingChronicIllnessEscriptsAustralia() {
         ))}
       </div>
 
+      {/* Related guides */}
+      <div className="mt-10 rounded-xl border border-white/10 bg-white/[0.03] p-5 space-y-2">
+        <p className="text-sm font-semibold text-white/70 mb-3">Related guides</p>
+        <ul className="space-y-2">
+          <li>
+            <Link
+              to="/blog/how-to-track-escript-repeats-australia"
+              className="text-[var(--color-accent)] hover:opacity-80 transition-opacity text-sm"
+            >
+              How to Track Your eScript Repeats in Australia: step-by-step guide
+            </Link>
+          </li>
+          <li>
+            <Link
+              to="/blog/active-script-list-vs-escript-wallet-australia"
+              className="text-[var(--color-accent)] hover:opacity-80 transition-opacity text-sm"
+            >
+              The Active Script List vs an eScript Wallet: what is the difference?
+            </Link>
+          </li>
+          <li>
+            <Link
+              to="/blog/offline-escript-access-australia"
+              className="text-[var(--color-accent)] hover:opacity-80 transition-opacity text-sm"
+            >
+              Offline eScript Access in Australia: why it matters for chronic illness patients
+            </Link>
+          </li>
+          <li>
+            <Link
+              to="/compare/openpharmacy-vs-medadvisor"
+              className="text-[var(--color-accent)] hover:opacity-80 transition-opacity text-sm"
+            >
+              OpenPharmacy vs MedAdvisor: which is better for managing ongoing prescriptions?
+            </Link>
+          </li>
+        </ul>
+      </div>
+
       {/* CTA */}
       <div className="mt-12 rounded-2xl bg-[var(--color-secondary)] border border-white/10 p-6 md:p-8 text-center">
         <h2 className="font-grifter text-xl md:text-2xl font-bold text-white mb-2">

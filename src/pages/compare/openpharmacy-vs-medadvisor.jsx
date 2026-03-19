@@ -268,7 +268,7 @@ function OpenPharmacyVsMedAdvisor() {
 
         {/* Subtitle */}
         <p className="text-white/60 text-base md:text-lg mb-6">
-          MedAdvisor has 3.7 million users and connects to 95% of Australian pharmacies. OpenPharmacy is an ADHA-conformant eScript wallet that works completely offline with no pharmacy affiliation. Here&rsquo;s how to decide which is right for you.
+          MedAdvisor connects to over 95% of Australian pharmacies and is used by more than 3 million Australians. OpenPharmacy is an ADHA-conformant eScript wallet that works completely offline with no pharmacy affiliation. Here&rsquo;s how to decide which is right for you.
         </p>
 
         {/* Last verified */}
@@ -399,7 +399,7 @@ function OpenPharmacyVsMedAdvisor() {
             Where MedAdvisor Is Genuinely Stronger
           </h2>
           <p className="text-white/80 leading-relaxed">
-            MedAdvisor has 3.7 million users for good reasons. Its feature set goes well beyond
+            MedAdvisor has more than 3 million users for good reasons. Its feature set goes well beyond
             what a pure eScript wallet provides:
           </p>
           <ChoiceList
@@ -507,6 +507,22 @@ function OpenPharmacyVsMedAdvisor() {
                   className="text-[var(--color-accent)] hover:opacity-80 transition-opacity text-sm"
                 >
                   Offline eScript Access in Australia: Why your QR code must be available without internet
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/compare/openpharmacy-vs-scripty"
+                  className="text-[var(--color-accent)] hover:opacity-80 transition-opacity text-sm"
+                >
+                  OpenPharmacy vs Scripty: comparing the two independent ADHA-conformant eScript wallets
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/blog/managing-chronic-illness-escripts-australia"
+                  className="text-[var(--color-accent)] hover:opacity-80 transition-opacity text-sm"
+                >
+                  Managing Chronic Illness Prescriptions in Australia: when a pharmacy app helps and when it doesn&rsquo;t
                 </Link>
               </li>
             </ul>

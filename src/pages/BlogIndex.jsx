@@ -102,7 +102,7 @@ function BlogIndex() {
   usePageMeta({
     title: "eScript Guides and Resources | OpenPharmacy Blog",
     description:
-      "Guides, comparisons, and digital health tips for Australian patients managing electronic prescriptions. From the team at OpenPharmacy — Australia's ADHA-registered eScript wallet.",
+      "Guides, comparisons, and digital health tips for Australian patients managing electronic prescriptions. From the team at OpenPharmacy, Australia's ADHA-registered eScript wallet.",
     canonicalPath: "/blog",
     schema: {
       "@context": "https://schema.org",

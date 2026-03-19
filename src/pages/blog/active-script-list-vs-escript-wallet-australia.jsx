@@ -10,7 +10,7 @@ const meta = {
   title:
     "The Active Script List vs an eScript Wallet: What's the Difference for Australian Patients?",
   description:
-    "The Active Script List is a centralised government registry; an eScript wallet stores QR codes on your device. Both are legitimate — they differ in setup, privacy, and offline access. Here's how to choose.",
+    "The Active Script List is a centralised government registry; an eScript wallet stores QR codes on your device. Both are legitimate options that differ in setup, privacy, and offline access. Here's how to choose.",
   slug: SLUG,
   date: DATE,
   dateModified: DATE,
@@ -318,7 +318,7 @@ function ActiveScriptListVsEscriptWalletAustralia() {
         Side-by-side: ASL vs eScript wallet
       </h2>
       <p className="text-white/75 text-sm mb-2">
-        Data verified March 2026. The 1800MEDICARE app was previously called the "my health app" — renamed 1 January 2026.
+        Data verified March 2026. The 1800MEDICARE app was previously called the "my health app" (renamed 1 January 2026).
       </p>
       <ComparisonTable table={post.comparisonTable} />
 
@@ -340,7 +340,7 @@ function ActiveScriptListVsEscriptWalletAustralia() {
           rel="noopener noreferrer"
           className="text-[var(--color-accent)] underline hover:opacity-80 transition-opacity"
         >
-          Dept. of Health — Active Script List Privacy Framework
+          Dept. of Health: Active Script List Privacy Framework
         </a>
       </p>
 

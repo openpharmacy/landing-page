@@ -9,7 +9,7 @@ const DATE = "2026-03-11";
 const meta = {
   title: "Managing Family eScripts in Australia: A Practical Guide for Parents and Carers",
   description:
-    "How Australian parents and carers can manage eScripts for children, elderly parents, and other family members using OpenPharmacy — separate profiles, offline QR codes, and ADHA-registered security.",
+    "How Australian parents and carers can manage eScripts for children, elderly parents, and other family members using OpenPharmacy: separate profiles, offline QR codes, and ADHA-registered security.",
   slug: SLUG,
   date: DATE,
   dateModified: DATE,

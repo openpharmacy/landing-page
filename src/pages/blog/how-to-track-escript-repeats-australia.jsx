@@ -9,7 +9,7 @@ const DATE = "2026-03-19";
 const meta = {
   title: "How to Track Your eScript Repeats in Australia (Without Losing Track)",
   description:
-    "Each Australian eScript repeat is a separate token sent after each dispense — there is no central view by default. Learn how the system works, how the Active Script List helps, and how OpenPharmacy shows remaining repeats offline.",
+    "Each Australian eScript repeat is a separate token sent after each dispense. There is no central view by default. Learn how the system works, how the Active Script List helps, and how OpenPharmacy shows remaining repeats offline.",
   slug: SLUG,
   date: DATE,
   dateModified: DATE,

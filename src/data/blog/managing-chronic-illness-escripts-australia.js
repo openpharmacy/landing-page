@@ -5,14 +5,14 @@
  */
 
 const post = {
-  intro: `Managing ongoing prescriptions for a chronic condition in Australia is a logistical problem that the health system was not designed to solve for you. Around half of all Australians live with at least one chronic condition, and many manage two or more. For those people, the standard eScript workflow — an SMS token arrives, you save it somewhere, you present it at the pharmacy — breaks down at scale in entirely predictable ways. This guide covers what breaks, why, and what actually helps.`,
+  intro: `Managing ongoing prescriptions for a chronic condition in Australia is a logistical problem that the health system was not designed to solve for you. Around half of all Australians live with at least one chronic condition, and many manage two or more. For those people, the standard eScript workflow (an SMS token arrives, you save it somewhere, you present it at the pharmacy) breaks down at scale in entirely predictable ways. This guide covers what breaks, why, and what actually helps.`,
 
   everydayReality: {
     heading: "The system was designed for a single prescription, not a life of them",
     body: [
       `If you take one medication occasionally, the Australian eScript system works well enough. Your GP sends a token by SMS, you go to the pharmacy within a reasonable timeframe, you fill it. Simple.`,
-      `For anyone managing a chronic condition — diabetes, thyroid disorders, autoimmune disease, mental health conditions, cardiac conditions, respiratory illness — that simplicity disappears fast. You are not dealing with one token. You are dealing with multiple medications, each with its own repeat schedule, its own token sitting somewhere in your SMS inbox or email, its own expiry date. Some need to be filled every month. Some come with three repeats, some with five. Some require specialist review before the next script can be issued.`,
-      `The system does not track any of this for you. There is no dashboard, no alert when a repeat is running low, no central view of where all your active scripts sit. Each token exists in isolation, delivered to whatever channel your prescriber uses, sitting in your messages until you need it — or until you accidentally delete it, or until you cannot find it at the pharmacy counter and the queue grows behind you.`,
+      `For anyone managing a chronic condition (diabetes, thyroid disorders, autoimmune disease, mental health conditions, cardiac conditions, respiratory illness), that simplicity disappears fast. You are not dealing with one token. You are dealing with multiple medications, each with its own repeat schedule, its own token sitting somewhere in your SMS inbox or email, its own expiry date. Some need to be filled every month. Some come with three repeats, some with five. Some require specialist review before the next script can be issued.`,
+      `The system does not track any of this for you. There is no dashboard, no alert when a repeat is running low, no central view of where all your active scripts sit. Each token exists in isolation, delivered to whatever channel your prescriber uses, sitting in your messages until you need it, or until you accidentally delete it, or until you cannot find it at the pharmacy counter and the queue grows behind you.`,
       `This is not a personal failing. It is a structural mismatch between a system built around individual prescriptions and the lived reality of managing a chronic condition over years.`,
     ],
   },
@@ -29,12 +29,12 @@ const post = {
       {
         label: "Not knowing how many repeats are left",
         detail:
-          "Unless you have been counting carefully, you will not know how many repeats remain on each of your scripts until the pharmacist tells you. For a person managing three or four ongoing medications, keeping a mental tally of each one's repeat count across different fill dates is genuinely difficult. The discovery that you have used your last repeat — when you assumed you had more — creates an urgent problem that requires contacting your prescriber.",
+          "Unless you have been counting carefully, you will not know how many repeats remain on each of your scripts until the pharmacist tells you. For a person managing three or four ongoing medications, keeping a mental tally of each one's repeat count across different fill dates is genuinely difficult. The discovery that you have used your last repeat (when you assumed you had more) creates an urgent problem that requires contacting your prescriber.",
       },
       {
         label: "Accidentally deleting the token",
         detail:
-          "A deleted eScript SMS is not a catastrophe — your prescription still exists in the national system and your prescriber can re-send the token. But recovery requires contacting your prescriber's practice, waiting for a callback, and making a return trip to the pharmacy. For someone already managing the cognitive and physical load of a chronic illness, that extra administrative friction is genuinely costly.",
+          "A deleted eScript SMS is not a catastrophe. Your prescription still exists in the national system and your prescriber can re-send the token. But recovery requires contacting your prescriber's practice, waiting for a callback, and making a return trip to the pharmacy. For someone already managing the cognitive and physical load of a chronic illness, that extra administrative friction is genuinely costly.",
       },
       {
         label: "The humiliation of being unable to access your own medication",
@@ -50,7 +50,7 @@ const post = {
   },
 
   medAdvisorSection: {
-    heading: "When a pharmacy app is the right tool — and when it is not",
+    heading: "When a pharmacy app is the right tool, and when it is not",
     body: [
       `Pharmacy-connected apps like MedAdvisor are genuinely well-built for a specific use case, and it is important to be honest about that before discussing alternatives.`,
       `MedAdvisor connects to more than 5,500 pharmacies across Australia and is used by more than 3 million Australians. Within its network, it allows you to order repeat prescriptions ahead of your visit, receive automated refill reminders, and interact directly with your pharmacist. For someone who uses the same pharmacy consistently, has stable prescriptions, and wants a tightly integrated ordering workflow, MedAdvisor delivers real value.`,

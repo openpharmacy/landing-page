@@ -5,19 +5,19 @@
  */
 
 const post = {
-  intro: `In Australia, you can securely share an eScript with a carer or family member by forwarding the eScript token link directly — the carer presents it at the pharmacy just as you would. For ongoing or repeated scripts, a better approach is using an app like OpenPharmacy, which lets a carer manage the patient's eScript within a dedicated family profile in their own wallet, with the QR code stored on their device, encrypted, and accessible offline.`,
+  intro: `In Australia, you can securely share an eScript with a carer or family member by forwarding the eScript token link directly; the carer presents it at the pharmacy just as you would. For ongoing or repeated scripts, a better approach is using an app like OpenPharmacy, which lets a carer manage the patient's eScript within a dedicated family profile in their own wallet, with the QR code stored on their device, encrypted, and accessible offline.`,
 
   twoApproaches: {
     heading: "Two approaches to sharing an eScript with a carer",
     intro: `Whether you are a patient delegating a one-off pharmacy collection or a carer managing ongoing medications, the right approach depends on what you actually need.`,
     approaches: [
       {
-        label: "Direct token sharing — for one-off collections",
-        detail: `Each Australian eScript arrives as a unique token link, via SMS or email. You can forward that link to your carer exactly as you received it. The carer opens the link on their phone and the QR code appears. They present it at any Australian pharmacy, the pharmacist scans it, and the script is dispensed. That token is then used and archived. This approach requires no app on either end, and it is perfectly legitimate. The carer does not need to be the named patient — they just need to be present with the QR code at the time of dispensing. It works best for a single, straightforward collection: one script, collected once.`,
+        label: "Direct token sharing: for one-off collections",
+        detail: `Each Australian eScript arrives as a unique token link, via SMS or email. You can forward that link to your carer exactly as you received it. The carer opens the link on their phone and the QR code appears. They present it at any Australian pharmacy, the pharmacist scans it, and the script is dispensed. That token is then used and archived. This approach requires no app on either end, and it is perfectly legitimate. The carer does not need to be the named patient; they just need to be present with the QR code at the time of dispensing. It works best for a single, straightforward collection: one script, collected once.`,
       },
       {
-        label: "App-based family management — for ongoing care",
-        detail: `If a carer regularly manages someone's prescriptions — for a child on an ongoing medication, an elderly parent with chronic conditions, or a partner — the token-forwarding approach quickly becomes unwieldy. Every new script or repeat means another forwarded message. OpenPharmacy solves this by letting the carer add the patient's eScript token directly to a dedicated family profile within their own OpenPharmacy wallet. The QR code is stored on the carer's device, encrypted, and accessible offline. At the pharmacy, the carer opens the app, selects the right profile, and presents the QR code directly. No forwarding required for each visit.`,
+        label: "App-based family management: for ongoing care",
+        detail: `If a carer regularly manages someone's prescriptions (for a child on an ongoing medication, an elderly parent with chronic conditions, or a partner), the token-forwarding approach quickly becomes unwieldy. Every new script or repeat means another forwarded message. OpenPharmacy solves this by letting the carer add the patient's eScript token directly to a dedicated family profile within their own OpenPharmacy wallet. The QR code is stored on the carer's device, encrypted, and accessible offline. At the pharmacy, the carer opens the app, selects the right profile, and presents the QR code directly. No forwarding required for each visit.`,
       },
     ],
   },
@@ -28,11 +28,11 @@ const post = {
     risks: [
       {
         label: "Screenshots",
-        detail: `Taking a screenshot of the QR code feels like a reliable backup. The problem is that the screenshot is a live, valid QR code — it can be used by anyone who sees it, not just the intended carer. Screenshots are stored in your camera roll without any health-data access control. On most phones, photo backup services such as iCloud or Google Photos upload the camera roll automatically, storing your prescription QR code on overseas servers outside Australian jurisdiction. Any app with photo permissions on your phone can read the camera roll. And if the screenshot is shared, you have no visibility over where it ends up.`,
+        detail: `Taking a screenshot of the QR code feels like a reliable backup. The problem is that the screenshot is a live, valid QR code that can be used by anyone who sees it, not just the intended carer. Screenshots are stored in your camera roll without any health-data access control. On most phones, photo backup services such as iCloud or Google Photos upload the camera roll automatically, storing your prescription QR code on overseas servers outside Australian jurisdiction. Any app with photo permissions on your phone can read the camera roll. And if the screenshot is shared, you have no visibility over where it ends up.`,
       },
       {
         label: "Forwarding via WhatsApp or social messaging",
-        detail: `Messaging apps like WhatsApp, Facebook Messenger, and Instagram DMs are convenient but store data on overseas servers operated by US-based companies. Australian privacy law only governs data held within Australia. Sending prescription information through overseas messaging platforms means your health data is subject to the data laws of wherever those servers are located — including the US CLOUD Act, which allows US authorities to compel US cloud providers to produce data stored anywhere in the world. For many medications this may feel like an academic risk. For sensitive prescriptions, it is a real one.`,
+        detail: `Messaging apps like WhatsApp, Facebook Messenger, and Instagram DMs are convenient but store data on overseas servers operated by US-based companies. Australian privacy law only governs data held within Australia. Sending prescription information through overseas messaging platforms means your health data is subject to the data laws of wherever those servers are located, including the US CLOUD Act, which allows US authorities to compel US cloud providers to produce data stored anywhere in the world. For many medications this may feel like an academic risk. For sensitive prescriptions, it is a real one.`,
       },
       {
         label: "Printing the QR code",

@@ -26,6 +26,7 @@ const TABLE_ROWS = [
   ["Pharmacy independence", "Yes: works with any pharmacy", "Yes: works with any pharmacy"],
   ["ASL auto-sync", "No: manual token entry", "Yes"],
   ["Medicine shortage alerts", "No", "Yes (TGA data)"],
+  ["Prescription ordering", "No", "Pilot available at participating pharmacies"],
   ["Price", "Free", "Free"],
   ["Platforms", "iOS + Android", "iOS + Android"],
 ];
@@ -439,6 +440,7 @@ function OpenPharmacyVsScripty() {
               "You are comfortable completing the one-time ASL registration at a pharmacy (100 points of ID required) in exchange for fully automated script delivery going forward.",
               "You want TGA-sourced medicine shortage alerts to notify you if one of your medications is affected by a national supply issue.",
               "You are happy with optional rather than mandatory app security: biometric lock is available but not enforced.",
+              "You want the option to pre-order prescriptions ahead of your pharmacy visit: Scripty is piloting ordering at participating pharmacies (March 2026), a feature OpenPharmacy does not currently offer.",
             ]}
           />
 
@@ -496,6 +498,14 @@ function OpenPharmacyVsScripty() {
                   className="text-[var(--color-accent)] hover:opacity-80 transition-opacity text-sm"
                 >
                   Managing Family eScripts in Australia: A practical guide for parents and carers
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/compare/openpharmacy-vs-medadvisor"
+                  className="text-[var(--color-accent)] hover:opacity-80 transition-opacity text-sm"
+                >
+                  OpenPharmacy vs MedAdvisor: how an independent wallet compares to a pharmacy platform
                 </Link>
               </li>
             </ul>

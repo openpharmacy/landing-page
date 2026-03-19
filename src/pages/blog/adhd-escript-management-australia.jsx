@@ -238,6 +238,45 @@ function AdhdEscriptManagementAustralia() {
         ))}
       </div>
 
+      {/* Related guides */}
+      <div className="mt-10 rounded-xl border border-white/10 bg-white/[0.03] p-5 space-y-2">
+        <p className="text-sm font-semibold text-white/70 mb-3">Related guides</p>
+        <ul className="space-y-2">
+          <li>
+            <Link
+              to="/blog/adhd-medication-management-parents-australia"
+              className="text-[var(--color-accent)] hover:opacity-80 transition-opacity text-sm"
+            >
+              Managing ADHD Medication in Australia: A Parent's Practical Guide
+            </Link>
+          </li>
+          <li>
+            <Link
+              to="/blog/deleted-escript-sms-what-to-do-australia"
+              className="text-[var(--color-accent)] hover:opacity-80 transition-opacity text-sm"
+            >
+              What Happens If You Delete Your eScript SMS? Step-by-step recovery guide
+            </Link>
+          </li>
+          <li>
+            <Link
+              to="/blog/how-to-track-escript-repeats-australia"
+              className="text-[var(--color-accent)] hover:opacity-80 transition-opacity text-sm"
+            >
+              How to Track Your eScript Repeats in Australia (Without Losing Track)
+            </Link>
+          </li>
+          <li>
+            <Link
+              to="/blog/offline-escript-access-australia"
+              className="text-[var(--color-accent)] hover:opacity-80 transition-opacity text-sm"
+            >
+              Offline eScript Access in Australia: Why your QR code must be available without internet
+            </Link>
+          </li>
+        </ul>
+      </div>
+
       {/* CTA */}
       <div className="mt-12 rounded-2xl bg-[var(--color-secondary)] border border-white/10 p-6 md:p-8 text-center">
         <h2 className="font-grifter text-xl md:text-2xl font-bold text-white mb-2">

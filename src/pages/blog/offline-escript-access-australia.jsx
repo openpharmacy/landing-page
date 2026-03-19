@@ -9,7 +9,7 @@ const DATE = "2026-03-11";
 const meta = {
   title: "Offline eScript Access in Australia: Why Your QR Code Must Be Available Without Internet",
   description:
-    "Learn why SMS and email eScripts fail without signal, and how OpenPharmacy stores your prescription QR codes on-device so they work offline — even in rural Australia or airplane mode.",
+    "Learn why SMS and email eScripts fail without signal, and how OpenPharmacy stores your prescription QR codes on-device so they work offline, even in rural Australia or airplane mode.",
   slug: SLUG,
   date: DATE,
   dateModified: DATE,

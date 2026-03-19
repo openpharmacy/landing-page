@@ -9,7 +9,7 @@ const DATE = "2026-03-19";
 const meta = {
   title: "Managing ADHD Medication in Australia: A Parent's Practical Guide",
   description:
-    "How Australian parents manage their child's Schedule 8 ADHD eScript tokens, navigate specialist prescribing rules, track repeats, and keep medication accessible — using OpenPharmacy.",
+    "How Australian parents manage their child's Schedule 8 ADHD eScript tokens, navigate specialist prescribing rules, track repeats, and keep medication accessible using OpenPharmacy.",
   slug: SLUG,
   date: DATE,
   dateModified: DATE,
@@ -213,8 +213,8 @@ function AdhdMedicationManagementParentsAustralia() {
       ))}
 
       <p className="text-white/75 text-sm leading-relaxed mt-5">
-        For a step-by-step guide covering all scenarios — including what to do when the prescriber
-        is unavailable and how the Active Script List works as a backup — see{" "}
+        For a step-by-step guide covering all scenarios (including what to do when the prescriber
+        is unavailable and how the Active Script List works as a backup), see{" "}
         <Link
           to="/blog/deleted-escript-sms-what-to-do-australia"
           className="text-[var(--color-accent)] underline hover:opacity-80 transition-opacity"

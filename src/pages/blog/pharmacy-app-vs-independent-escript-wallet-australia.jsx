@@ -324,7 +324,7 @@ function PharmacyAppVsIndependentEscriptWalletAustralia() {
           rel="noopener noreferrer"
           className="text-[var(--color-accent)] underline hover:opacity-80 transition-opacity"
         >
-          Australian Digital Health Agency — Electronic Prescriptions (digitalhealth.gov.au)
+          Australian Digital Health Agency: Electronic Prescriptions (digitalhealth.gov.au)
         </a>
       </p>
 

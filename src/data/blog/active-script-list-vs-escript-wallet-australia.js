@@ -5,14 +5,14 @@
  */
 
 const post = {
-  intro: `The Active Script List (ASL) and an eScript wallet serve related but different purposes. The ASL is a centralised, government-managed list of your current prescriptions that pharmacists can access with your consent. An eScript wallet like OpenPharmacy is a private app that stores your prescription QR code tokens directly on your device. Both help you manage electronic prescriptions — they differ in setup, where your data lives, and what happens when you don't have internet.`,
+  intro: `The Active Script List (ASL) and an eScript wallet serve related but different purposes. The ASL is a centralised, government-managed list of your current prescriptions that pharmacists can access with your consent. An eScript wallet like OpenPharmacy is a private app that stores your prescription QR code tokens directly on your device. Both help you manage electronic prescriptions; they differ in setup, where your data lives, and what happens when you don't have internet.`,
 
   whatIsAsl: {
     heading: "What is the Active Script List?",
     body: [
-      `The Active Script List (ASL) is a government initiative managed by the Australian Digital Health Agency (ADHA). When you register for an ASL, all new electronic prescriptions issued by your doctors are automatically added to a centralised registry — you no longer need to track individual eScript tokens for each medication.`,
+      `The Active Script List (ASL) is a government initiative managed by the Australian Digital Health Agency (ADHA). When you register for an ASL, all new electronic prescriptions issued by your doctors are automatically added to a centralised registry, so you no longer need to track individual eScript tokens for each medication.`,
       `Once registered, a pharmacist at any ASL-enabled pharmacy can access your prescription list with your consent. That consent is given via an SMS or email each time a new pharmacy requests access. The pharmacist selects the relevant prescription from your ASL and dispenses it, without you needing to produce a QR code at all.`,
-      `To register for an ASL, you need to visit a participating pharmacy in person. You will need 100 points of identification — typically a Medicare card plus photo ID such as a driver's licence or passport — so the pharmacy can verify your identity and create your ASL record. Once set up, future eScripts are added automatically.`,
+      `To register for an ASL, you need to visit a participating pharmacy in person. You will need 100 points of identification (typically a Medicare card plus photo ID such as a driver's licence or passport) so the pharmacy can verify your identity and create your ASL record. Once set up, future eScripts are added automatically.`,
       `The ASL is accessible through the 1800MEDICARE app (formerly called the "my health app", which was renamed on 1 January 2026). This government-built app connects directly to My Health Record and the ASL, allowing you to view your active prescriptions and remaining repeats.`,
     ],
   },
@@ -22,10 +22,10 @@ const post = {
     intro: `For many Australians, the ASL is an excellent solution. It was specifically designed to reduce the friction of managing multiple medications, and it does that job well in the right circumstances.`,
     points: [
       "You regularly use the same pharmacy and your prescribers know it",
-      "You take multiple medications and want scripts to appear automatically — no token tracking required",
+      "You take multiple medications and want scripts to appear automatically, with no token tracking required",
       "You are comfortable with centralised government health infrastructure and My Health Record",
       "You have reliable internet at the pharmacy when you visit",
-      "You want a solution you don't have to think about — once set up, it largely manages itself",
+      "You want a solution you don't have to think about: once set up, it largely manages itself",
     ],
   },
 
@@ -100,23 +100,23 @@ const post = {
     rows: [
       [
         "Setup required",
-        "Yes — pharmacy visit + 100 points of ID",
-        "No — download and add token in minutes",
+        "Yes: pharmacy visit + 100 points of ID",
+        "No: download and add token in minutes",
       ],
       [
         "Internet needed at pharmacy",
-        "Yes — pharmacy system connects to central registry",
-        "No — QR codes stored offline on device",
+        "Yes: pharmacy system connects to central registry",
+        "No: QR codes stored offline on device",
       ],
       [
         "Scripts added automatically",
-        "Yes — new eScripts added by prescriber automatically",
-        "No — you add each token manually",
+        "Yes: new eScripts added by prescriber automatically",
+        "No: you add each token manually",
       ],
       [
         "Data centralised",
-        "Yes — held in government ASL registry",
-        "No — stored locally on your device",
+        "Yes: held in government ASL registry",
+        "No: stored locally on your device",
       ],
       [
         "Prescription history visible to pharmacist",
@@ -125,13 +125,13 @@ const post = {
       ],
       [
         "Works offline immediately",
-        "No — requires connectivity for consent and access",
-        "Yes — QR codes accessible without signal",
+        "No: requires connectivity for consent and access",
+        "Yes: QR codes accessible without signal",
       ],
       [
         "ADHA conformant",
-        "Yes — government-operated system",
-        "Yes — listed on ADHA ePrescribing Conformance Register",
+        "Yes: government-operated system",
+        "Yes: listed on ADHA ePrescribing Conformance Register",
       ],
       [
         "Free",
@@ -140,8 +140,8 @@ const post = {
       ],
       [
         "Can use both together",
-        "Yes — you can run both side by side",
-        "Yes — you can run both side by side",
+        "Yes: you can run both side by side",
+        "Yes: you can run both side by side",
       ],
     ],
   },
@@ -150,7 +150,7 @@ const post = {
     {
       question: "Do I have to use the Active Script List to get my prescriptions filled?",
       answer:
-        "No. The ASL is optional. You can fill any electronic prescription in Australia by presenting the individual eScript token — as a QR code in your SMS, email, or a wallet app like OpenPharmacy. The ASL is one way to manage your prescriptions; it is not mandatory. Your prescriber issues the token whether or not you have an ASL.",
+        "No. The ASL is optional. You can fill any electronic prescription in Australia by presenting the individual eScript token as a QR code in your SMS, email, or a wallet app like OpenPharmacy. The ASL is one way to manage your prescriptions; it is not mandatory. Your prescriber issues the token whether or not you have an ASL.",
     },
     {
       question: "Can I use OpenPharmacy and the 1800MEDICARE app at the same time?",
