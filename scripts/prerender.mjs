@@ -43,6 +43,7 @@ const ROUTES = [
   "/blog/managing-chronic-illness-escripts-australia",
   "/blog/how-to-track-escript-repeats-australia",
   "/blog/active-script-list-vs-escript-wallet-australia",
+  "/blog/health-app-data-privacy-laws-australia",
   // Landing page routes — use-case specific pages:
   "/for/rural-australia",
   // Compare page routes — add one per comparison page as created:

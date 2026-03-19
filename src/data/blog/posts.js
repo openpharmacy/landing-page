@@ -136,6 +136,14 @@ const blogPosts = [
       "The Active Script List is a centralised government registry that automatically collects your prescriptions. An eScript wallet like OpenPharmacy stores tokens locally on your device. Both are legitimate — here's how to choose based on your setup, privacy preferences, and connectivity.",
     tags: ["Active Script List", "eScript Wallet", "Privacy", "Australia", "Digital Health"],
   },
+  {
+    slug: "health-app-data-privacy-laws-australia",
+    title: "Australian Health App Data Privacy Laws: What Every Patient Should Know",
+    date: "2026-03-19",
+    excerpt:
+      "Australian health apps must comply with the Privacy Act 1988 and the 13 Australian Privacy Principles (APPs). This guide explains what the OAIC enforces, what ADHA conformance means for your privacy, and what red flags to look for in a health app's privacy policy.",
+    tags: ["Privacy", "Privacy Act", "OAIC", "Security", "Australia", "Digital Health", "ADHA"],
+  },
 ];
 
 export default blogPosts;
