@@ -96,6 +96,14 @@ const blogPosts = [
       "Deleted your eScript SMS in Australia? Your prescription still exists in the national system — it has not been cancelled. Here is how to recover the token, use the Active Script List as a backup, and prevent it from happening again.",
     tags: ["Troubleshooting", "eScripts", "Recovery", "Active Script List", "Australia"],
   },
+  {
+    slug: "adhd-escript-management-australia",
+    title: "ADHD and eScripts: Why Managing Prescriptions Is Harder With ADHD (And What Actually Helps)",
+    date: "2026-03-19",
+    excerpt:
+      "Managing Australian eScripts with ADHD means navigating SMS tokens, Schedule 8 repeat rules, and repeat tracking with impaired executive function. Here is what the system demands, why it is harder with ADHD, and what actually helps.",
+    tags: ["ADHD", "eScripts", "Accessibility", "Executive Function", "Australia", "Digital Health"],
+  },
 ];
 
 export default blogPosts;

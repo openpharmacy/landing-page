@@ -38,6 +38,7 @@ const ROUTES = [
   "/blog/pharmacy-app-vs-independent-escript-wallet-australia",
   "/blog/escript-app-security-privacy-guide-australia",
   "/blog/deleted-escript-sms-what-to-do-australia",
+  "/blog/adhd-escript-management-australia",
   // Compare page routes — add one per comparison page as created:
   // NOTE: "/compare/openpharmacy-vs-scripty" is intentionally excluded until
   // we have stronger differentiating features to publish.
