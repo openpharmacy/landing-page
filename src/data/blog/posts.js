@@ -112,6 +112,14 @@ const blogPosts = [
       "How Australian parents navigate Schedule 8 ADHD prescribing rules, track individual eScript tokens for every repeat, manage specialist review deadlines, and keep their child's medication accessible — using OpenPharmacy.",
     tags: ["ADHD", "Parents", "Caregivers", "Schedule 8", "eScripts", "Children", "Australia"],
   },
+  {
+    slug: "managing-chronic-illness-escripts-australia",
+    title: "Managing Chronic Illness Prescriptions in Australia: Practical Strategies and the Right Tools",
+    date: "2026-03-19",
+    excerpt:
+      "Around half of Australians live with a chronic condition. This guide explains why the SMS token system breaks down at scale, when pharmacy apps help, and how a dedicated eScript wallet like OpenPharmacy solves the real problems.",
+    tags: ["Chronic Illness", "Repeat Prescriptions", "eScripts", "Privacy", "Australia", "Digital Health"],
+  },
 ];
 
 export default blogPosts;
