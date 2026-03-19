@@ -128,6 +128,14 @@ const blogPosts = [
       "Each Australian eScript repeat is a separate token sent after each dispense — there is no central repeat counter by default. This guide explains how the system works, what the Active Script List does, and how OpenPharmacy shows remaining repeats offline.",
     tags: ["Repeats", "eScripts", "How To", "Active Script List", "Australia", "Digital Health"],
   },
+  {
+    slug: "active-script-list-vs-escript-wallet-australia",
+    title: "The Active Script List vs an eScript Wallet: What's the Difference for Australian Patients?",
+    date: "2026-03-19",
+    excerpt:
+      "The Active Script List is a centralised government registry that automatically collects your prescriptions. An eScript wallet like OpenPharmacy stores tokens locally on your device. Both are legitimate — here's how to choose based on your setup, privacy preferences, and connectivity.",
+    tags: ["Active Script List", "eScript Wallet", "Privacy", "Australia", "Digital Health"],
+  },
 ];
 
 export default blogPosts;

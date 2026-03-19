@@ -22,6 +22,7 @@ import AdhdEscriptManagementAustralia from "./pages/blog/adhd-escript-management
 import AdhdMedicationManagementParentsAustralia from "./pages/blog/adhd-medication-management-parents-australia";
 import ManagingChronicIllnessEscriptsAustralia from "./pages/blog/managing-chronic-illness-escripts-australia";
 import HowToTrackEscriptRepeatsAustralia from "./pages/blog/how-to-track-escript-repeats-australia";
+import ActiveScriptListVsEscriptWalletAustralia from "./pages/blog/active-script-list-vs-escript-wallet-australia";
 
 // Compare pages — import each comparison component and add a <Route> below.
 // Also add the slug to scripts/prerender.mjs ROUTES.
@@ -54,6 +55,7 @@ function App() {
         <Route path="/blog/adhd-medication-management-parents-australia" element={<AdhdMedicationManagementParentsAustralia />} />
         <Route path="/blog/managing-chronic-illness-escripts-australia" element={<ManagingChronicIllnessEscriptsAustralia />} />
         <Route path="/blog/how-to-track-escript-repeats-australia" element={<HowToTrackEscriptRepeatsAustralia />} />
+        <Route path="/blog/active-script-list-vs-escript-wallet-australia" element={<ActiveScriptListVsEscriptWalletAustralia />} />
         {/* Compare page routes — add one per comparison page as created: */}
         {/* OpenPharmacy vs Scripty is intentionally hidden — see import comment above */}
         <Route path="/compare/openpharmacy-vs-medadvisor" element={<OpenPharmacyVsMedAdvisor />} />
