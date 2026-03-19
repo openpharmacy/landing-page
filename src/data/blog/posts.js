@@ -120,6 +120,14 @@ const blogPosts = [
       "Around half of Australians live with a chronic condition. This guide explains why the SMS token system breaks down at scale, when pharmacy apps help, and how a dedicated eScript wallet like OpenPharmacy solves the real problems.",
     tags: ["Chronic Illness", "Repeat Prescriptions", "eScripts", "Privacy", "Australia", "Digital Health"],
   },
+  {
+    slug: "how-to-track-escript-repeats-australia",
+    title: "How to Track Your eScript Repeats in Australia (Without Losing Track)",
+    date: "2026-03-19",
+    excerpt:
+      "Each Australian eScript repeat is a separate token sent after each dispense — there is no central repeat counter by default. This guide explains how the system works, what the Active Script List does, and how OpenPharmacy shows remaining repeats offline.",
+    tags: ["Repeats", "eScripts", "How To", "Active Script List", "Australia", "Digital Health"],
+  },
 ];
 
 export default blogPosts;

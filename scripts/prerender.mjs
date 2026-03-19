@@ -41,6 +41,7 @@ const ROUTES = [
   "/blog/adhd-escript-management-australia",
   "/blog/adhd-medication-management-parents-australia",
   "/blog/managing-chronic-illness-escripts-australia",
+  "/blog/how-to-track-escript-repeats-australia",
   // Compare page routes — add one per comparison page as created:
   // NOTE: "/compare/openpharmacy-vs-scripty" is intentionally excluded until
   // we have stronger differentiating features to publish.
