@@ -17,7 +17,7 @@ const DESCRIPTION =
 const TABLE_HEADERS = ["Feature", "OpenPharmacy", "Scripty"];
 const TABLE_ROWS = [
   ["Offline access", "Full (on-device storage, no sync needed)", "Yes (after initial ASL sync)"],
-  ["Script import method", "Manual token entry or scan", "Manual + automatic ASL sync"],
+  ["Script import method", "Token entry via SMS link or manual paste", "Manual + automatic ASL sync"],
   ["ADHA-conformant", "Yes (on Conformance Register)", "Yes (on Conformance Register)"],
   ["Data stored in Australia", "Yes", "Yes"],
   ["End-to-end encryption", "Yes (ASD-approved)", "Yes"],
@@ -323,10 +323,11 @@ function OpenPharmacyVsScripty() {
             How Each App Imports Scripts: Manual Entry vs ASL Sync
           </h2>
           <p className="text-white/80 leading-relaxed">
-            When your doctor sends an eScript, you typically receive it as a QR code or token link
-            via SMS or email. OpenPharmacy uses these tokens directly: scan the QR code or paste
-            the token link to add a script to your wallet. Every script you add is a deliberate
-            action: you know exactly what is in your wallet and when it was added.
+            When your doctor sends an eScript, you receive a token link via SMS or email.
+            OpenPharmacy uses these tokens directly: tap the link in your SMS to open directly
+            to the Add Token screen, pre-populated and ready to save, or paste the token manually
+            into the app. Every script you add is a deliberate action: you know exactly what is
+            in your wallet and when it was added.
           </p>
           <p className="text-white/80 leading-relaxed">
             Scripty takes a different approach through ASL (Active Script List) integration. After
@@ -376,8 +377,9 @@ function OpenPharmacyVsScripty() {
           </p>
           <p className="text-white/80 leading-relaxed">
             In OpenPharmacy, family scripts are added manually using each person&rsquo;s eScript token.
-            This keeps the process straightforward: you receive the token, scan it, and it is
-            saved under the correct family profile. In Scripty, family management can be extended
+            This keeps the process straightforward: you receive the token via SMS, tap the link to
+            open the Add Token screen (pre-populated and ready to save), and it is stored under the
+            correct family profile. In Scripty, family management can be extended
             through ASL connections: if a family member&rsquo;s scripts are linked to Scripty&rsquo;s ASL
             integration, their new scripts can also auto-sync. The setup process for each family
             member requires the same initial pharmacy visit and identity verification step.
@@ -421,7 +423,7 @@ function OpenPharmacyVsScripty() {
               "You live or travel in rural or regional Australia, or anywhere with patchy or unreliable mobile reception, and need scripts available even with no signal.",
               "You prefer not to connect your prescription history to the national Active Script List network and want a self-contained on-device wallet.",
               "You want a mandatory app lock: OpenPharmacy requires a 4-digit PIN every time the app is opened, with no option to skip it.",
-              "You manage scripts for family members and want a simple, manual process: receive the token, scan it, done.",
+              "You manage scripts for family members and want a simple, manual process: receive the token via SMS, tap the link or paste it into the app, and it is saved.",
               "You want to get started immediately with no pharmacy visit or identity verification required to set up the app.",
             ]}
           />

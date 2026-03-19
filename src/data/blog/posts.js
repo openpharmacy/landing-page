@@ -37,7 +37,7 @@ const blogPosts = [
     slug: "best-escript-apps-australia-2026",
     title: "Best eScript Apps in Australia (2026): Compared by Offline Access, Security, and Family Features",
     date: "2026-03-11",
-    excerpt: "An independent comparison of OpenPharmacy, Scripty, MedAdvisor, and my health app — covering offline access, ADHA conformance, family management, and data security to help you choose the right eScript wallet.",
+    excerpt: "An independent comparison of OpenPharmacy, Scripty, MedAdvisor, and my health app, covering offline access, ADHA conformance, family management, and data security to help you choose the right eScript wallet.",
     tags: ["App Comparison", "eScripts", "Australia", "Digital Health"],
   },
   {
@@ -45,7 +45,7 @@ const blogPosts = [
     title: "What Is an eScript Wallet? A Plain-English Guide for Australians",
     date: "2026-03-11",
     excerpt:
-      "An eScript wallet stores your electronic prescription QR codes securely on your phone, so they are always available at the pharmacy — even offline. Here is how they work and what to look for.",
+      "An eScript wallet stores your electronic prescription QR codes securely on your phone, so they are always available at the pharmacy, even offline. Here is how they work and what to look for.",
     tags: ["Educational", "eScripts", "How It Works", "Australia", "Digital Health"],
   },
   {
@@ -53,7 +53,7 @@ const blogPosts = [
     title: "Offline eScript Access in Australia: Why Your QR Code Must Be Available Without Internet",
     date: "2026-03-11",
     excerpt:
-      "SMS and email eScripts fail without a signal — at rural pharmacies, underground, or when your data runs out. OpenPharmacy stores QR codes directly on your device so they are always accessible, even in airplane mode.",
+      "SMS and email eScripts fail without a signal, at rural pharmacies, underground, or when your data runs out. OpenPharmacy stores QR codes directly on your device so they are always accessible, even in airplane mode.",
     tags: ["Offline Access", "Rural Australia", "eScripts", "QR Code", "Digital Health"],
   },
   {
@@ -61,7 +61,7 @@ const blogPosts = [
     title: "Managing Family eScripts in Australia: A Practical Guide for Parents and Carers",
     date: "2026-03-11",
     excerpt:
-      "Australian parents and carers can manage eScripts for children, elderly parents, and other family members using OpenPharmacy — scripts automatically grouped by individual, offline QR codes, and ADHA-registered security in one app.",
+      "Australian parents and carers can manage eScripts for children, elderly parents, and other family members using OpenPharmacy: scripts automatically grouped by individual, offline QR codes, and ADHA-registered security in one app.",
     tags: ["Caregivers", "Family Management", "eScripts", "Australia", "Digital Health"],
   },
   {
@@ -93,7 +93,7 @@ const blogPosts = [
     title: "What Happens If You Delete Your eScript SMS? Here's What to Do",
     date: "2026-03-11",
     excerpt:
-      "Deleted your eScript SMS in Australia? Your prescription still exists in the national system — it has not been cancelled. Here is how to recover the token, use the Active Script List as a backup, and prevent it from happening again.",
+      "Deleted your eScript SMS in Australia? Your prescription still exists in the national system: it has not been cancelled. Here is how to recover the token, use the Active Script List as a backup, and prevent it from happening again.",
     tags: ["Troubleshooting", "eScripts", "Recovery", "Active Script List", "Australia"],
   },
   {
@@ -109,7 +109,7 @@ const blogPosts = [
     title: "Managing ADHD Medication in Australia: A Parent's Practical Guide",
     date: "2026-03-19",
     excerpt:
-      "How Australian parents navigate Schedule 8 ADHD prescribing rules, track individual eScript tokens for every repeat, manage specialist review deadlines, and keep their child's medication accessible — using OpenPharmacy.",
+      "How Australian parents navigate Schedule 8 ADHD prescribing rules, track individual eScript tokens for every repeat, manage specialist review deadlines, and keep their child's medication accessible, using OpenPharmacy.",
     tags: ["ADHD", "Parents", "Caregivers", "Schedule 8", "eScripts", "Children", "Australia"],
   },
   {
@@ -125,7 +125,7 @@ const blogPosts = [
     title: "How to Track Your eScript Repeats in Australia (Without Losing Track)",
     date: "2026-03-19",
     excerpt:
-      "Each Australian eScript repeat is a separate token sent after each dispense — there is no central repeat counter by default. This guide explains how the system works, what the Active Script List does, and how OpenPharmacy shows remaining repeats offline.",
+      "Each Australian eScript repeat is a separate token sent after each dispense. There is no central repeat counter by default. This guide explains how the system works, what the Active Script List does, and how OpenPharmacy shows remaining repeats offline.",
     tags: ["Repeats", "eScripts", "How To", "Active Script List", "Australia", "Digital Health"],
   },
   {
@@ -133,7 +133,7 @@ const blogPosts = [
     title: "The Active Script List vs an eScript Wallet: What's the Difference for Australian Patients?",
     date: "2026-03-19",
     excerpt:
-      "The Active Script List is a centralised government registry that automatically collects your prescriptions. An eScript wallet like OpenPharmacy stores tokens locally on your device. Both are legitimate — here's how to choose based on your setup, privacy preferences, and connectivity.",
+      "The Active Script List is a centralised government registry that automatically collects your prescriptions. An eScript wallet like OpenPharmacy stores tokens locally on your device. Both are legitimate: here's how to choose based on your setup, privacy preferences, and connectivity.",
     tags: ["Active Script List", "eScript Wallet", "Privacy", "Australia", "Digital Health"],
   },
   {
@@ -149,7 +149,7 @@ const blogPosts = [
     title: "How to Share Your eScript Securely with a Carer or Family Member in Australia",
     date: "2026-03-19",
     excerpt:
-      "You can share an Australian eScript by forwarding the token for a one-off collection, or use OpenPharmacy's family profiles for ongoing care — encrypted on-device, offline-accessible, and ADHA-conformant.",
+      "You can share an Australian eScript by forwarding the token for a one-off collection, or use OpenPharmacy's family profiles for ongoing care: encrypted on-device, offline-accessible, and ADHA-conformant.",
     tags: ["Caregivers", "Sharing", "Security", "Family Management", "eScripts", "Australia", "How To"],
   },
 ];
