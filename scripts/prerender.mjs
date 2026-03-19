@@ -41,6 +41,7 @@ const ROUTES = [
   // Compare page routes — add one per comparison page as created:
   // NOTE: "/compare/openpharmacy-vs-scripty" is intentionally excluded until
   // we have stronger differentiating features to publish.
+  "/compare/openpharmacy-vs-medadvisor",
 ];
 
 // MIME types for the local static server

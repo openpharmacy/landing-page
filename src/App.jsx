@@ -25,6 +25,7 @@ import DeletedEscriptSmsWhatToDoAustralia from "./pages/blog/deleted-escript-sms
 // until we have stronger differentiating features to publish. File is preserved
 // at src/pages/compare/openpharmacy-vs-scripty.jsx but not registered.
 // import OpenPharmacyVsScripty from "./pages/compare/openpharmacy-vs-scripty";
+import OpenPharmacyVsMedAdvisor from "./pages/compare/openpharmacy-vs-medadvisor";
 
 function App() {
   return (
@@ -47,6 +48,7 @@ function App() {
         <Route path="/blog/deleted-escript-sms-what-to-do-australia" element={<DeletedEscriptSmsWhatToDoAustralia />} />
         {/* Compare page routes — add one per comparison page as created: */}
         {/* OpenPharmacy vs Scripty is intentionally hidden — see import comment above */}
+        <Route path="/compare/openpharmacy-vs-medadvisor" element={<OpenPharmacyVsMedAdvisor />} />
       </Routes>
     </BrowserRouter>
   );
