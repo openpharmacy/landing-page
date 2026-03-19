@@ -45,7 +45,7 @@ const SETUP_STEPS = [
   },
   {
     name: "Open OpenPharmacy and add the token",
-    text: "Open the OpenPharmacy app and tap 'Add Script'. Paste or scan your eScript token. The app reads the token, downloads the prescription details, and stores the QR code directly on your device. This step requires a brief internet connection — the same one that delivered the SMS or email.",
+    text: "Open the OpenPharmacy app and tap 'Add Script'. Paste your eScript token (the link or code sent via SMS or email from your doctor). The app reads the token, downloads the prescription details, and stores the QR code directly on your device. This step requires a brief internet connection — the same one that delivered the SMS or email.",
   },
   {
     name: "Present your QR code at any pharmacy",

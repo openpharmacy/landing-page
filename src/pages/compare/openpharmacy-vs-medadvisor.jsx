@@ -17,7 +17,7 @@ const DESCRIPTION =
 const TABLE_HEADERS = ["Feature", "OpenPharmacy", "MedAdvisor"];
 const TABLE_ROWS = [
   ["Offline access", "Full: works in airplane mode, no internet ever required", "No: requires internet for all functions"],
-  ["Script import method", "Manual eScript token entry or QR scan", "Pharmacy-connected: requires pharmacist activation to sync medications"],
+  ["Script import method", "Manual eScript token entry (paste or tap the token link sent via SMS or email)", "Pharmacy-connected: requires pharmacist activation to sync medications"],
   ["ADHA ePrescribing conformance", "Yes: listed on ADHA Register as a mobile application patient wallet (MA category)", "Yes: listed on ADHA Register as a pharmacy-connected dispensing system (different functional category)"],
   ["Pharmacist activation required", "No: download and use immediately", "Yes: must be activated by a pharmacist before core features work"],
   ["Pharmacy affiliation", "None: works with any Australian pharmacy", "Connected to your chosen pharmacy network (5,500+ pharmacies)"],
