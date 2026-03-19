@@ -24,6 +24,7 @@ import ManagingChronicIllnessEscriptsAustralia from "./pages/blog/managing-chron
 import HowToTrackEscriptRepeatsAustralia from "./pages/blog/how-to-track-escript-repeats-australia";
 import ActiveScriptListVsEscriptWalletAustralia from "./pages/blog/active-script-list-vs-escript-wallet-australia";
 import HealthAppDataPrivacyLawsAustralia from "./pages/blog/health-app-data-privacy-laws-australia";
+import HowToShareEscriptWithCarerAustralia from "./pages/blog/how-to-share-escript-with-carer-australia";
 
 // Landing pages — use-case specific pages for targeted audiences.
 // Also add the path to scripts/prerender.mjs ROUTES.
@@ -62,6 +63,7 @@ function App() {
         <Route path="/blog/how-to-track-escript-repeats-australia" element={<HowToTrackEscriptRepeatsAustralia />} />
         <Route path="/blog/active-script-list-vs-escript-wallet-australia" element={<ActiveScriptListVsEscriptWalletAustralia />} />
         <Route path="/blog/health-app-data-privacy-laws-australia" element={<HealthAppDataPrivacyLawsAustralia />} />
+        <Route path="/blog/how-to-share-escript-with-carer-australia" element={<HowToShareEscriptWithCarerAustralia />} />
         {/* Landing page routes — use-case specific pages: */}
         <Route path="/for/rural-australia" element={<RuralAustralia />} />
         {/* Compare page routes — add one per comparison page as created: */}

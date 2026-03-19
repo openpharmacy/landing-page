@@ -144,6 +144,14 @@ const blogPosts = [
       "Australian health apps must comply with the Privacy Act 1988 and the 13 Australian Privacy Principles (APPs). This guide explains what the OAIC enforces, what ADHA conformance means for your privacy, and what red flags to look for in a health app's privacy policy.",
     tags: ["Privacy", "Privacy Act", "OAIC", "Security", "Australia", "Digital Health", "ADHA"],
   },
+  {
+    slug: "how-to-share-escript-with-carer-australia",
+    title: "How to Share Your eScript Securely with a Carer or Family Member in Australia",
+    date: "2026-03-19",
+    excerpt:
+      "You can share an Australian eScript by forwarding the token for a one-off collection, or use OpenPharmacy's family profiles for ongoing care — encrypted on-device, offline-accessible, and ADHA-conformant.",
+    tags: ["Caregivers", "Sharing", "Security", "Family Management", "eScripts", "Australia", "How To"],
+  },
 ];
 
 export default blogPosts;
