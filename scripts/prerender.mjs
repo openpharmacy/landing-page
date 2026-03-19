@@ -43,6 +43,8 @@ const ROUTES = [
   "/blog/managing-chronic-illness-escripts-australia",
   "/blog/how-to-track-escript-repeats-australia",
   "/blog/active-script-list-vs-escript-wallet-australia",
+  // Landing page routes — use-case specific pages:
+  "/for/rural-australia",
   // Compare page routes — add one per comparison page as created:
   // NOTE: "/compare/openpharmacy-vs-scripty" is intentionally excluded until
   // we have stronger differentiating features to publish.

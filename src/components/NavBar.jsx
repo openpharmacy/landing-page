@@ -44,6 +44,12 @@ const NavBar = () => {
             >
               Blog
             </Link>
+            <Link
+              to="/for/rural-australia"
+              className="text-white/80 hover:text-white text-base lg:text-lg transition-opacity"
+            >
+              Rural Access
+            </Link>
           </div>
         </div>
         {/* Desktop Contact button */}
@@ -123,6 +129,13 @@ const NavBar = () => {
             className="text-white text-lg py-1"
           >
             Blog
+          </Link>
+          <Link
+            to="/for/rural-australia"
+            onClick={() => setMenuOpen(false)}
+            className="text-white text-lg py-1"
+          >
+            Rural Access
           </Link>
           {/* Mobile Contact button */}
           <a
