@@ -259,17 +259,6 @@ function ManagingFamilyEscriptsAustraliaCarersParents() {
         </Link>
         .
       </p>
-      <p className="text-white/75 text-sm leading-relaxed mt-3">
-        Comparing OpenPharmacy and Scripty for family management? See:{" "}
-        <Link
-          to="/compare/openpharmacy-vs-scripty"
-          className="text-[var(--color-accent)] underline hover:opacity-80 transition-opacity"
-        >
-          OpenPharmacy vs Scripty: Which eScript Wallet Is Right for You?
-        </Link>
-        .
-      </p>
-
       {/* FAQ */}
       <h2 className="font-grifter text-2xl font-bold text-white mt-12 mb-4">
         Frequently Asked Questions

@@ -229,17 +229,6 @@ function WhatIsAdhaConformanceAustralia() {
         </Link>
         .
       </p>
-      <p className="text-white/75 text-sm leading-relaxed mt-3">
-        For a detailed ADHA-conformance comparison between OpenPharmacy and Scripty, see:{" "}
-        <Link
-          to="/compare/openpharmacy-vs-scripty"
-          className="text-[var(--color-accent)] underline hover:opacity-80 transition-opacity"
-        >
-          OpenPharmacy vs Scripty: Which eScript Wallet Is Right for You?
-        </Link>
-        .
-      </p>
-
       {/* Section 6: Checklist */}
       <h2 className="font-grifter text-2xl font-bold text-white mt-10 mb-3">
         {post.checklistSection.heading}
