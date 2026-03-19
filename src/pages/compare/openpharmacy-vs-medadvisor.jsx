@@ -18,14 +18,14 @@ const TABLE_HEADERS = ["Feature", "OpenPharmacy", "MedAdvisor"];
 const TABLE_ROWS = [
   ["Offline access", "Full: works in airplane mode, no internet ever required", "No: requires internet for all functions"],
   ["Script import method", "Manual eScript token entry or QR scan", "Pharmacy-connected: requires pharmacist activation to sync medications"],
-  ["ADHA conformance (eScript wallet)", "Yes: listed on ADHA ePrescribing Conformance Register", "Not independently conformant as an eScript wallet in the same way"],
+  ["ADHA ePrescribing conformance", "Yes: listed on ADHA Register as a mobile application patient wallet (MA category)", "Yes: listed on ADHA Register as a pharmacy-connected dispensing system (different functional category)"],
   ["Pharmacist activation required", "No: download and use immediately", "Yes: must be activated by a pharmacist before core features work"],
   ["Pharmacy affiliation", "None: works with any Australian pharmacy", "Connected to your chosen pharmacy network (5,500+ pharmacies)"],
   ["Prescription ordering / delivery", "No", "Yes: pre-ordering, refill ordering, home delivery option"],
   ["Pill reminders", "No", "Yes"],
   ["Family profiles", "Yes", "Yes (carer mode)"],
   ["App lock type", "Mandatory 4-digit PIN every session", "Optional biometric login"],
-  ["Data storage location", "Australian servers, never shared with third parties", "Linked to your connected pharmacy"],
+  ["Data storage location", "Australian servers, never shared with third parties", "Linked to your connected pharmacy; MedAdvisor also partners with pharmaceutical companies to deliver targeted health content to some users (opt-out available)"],
   ["Price", "Free", "Free"],
   ["Platforms", "iOS + Android", "iOS + Android"],
 ];
@@ -49,9 +49,9 @@ const FAQ_ITEMS = [
       "No. MedAdvisor requires an active internet connection for all functions. You cannot view prescription details, display a QR code, or access your medication list without connectivity. For most urban users with reliable mobile data this is not a practical problem, but it is a significant constraint for anyone in rural or regional Australia with patchy reception, or for any situation where you need to show a script at a pharmacy and your signal has dropped. OpenPharmacy stores QR codes on-device and works completely offline, including in full airplane mode.",
   },
   {
-    question: "Is MedAdvisor ADHA conformant for eScript storage?",
+    question: "Are both apps listed on the ADHA ePrescribing Conformance Register?",
     answer:
-      "MedAdvisor is not independently listed on the Australian Digital Health Agency ePrescribing Conformance Register as an eScript wallet in the same way OpenPharmacy is. MedAdvisor is a pharmacy engagement and ordering platform: its core function is connecting patients to a specific pharmacy's dispensing system rather than acting as a standalone, pharmacy-independent eScript wallet. OpenPharmacy is specifically designed and assessed as an eScript wallet, which is the category evaluated for ADHA Conformance Register listing.",
+      "Yes, both OpenPharmacy and MedAdvisor are listed on the Australian Digital Health Agency ePrescribing Conformance Register, but they appear in different functional categories. OpenPharmacy is assessed as a mobile application patient wallet (MA category): an independent on-device store for eScript tokens that patients can use at any pharmacy without an internet connection. MedAdvisor is listed as a pharmacy-connected dispensing and ordering system: its conformance reflects its role connecting patients to a specific pharmacy network rather than operating as a standalone, pharmacy-independent eScript wallet. The distinction matters in practice because the two tools are built for different workflows. OpenPharmacy's MA-category conformance means it is designed and assessed specifically for the patient-facing, pharmacy-independent token wallet use case.",
   },
   {
     question: "Which app is better for rural Australians?",
@@ -126,7 +126,7 @@ function buildSchema(faqItems) {
         "@id": "https://mymedadvisor.com/#product",
         name: "MedAdvisor",
         description:
-          "An Australian pharmacy engagement platform connecting patients to their chosen pharmacy. Features prescription ordering, home delivery, pill reminders, refill alerts, carer mode, and a 5,500+ pharmacy network. Requires pharmacist activation and internet connection.",
+          "An Australian pharmacy engagement platform connecting patients to their chosen pharmacy. Used by over 3.7 million Australians. Features prescription ordering, home delivery, pill reminders, refill alerts, family/carer management, and a 5,500+ pharmacy network (over 95% of Australian pharmacies). Requires pharmacist activation and an internet connection. ANZ business acquired by Jonas Software AUS Pty Ltd in July 2025.",
         url: "https://mymedadvisor.com",
         brand: {
           "@type": "Brand",
@@ -268,7 +268,7 @@ function OpenPharmacyVsMedAdvisor() {
 
         {/* Subtitle */}
         <p className="text-white/60 text-base md:text-lg mb-6">
-          MedAdvisor connects to over 95% of Australian pharmacies and is used by more than 3 million Australians. OpenPharmacy is an ADHA-conformant eScript wallet that works completely offline with no pharmacy affiliation. Here&rsquo;s how to decide which is right for you.
+          MedAdvisor connects to over 95% of Australian pharmacies and is used by more than 3.7 million Australians. OpenPharmacy is an ADHA-conformant eScript wallet that works completely offline with no pharmacy affiliation. Here&rsquo;s how to decide which is right for you.
         </p>
 
         {/* Last verified */}
@@ -311,12 +311,21 @@ function OpenPharmacyVsMedAdvisor() {
           <p className="text-white/80 leading-relaxed">
             <strong>MedAdvisor is a pharmacy engagement platform.</strong> It connects your account
             to a specific pharmacy (or pharmacy network), enabling you to order refills online, track
-            deliveries, set medication reminders, and receive refill alerts. MedAdvisor reports that
-            patients who use the app remain loyal to their connected pharmacy 97% of the time. That
-            number is a feature, not a criticism: for people who have a regular pharmacy they trust
-            and visit consistently, that loyalty makes the whole experience smoother. But for people
-            who use different pharmacies, travel frequently, or live rurally, it signals a constraint
-            worth understanding before you commit.
+            deliveries, set medication reminders, and receive refill alerts. Note that each MedAdvisor
+            account connects to one pharmacy at a time: switching pharmacies requires updating your
+            connected pharmacy in the app. MedAdvisor reports that patients who use the app remain
+            loyal to their connected pharmacy 97% of the time. That number is a feature, not a
+            criticism: for people who have a regular pharmacy they trust and visit consistently, that
+            loyalty makes the whole experience smoother. But for people who use different pharmacies,
+            travel frequently, or live rurally, it signals a constraint worth understanding before you commit.
+          </p>
+          <p className="text-white/80 leading-relaxed">
+            One ownership note worth flagging: in July 2025, the Australian and New Zealand operations
+            of MedAdvisor were acquired by Jonas Software AUS Pty Ltd, a subsidiary of Constellation
+            Software (TSX: CSU), for up to $42.35 million. The app continues to operate under the
+            MedAdvisor brand. For patients, the practical experience is unchanged. For anyone
+            evaluating the long-term roadmap and ownership of the platform, it is relevant context.
+            OpenPharmacy is developed by Easy As Health Pty Ltd, a Brisbane-based independent company.
           </p>
 
           {/* Section: Offline access */}
@@ -380,10 +389,16 @@ function OpenPharmacyVsMedAdvisor() {
             engagement platform, your prescription and medication data is connected to your chosen
             pharmacy. MedAdvisor offers biometric login as an optional convenience (not mandatory),
             and connects to 5,500+ pharmacies across Australia, representing more than 95% of the
-            national network. The app is not independently listed on the ADHA ePrescribing
-            Conformance Register as an eScript wallet in the same category as OpenPharmacy, because
-            its primary function is pharmacy connectivity and ordering rather than standalone
-            eScript storage.
+            national network. MedAdvisor is listed on the ADHA ePrescribing Conformance Register,
+            but in the dispensing-system category rather than as an independent patient wallet.
+            Its conformance reflects its role as a pharmacy-connected ordering platform, not a
+            standalone on-device eScript store. OpenPharmacy is assessed under the mobile
+            application patient wallet category (MA), reflecting its pharmacy-independent design.
+            One further data point worth knowing: MedAdvisor also partners with pharmaceutical
+            companies to deliver targeted health content to some users. These messages are limited
+            to one per month via SMS or in-app, and users can opt out at any time. OpenPharmacy
+            has no equivalent programme: prescription data is never shared with third parties,
+            including pharmaceutical companies.
           </p>
           <p className="text-white/80 leading-relaxed">
             For patients who are privacy-conscious about their prescription history being held by
@@ -399,7 +414,7 @@ function OpenPharmacyVsMedAdvisor() {
             Where MedAdvisor Is Genuinely Stronger
           </h2>
           <p className="text-white/80 leading-relaxed">
-            MedAdvisor has more than 3 million users for good reasons. Its feature set goes well beyond
+            MedAdvisor has more than 3.7 million users for good reasons. Its feature set goes well beyond
             what a pure eScript wallet provides:
           </p>
           <ChoiceList
@@ -452,6 +467,7 @@ function OpenPharmacyVsMedAdvisor() {
               "You have a regular pharmacy you always use and are happy to link your account to their system.",
               "You want refill alerts so you never accidentally run out of a repeat prescription.",
               "You have reliable internet access and do not need offline functionality.",
+              "You are comfortable linking your account to one pharmacy at a time: MedAdvisor connects to a single pharmacy per account, which is how ordering and dispensing integration works.",
             ]}
           />
 
