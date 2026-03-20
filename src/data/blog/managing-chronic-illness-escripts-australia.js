@@ -126,7 +126,7 @@ const post = {
           "If you manage prescriptions for a partner, child, or parent, add their scripts using the same process. OpenPharmacy keeps them organised separately within the app, so there is no confusion about whose QR code you are presenting at the counter.",
       },
     ],
-    afterSetup: `Once your scripts are in the app, your pharmacy visits become straightforward: you open OpenPharmacy, tap the medication you need, and show the QR code. That is it. The remaining repeat count updates automatically after each dispense, so you always know where you stand.`,
+    afterSetup: `Once your scripts are in the app, your pharmacy visits become straightforward: you open OpenPharmacy, tap the medication you need, and show the QR code. After each dispense, the pharmacy system issues a new token for the next repeat, which arrives by SMS or email just like your original script. Add that new token to OpenPharmacy the same way you added the first one, and your updated repeat count will be right there when you need it.`,
   },
 
   privacySection: {
@@ -144,7 +144,7 @@ const post = {
     {
       question: "Can I track remaining repeats in OpenPharmacy?",
       answer:
-        "Yes. OpenPharmacy displays the repeat count for each stored eScript, so you can see how many repeats remain on every medication at a glance. This information is retrieved from the national eScript system when you add the token and updates after each dispense. For chronic illness patients managing multiple medications on different repeat schedules, this removes the need to ask the pharmacist or keep a separate record.",
+        "Yes. OpenPharmacy displays the repeat count for each stored eScript, so you can see how many repeats remain on every medication at a glance. This information is retrieved from the national eScript system when you add the token. After each dispense, the pharmacy issues a new token for the next repeat via SMS or email; adding that new token to OpenPharmacy keeps your repeat count current. For chronic illness patients managing multiple medications on different repeat schedules, this removes the need to ask the pharmacist or keep a separate record.",
     },
     {
       question: "What if my internet is down at the pharmacy?",

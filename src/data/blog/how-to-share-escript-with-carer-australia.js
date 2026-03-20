@@ -5,7 +5,7 @@
  */
 
 const post = {
-  intro: `In Australia, you can securely share an eScript with a carer or family member by forwarding the eScript token link directly; the carer presents it at the pharmacy just as you would. For ongoing or repeated scripts, a better approach is using an app like OpenPharmacy, which lets a carer manage the patient's eScript within a dedicated family profile in their own wallet, with the QR code stored on their device, encrypted, and accessible offline.`,
+  intro: `In Australia, you can securely share an eScript with a carer or family member by forwarding the eScript token link directly; the carer presents it at the pharmacy just as you would. For ongoing or repeated scripts, a better approach is using an app like OpenPharmacy, which lets a carer add the patient's eScript token to their own wallet. The app automatically organises scripts by patient name, so each person's medications are clearly separated, with QR codes stored on the device, encrypted, and accessible offline.`,
 
   twoApproaches: {
     heading: "Two approaches to sharing an eScript with a carer",
@@ -17,7 +17,7 @@ const post = {
       },
       {
         label: "App-based family management: for ongoing care",
-        detail: `If a carer regularly manages someone's prescriptions (for a child on an ongoing medication, an elderly parent with chronic conditions, or a partner), the token-forwarding approach quickly becomes unwieldy. Every new script or repeat means another forwarded message. OpenPharmacy solves this by letting the carer add the patient's eScript token directly to a dedicated family profile within their own OpenPharmacy wallet. The QR code is stored on the carer's device, encrypted, and accessible offline. At the pharmacy, the carer opens the app, selects the right profile, and presents the QR code directly. No forwarding required for each visit.`,
+        detail: `If a carer regularly manages someone's prescriptions (for a child on an ongoing medication, an elderly parent with chronic conditions, or a partner), the token-forwarding approach quickly becomes unwieldy. Every new script or repeat means another forwarded message. OpenPharmacy solves this by letting the carer add the patient's eScript token directly to their own OpenPharmacy wallet. The app automatically organises scripts by patient name, so each person's medications are clearly separated and easy to find. The QR code is stored on the carer's device, encrypted, and accessible offline. At the pharmacy, the carer opens the app, finds the right person's scripts, and presents the QR code directly. No forwarding required for each visit.`,
       },
     ],
   },
@@ -46,9 +46,9 @@ const post = {
     heading: "How OpenPharmacy handles secure carer sharing",
     body: [
       `OpenPharmacy is an Australian eScript wallet developed by Easy As Health Pty Ltd, registered with the Australian Digital Health Agency (ADHA) and conformant with the national electronic prescribing standards. The app is free on iOS and Android.`,
-      `For carer use, the workflow is practical and built into the app's core design. A carer adds the patient's eScript token to a family profile they manage within their own OpenPharmacy wallet. The token is stored using end-to-end ASD-approved encryption on the carer's device. All data is held on Australian servers and is never shared with third parties.`,
-      `At the pharmacy, the carer opens the app, selects the correct person's profile, and displays their QR code. Because scripts are stored on the device rather than retrieved from a server, the QR code is fully accessible without an internet connection. There is no live server call at the pharmacy counter that could fail, slow down, or be logged.`,
-      `The 4-digit PIN that protects the app applies to all profiles within it. If the carer's phone is lost or accessed by someone else, the prescription data for every family member in the wallet is protected by that PIN.`,
+      `For carer use, the workflow is practical and built into the app's core design. A carer adds the patient's eScript token directly to their own OpenPharmacy wallet. The app automatically organises scripts by patient name, keeping each person's medications clearly separated. The token is stored using end-to-end ASD-approved encryption on the carer's device. All data is held on Australian servers and is never shared with third parties.`,
+      `At the pharmacy, the carer opens the app, finds the correct person's scripts by name, and displays the QR code. Because scripts are stored on the device rather than retrieved from a server, the QR code is fully accessible without an internet connection. There is no live server call at the pharmacy counter that could fail, slow down, or be logged.`,
+      `The 4-digit PIN that protects the app secures all scripts within the wallet. If the carer's phone is lost or accessed by someone else, the prescription data for every family member in the wallet is protected by that PIN.`,
     ],
   },
 
@@ -70,9 +70,9 @@ const post = {
       },
       {
         number: 3,
-        name: "Open OpenPharmacy and select the family member's profile",
+        name: "Open OpenPharmacy and find the family member's scripts",
         description:
-          "In the app, navigate to the correct person's profile. OpenPharmacy automatically groups and sorts scripts by individual, so each person's medications are clearly separated.",
+          "In the app, find the correct person's scripts. OpenPharmacy automatically groups and sorts scripts by patient name, so each person's medications are clearly separated and easy to locate.",
       },
       {
         number: 4,
@@ -84,7 +84,7 @@ const post = {
         number: 5,
         name: "Present the QR code at any pharmacy",
         description:
-          "At the pharmacy, the carer opens the app, selects the family member's profile, and displays their QR code. The pharmacist scans it directly from the screen. No internet connection is needed at this step.",
+          "At the pharmacy, the carer opens the app, finds the family member's scripts by name, and displays their QR code. The pharmacist scans it directly from the screen. No internet connection is needed at this step.",
       },
     ],
     closing:
@@ -105,7 +105,7 @@ const post = {
     body: [
       `When you forward an eScript token to someone, you are granting them the practical ability to present that prescription at any Australian pharmacy. The token does not check identity — the person who presents the QR code is the person who receives the medication.`,
       `For most prescriptions, this is straightforward: you trust the carer, the medication is routine, and the risk is minimal. For prescriptions with higher sensitivity, the question is worth a moment's thought. Consider whether the medication is one you would be comfortable having on someone else's phone, backed up to their cloud, or visible to others who use their device.`,
-      `Using OpenPharmacy's family profile system avoids this issue entirely: the carer's wallet is PIN-protected, encrypted, and the script is not forwarded to any external messaging platform. The data stays within a purpose-built, ADHA-conformant app.`,
+      `Adding scripts to OpenPharmacy avoids this issue entirely: the carer's wallet is PIN-protected, encrypted, and the script is not forwarded to any external messaging platform. The app automatically organises scripts by patient name within the wallet, so each person's medications stay clearly separated. The data stays within a purpose-built, ADHA-conformant app.`,
     ],
   },
 
@@ -123,12 +123,12 @@ const post = {
     {
       question: "What happens to an eScript token after it has been dispensed?",
       answer:
-        "Once an eScript is dispensed at a pharmacy, the token is consumed and archived. It cannot be used again at another pharmacy for the same dispense. If the prescription has repeats authorised, the pharmacy's dispensing system generates a new token for the next repeat at the time of dispensing — this new token is sent to the patient via SMS or email (or directly to their carer's contact details, if those are registered with the GP). In OpenPharmacy, dispensed scripts move to the archived section of the relevant profile automatically.",
+        "Once an eScript is dispensed at a pharmacy, the token is consumed and archived. It cannot be used again at another pharmacy for the same dispense. If the prescription has repeats authorised, the pharmacy's dispensing system generates a new token for the next repeat at the time of dispensing — this new token is sent to the patient via SMS or email (or directly to their carer's contact details, if those are registered with the GP). In OpenPharmacy, dispensed scripts move to the archived section automatically, and the new token can be added to the wallet for the next fill.",
     },
     {
       question: "Can I see in OpenPharmacy whether a script has been used?",
       answer:
-        "Yes. OpenPharmacy shows active and archived scripts separately within each family profile. Once a script is dispensed and the token is consumed, it moves to the archived section and is no longer displayed as active. You can also see the repeats remaining on each active script, so you can tell at a glance whether a medication still has authorised repeats available or whether a new prescription is needed from the GP.",
+        "Yes. OpenPharmacy shows active and archived scripts separately within the wallet, organised by patient name. Once a script is dispensed and the token is consumed, it moves to the archived section and is no longer displayed as active. You can also see the repeats remaining on each active script, so you can tell at a glance whether a medication still has authorised repeats available or whether a new prescription is needed from the GP.",
     },
   ],
 };

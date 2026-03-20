@@ -136,7 +136,7 @@ const post = {
           "Each time a new repeat token arrives from the pharmacy after a dispense, add it to OpenPharmacy immediately. Do this before closing the SMS or email, and you will never need to search for a token at the pharmacy counter again.",
       },
     ],
-    closing: `Once your scripts are saved, you can delete the original SMS safely. The QR code lives in the app, available offline, with the repeat count updating after each dispense. Your active scripts are visible on the home screen; archived scripts from completed courses stay accessible too.`,
+    closing: `Once your scripts are saved, you can delete the original SMS safely. The QR code lives in the app, available offline. After each dispense, a new token for the next repeat arrives by SMS or email; add it to OpenPharmacy the same way and the updated count will be there. Your active scripts are visible on the home screen; archived scripts from completed courses stay accessible too.`,
   },
 
   practicalTips: {
@@ -193,7 +193,7 @@ const post = {
     {
       question: "Does OpenPharmacy show remaining repeats for each script?",
       answer:
-        "Yes. When you add an eScript token to OpenPharmacy, the app retrieves your prescription details from the national system, including the number of repeats remaining. This count is displayed on the script card inside the app and updates after each dispense. You can check how many repeats you have left on any medication at any time, without an internet connection, from the app's home screen.",
+        "Yes. When you add an eScript token to OpenPharmacy, the app retrieves your prescription details from the national system, including the number of repeats remaining. This count is displayed on the script card inside the app. After each dispense, the pharmacy issues a new token for the next repeat via SMS or email; adding that token to OpenPharmacy shows the updated count. You can check how many repeats you have left on any medication at any time, without an internet connection, from the app's home screen.",
     },
     {
       question: "What is the Active Script List and how is it different from an eScript wallet?",
