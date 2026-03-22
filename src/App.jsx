@@ -18,6 +18,17 @@ import WhatIsAdhaConformanceAustralia from "./pages/blog/what-is-adha-conformanc
 import PharmacyAppVsIndependentEscriptWalletAustralia from "./pages/blog/pharmacy-app-vs-independent-escript-wallet-australia";
 import EscriptAppSecurityPrivacyGuideAustralia from "./pages/blog/escript-app-security-privacy-guide-australia";
 import DeletedEscriptSmsWhatToDoAustralia from "./pages/blog/deleted-escript-sms-what-to-do-australia";
+import AdhdEscriptManagementAustralia from "./pages/blog/adhd-escript-management-australia";
+import AdhdMedicationManagementParentsAustralia from "./pages/blog/adhd-medication-management-parents-australia";
+import ManagingChronicIllnessEscriptsAustralia from "./pages/blog/managing-chronic-illness-escripts-australia";
+import HowToTrackEscriptRepeatsAustralia from "./pages/blog/how-to-track-escript-repeats-australia";
+import ActiveScriptListVsEscriptWalletAustralia from "./pages/blog/active-script-list-vs-escript-wallet-australia";
+import HealthAppDataPrivacyLawsAustralia from "./pages/blog/health-app-data-privacy-laws-australia";
+import HowToShareEscriptWithCarerAustralia from "./pages/blog/how-to-share-escript-with-carer-australia";
+
+// Landing pages — use-case specific pages for targeted audiences.
+// Also add the path to scripts/prerender.mjs ROUTES.
+import RuralAustralia from "./pages/for/RuralAustralia";
 
 // Compare pages — import each comparison component and add a <Route> below.
 // Also add the slug to scripts/prerender.mjs ROUTES.
@@ -25,6 +36,7 @@ import DeletedEscriptSmsWhatToDoAustralia from "./pages/blog/deleted-escript-sms
 // until we have stronger differentiating features to publish. File is preserved
 // at src/pages/compare/openpharmacy-vs-scripty.jsx but not registered.
 // import OpenPharmacyVsScripty from "./pages/compare/openpharmacy-vs-scripty";
+import OpenPharmacyVsMedAdvisor from "./pages/compare/openpharmacy-vs-medadvisor";
 
 function App() {
   return (
@@ -45,8 +57,18 @@ function App() {
         <Route path="/blog/pharmacy-app-vs-independent-escript-wallet-australia" element={<PharmacyAppVsIndependentEscriptWalletAustralia />} />
         <Route path="/blog/escript-app-security-privacy-guide-australia" element={<EscriptAppSecurityPrivacyGuideAustralia />} />
         <Route path="/blog/deleted-escript-sms-what-to-do-australia" element={<DeletedEscriptSmsWhatToDoAustralia />} />
+        <Route path="/blog/adhd-escript-management-australia" element={<AdhdEscriptManagementAustralia />} />
+        <Route path="/blog/adhd-medication-management-parents-australia" element={<AdhdMedicationManagementParentsAustralia />} />
+        <Route path="/blog/managing-chronic-illness-escripts-australia" element={<ManagingChronicIllnessEscriptsAustralia />} />
+        <Route path="/blog/how-to-track-escript-repeats-australia" element={<HowToTrackEscriptRepeatsAustralia />} />
+        <Route path="/blog/active-script-list-vs-escript-wallet-australia" element={<ActiveScriptListVsEscriptWalletAustralia />} />
+        <Route path="/blog/health-app-data-privacy-laws-australia" element={<HealthAppDataPrivacyLawsAustralia />} />
+        <Route path="/blog/how-to-share-escript-with-carer-australia" element={<HowToShareEscriptWithCarerAustralia />} />
+        {/* Landing page routes — use-case specific pages: */}
+        <Route path="/for/rural-australia" element={<RuralAustralia />} />
         {/* Compare page routes — add one per comparison page as created: */}
         {/* OpenPharmacy vs Scripty is intentionally hidden — see import comment above */}
+        <Route path="/compare/openpharmacy-vs-medadvisor" element={<OpenPharmacyVsMedAdvisor />} />
       </Routes>
     </BrowserRouter>
   );

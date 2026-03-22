@@ -1,22 +1,22 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import BlogLayout from "../../components/BlogLayout";
-import post from "../../data/blog/offline-escript-access-australia";
+import post from "../../data/blog/how-to-share-escript-with-carer-australia";
 
-const SLUG = "offline-escript-access-australia";
-const DATE = "2026-03-11";
+const SLUG = "how-to-share-escript-with-carer-australia";
+const DATE = "2026-03-19";
 
 const meta = {
-  title: "Offline eScript Access in Australia: Why Your QR Code Must Be Available Without Internet",
+  title: "How to Share Your eScript Securely with a Carer or Family Member in Australia",
   description:
-    "Learn why SMS and email eScripts fail without signal, and how OpenPharmacy stores your prescription QR codes on-device so they work offline, even in rural Australia or airplane mode.",
+    "Share an Australian eScript with a carer by forwarding the token for a one-off collection, or use OpenPharmacy family profiles for ongoing care — secure, encrypted, and accessible offline.",
   slug: SLUG,
   date: DATE,
   dateModified: DATE,
-  tags: ["Offline Access", "Rural Australia", "eScripts", "QR Code", "Digital Health"],
+  tags: ["Caregivers", "Sharing", "Security", "Family Management", "eScripts", "Australia", "How To"],
 };
 
-// Combined BlogPosting + FAQPage + BreadcrumbList schema
+// Combined BlogPosting + HowTo + FAQPage + BreadcrumbList schema
 const schema = {
   "@context": "https://schema.org",
   "@graph": [
@@ -50,11 +50,24 @@ const schema = {
         "@id": `https://openpharmacy.com/blog/${SLUG}`,
       },
       keywords:
-        "offline eScript Australia, eScript no signal, rural Australia prescription app, eScript offline QR code, OpenPharmacy offline, prescription app airplane mode, Australian eScript wallet",
+        "share eScript with carer Australia, eScript carer access Australia, carer prescription sharing Australia, family eScript management, OpenPharmacy family profiles, share prescription QR code Australia, carer collect script Australia, ADHA eScript wallet carer",
       about: {
         "@type": "Thing",
         name: "Electronic Prescriptions Australia",
       },
+    },
+    {
+      "@type": "HowTo",
+      "@id": `https://openpharmacy.com/blog/${SLUG}#howto`,
+      name: "How to set up a carer's OpenPharmacy wallet for a family member",
+      description:
+        "Step-by-step guide to adding a family member's Australian eScript token to a carer's OpenPharmacy wallet for secure, offline access at any pharmacy.",
+      step: post.stepByStep.steps.map((s) => ({
+        "@type": "HowToStep",
+        position: s.number,
+        name: s.name,
+        text: s.description,
+      })),
     },
     {
       "@type": "FAQPage",
@@ -84,55 +97,7 @@ const schema = {
   ],
 };
 
-// Helper: comparison table
-function ComparisonTable({ headers, rows, note }) {
-  return (
-    <div className="my-6">
-      <div className="overflow-x-auto rounded-xl border border-white/10">
-        <table className="w-full text-sm text-left">
-          <thead>
-            <tr className="border-b border-white/10 bg-white/5">
-              {headers.map((h) => (
-                <th
-                  key={h}
-                  className="px-4 py-3 font-semibold text-white/90 whitespace-nowrap"
-                >
-                  {h}
-                </th>
-              ))}
-            </tr>
-          </thead>
-          <tbody>
-            {rows.map((row, ri) => (
-              <tr
-                key={ri}
-                className={`border-b border-white/5 ${
-                  ri === 0 ? "bg-[var(--color-accent)]/5" : ""
-                }`}
-              >
-                {row.map((cell, ci) => (
-                  <td
-                    key={ci}
-                    className={`px-4 py-3 text-white/80 ${
-                      ci === 0 ? "font-semibold text-white" : ""
-                    }`}
-                  >
-                    {cell}
-                  </td>
-                ))}
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-      {note && (
-        <p className="text-white/45 text-xs mt-2 pl-1">{note}</p>
-      )}
-    </div>
-  );
-}
-
-function OfflineEscriptAccessAustralia() {
+function HowToShareEscriptWithCarerAustralia() {
   return (
     <BlogLayout meta={meta} schema={schema}>
 
@@ -141,49 +106,82 @@ function OfflineEscriptAccessAustralia() {
         {post.intro}
       </p>
 
-      {/* Section 1: The offline problem */}
-      <h2 className="font-grifter text-2xl font-bold text-white mt-10 mb-3">
-        {post.smsProblem.heading}
-      </h2>
-      {post.smsProblem.body.map((paragraph, i) => (
-        <p key={i} className="text-white/80 leading-relaxed mt-4">
-          {paragraph}
-        </p>
-      ))}
+      {/* Last verified note */}
+      <p className="text-white/45 text-xs mt-4">
+        Information verified March 2026. Prescribing rules and app features are subject to change.
+        Check with your prescriber or pharmacist for advice specific to your situation.
+      </p>
 
-      <ul className="space-y-4 my-5">
-        {post.smsProblem.scenarios.map((scenario, i) => (
-          <li key={i} className="border-l-2 border-white/15 pl-4">
-            <p className="font-semibold text-white mb-1">{scenario.label}</p>
-            <p className="text-white/75 text-sm leading-relaxed">{scenario.detail}</p>
+      {/* Section 1: Two approaches */}
+      <h2 className="font-grifter text-2xl font-bold text-white mt-10 mb-3">
+        {post.twoApproaches.heading}
+      </h2>
+      <p className="text-white/80 leading-relaxed mb-6">{post.twoApproaches.intro}</p>
+
+      <ul className="space-y-5">
+        {post.twoApproaches.approaches.map((approach, i) => (
+          <li key={i} className="border-l-2 border-[var(--color-accent)]/40 pl-4">
+            <p className="font-semibold text-white mb-2">{approach.label}</p>
+            <p className="text-white/75 text-sm leading-relaxed">{approach.detail}</p>
           </li>
         ))}
       </ul>
 
-      <p className="text-white/80 leading-relaxed">{post.smsProblem.closing}</p>
-
-      {/* Section 2: Why apps need internet */}
+      {/* Section 2: Security risks of shortcuts */}
       <h2 className="font-grifter text-2xl font-bold text-white mt-10 mb-3">
-        {post.whyAppsNeedInternet.heading}
+        {post.securityRisks.heading}
       </h2>
-      {post.whyAppsNeedInternet.body.map((paragraph, i) => (
+      <p className="text-white/80 leading-relaxed mb-6">{post.securityRisks.intro}</p>
+
+      <ul className="space-y-5">
+        {post.securityRisks.risks.map((risk, i) => (
+          <li key={i} className="flex gap-3">
+            <span
+              className="flex-shrink-0 mt-1 text-white/40 font-bold text-sm"
+              aria-hidden="true"
+            >
+              &ndash;
+            </span>
+            <div>
+              <p className="font-semibold text-white mb-1">{risk.label}</p>
+              <p className="text-white/75 text-sm leading-relaxed">{risk.detail}</p>
+            </div>
+          </li>
+        ))}
+      </ul>
+
+      <p className="text-white/80 leading-relaxed mt-6">{post.securityRisks.closing}</p>
+
+      {/* Internal link: security guide */}
+      <p className="text-white/75 text-sm leading-relaxed mt-4">
+        For a full breakdown of what makes an eScript app genuinely secure, see:{" "}
+        <Link
+          to="/blog/escript-app-security-privacy-guide-australia"
+          className="text-[var(--color-accent)] underline hover:opacity-80 transition-opacity"
+        >
+          How to Keep Your eScripts Secure: A Privacy Guide for Australian Patients
+        </Link>
+        .
+      </p>
+
+      {/* Section 3: How OpenPharmacy handles it */}
+      <h2 className="font-grifter text-2xl font-bold text-white mt-10 mb-3">
+        {post.openPharmacyDetail.heading}
+      </h2>
+      {post.openPharmacyDetail.body.map((paragraph, i) => (
         <p key={i} className="text-white/80 leading-relaxed mt-4">
           {paragraph}
         </p>
       ))}
 
-      {/* Section 3: How offline-first works */}
+      {/* Section 4: Step-by-step (HowTo) */}
       <h2 className="font-grifter text-2xl font-bold text-white mt-10 mb-3">
-        {post.howOfflineWorks.heading}
+        {post.stepByStep.heading}
       </h2>
-      {post.howOfflineWorks.body.map((paragraph, i) => (
-        <p key={i} className="text-white/80 leading-relaxed mt-4">
-          {paragraph}
-        </p>
-      ))}
+      <p className="text-white/80 leading-relaxed mb-6">{post.stepByStep.intro}</p>
 
-      <ol className="space-y-5 mt-6">
-        {post.howOfflineWorks.steps.map((step) => (
+      <ol className="space-y-5">
+        {post.stepByStep.steps.map((step) => (
           <li key={step.number} className="flex gap-4">
             <span
               className="flex-shrink-0 w-8 h-8 rounded-full bg-[var(--color-accent)] text-white text-sm font-bold flex items-center justify-center mt-0.5"
@@ -199,66 +197,41 @@ function OfflineEscriptAccessAustralia() {
         ))}
       </ol>
 
-      <p className="text-white/80 leading-relaxed mt-6">{post.howOfflineWorks.closing}</p>
+      <p className="text-white/75 text-sm leading-relaxed mt-6">{post.stepByStep.closing}</p>
 
-      {/* Section 4: Who needs offline access */}
+      {/* Section 5: When direct token forwarding is right */}
       <h2 className="font-grifter text-2xl font-bold text-white mt-10 mb-3">
-        {post.whoNeedsOffline.heading}
+        {post.directTokenWhen.heading}
       </h2>
-      <p className="text-white/80 leading-relaxed mb-5">{post.whoNeedsOffline.intro}</p>
-
-      <ul className="space-y-5">
-        {post.whoNeedsOffline.groups.map((group, i) => (
-          <li key={i} className="flex gap-3">
-            <span
-              className="flex-shrink-0 mt-1 text-[var(--color-accent)] font-bold text-sm"
-              aria-hidden="true"
-            >
-              &#10003;
-            </span>
-            <div>
-              <p className="font-semibold text-white mb-1">{group.label}</p>
-              <p className="text-white/75 text-sm leading-relaxed">{group.detail}</p>
-            </div>
-          </li>
-        ))}
-      </ul>
-
-      {/* Section 5: OpenPharmacy detail */}
-      <h2 className="font-grifter text-2xl font-bold text-white mt-10 mb-3">
-        {post.openPharmacyDetail.heading}
-      </h2>
-      {post.openPharmacyDetail.body.map((paragraph, i) => (
+      {post.directTokenWhen.body.map((paragraph, i) => (
         <p key={i} className="text-white/80 leading-relaxed mt-4">
           {paragraph}
         </p>
       ))}
 
-      {/* Section 6: Comparison table */}
+      {/* Section 6: Privacy note */}
       <h2 className="font-grifter text-2xl font-bold text-white mt-10 mb-3">
-        {post.comparison.heading}
+        {post.privacyNote.heading}
       </h2>
-      <p className="text-white/75 leading-relaxed mb-4">{post.comparison.intro}</p>
+      {post.privacyNote.body.map((paragraph, i) => (
+        <p key={i} className="text-white/80 leading-relaxed mt-4">
+          {paragraph}
+        </p>
+      ))}
 
-      <ComparisonTable
-        headers={post.comparison.headers}
-        rows={post.comparison.rows}
-        note={post.comparison.note}
-      />
-
-      {/* Internal links to related posts */}
-      <p className="text-white/75 text-sm leading-relaxed mt-6">
-        For a full side-by-side comparison of all major Australian eScript apps, see:{" "}
+      {/* Internal links */}
+      <p className="text-white/75 text-sm leading-relaxed mt-8">
+        Managing prescriptions for multiple family members on an ongoing basis? See:{" "}
         <Link
-          to="/blog/best-escript-apps-australia-2026"
+          to="/blog/managing-family-escripts-australia-carers-parents"
           className="text-[var(--color-accent)] underline hover:opacity-80 transition-opacity"
         >
-          Best eScript Apps in Australia (2026): Compared by Offline Access, Security, and Family Features
+          Managing Family eScripts in Australia: A Practical Guide for Parents and Carers
         </Link>
         .
       </p>
       <p className="text-white/75 text-sm leading-relaxed mt-3">
-        New to eScripts? Start with:{" "}
+        New to eScripts? Start here:{" "}
         <Link
           to="/blog/what-is-an-escript-wallet-australia"
           className="text-[var(--color-accent)] underline hover:opacity-80 transition-opacity"
@@ -267,6 +240,7 @@ function OfflineEscriptAccessAustralia() {
         </Link>
         .
       </p>
+
       {/* FAQ */}
       <h2 className="font-grifter text-2xl font-bold text-white mt-12 mb-4">
         Frequently Asked Questions
@@ -283,11 +257,12 @@ function OfflineEscriptAccessAustralia() {
       {/* CTA */}
       <div className="mt-12 rounded-2xl bg-[var(--color-secondary)] border border-white/10 p-6 md:p-8 text-center">
         <h2 className="font-grifter text-xl md:text-2xl font-bold text-white mb-2">
-          Download OpenPharmacy. Free on iOS and Android.
+          Share scripts securely. Download OpenPharmacy free.
         </h2>
         <p className="text-white/70 text-sm md:text-base mb-6 max-w-lg mx-auto">
-          Your eScript QR codes, always available. Works completely offline. ADHA conformant.
-          All data stored in Australia.
+          Manage eScripts for your whole family in one place. Separate profiles per person,
+          encrypted on-device storage, offline QR codes, and ADHA-registered security.
+          All data on Australian servers.
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <a
@@ -315,4 +290,4 @@ function OfflineEscriptAccessAustralia() {
   );
 }
 
-export default OfflineEscriptAccessAustralia;
+export default HowToShareEscriptWithCarerAustralia;

@@ -9,7 +9,7 @@ import CallToAction from "../components/CallToAction";
 
 function HowItWorks() {
   usePageMeta({
-    title: "How OpenPharmacy Works — Add & Manage eScripts",
+    title: "How OpenPharmacy Works: Add and Manage eScripts",
     description:
       "Learn how to add electronic prescriptions to OpenPharmacy manually or automatically via My Script List. 3 easy steps to get started.",
     canonicalPath: "/how-it-works",

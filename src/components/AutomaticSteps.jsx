@@ -42,9 +42,9 @@ function AutomaticSteps({ steps }) {
             Also known as My Script List (MySL), ASL is a government-approved
             system
             <br className="hidden md:inline" />
-            that pulls all your active scripts and repeats — both paper
+            that pulls all your active scripts and repeats, both paper
             <br className="hidden md:inline" />
-            and electronic into one easy-to-manage list.
+            and electronic, into one easy-to-manage list.
           </p>
         </Motion.div>
         {/* Timeline Line (starts after card) and steps */}

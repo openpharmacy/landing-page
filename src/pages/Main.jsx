@@ -10,7 +10,7 @@ import { motion as Motion } from "framer-motion";
 
 function Main() {
   usePageMeta({
-    title: "OpenPharmacy — Secure Australian eScript Wallet | iOS & Android",
+    title: "OpenPharmacy: Secure Australian eScript Wallet | iOS & Android",
     description:
       "OpenPharmacy is a free, ADHA-registered app for managing Australian electronic prescriptions. Store, view, and share eScripts offline with end-to-end encryption. Available on iOS and Android.",
     canonicalPath: "/",

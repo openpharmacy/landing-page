@@ -9,7 +9,7 @@ const DATE = "2026-03-11";
 const meta = {
   title: "What Happens If You Delete Your eScript SMS? Here's What to Do",
   description:
-    "Deleted your eScript SMS in Australia? Your prescription still exists — it has not been cancelled. Learn how to recover the token, use the Active Script List, and prevent it happening again.",
+    "Deleted your eScript SMS in Australia? Your prescription still exists: it has not been cancelled. Learn how to recover the token, use the Active Script List, and prevent it happening again.",
   slug: SLUG,
   date: DATE,
   dateModified: DATE,

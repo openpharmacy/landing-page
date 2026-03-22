@@ -38,9 +38,19 @@ const ROUTES = [
   "/blog/pharmacy-app-vs-independent-escript-wallet-australia",
   "/blog/escript-app-security-privacy-guide-australia",
   "/blog/deleted-escript-sms-what-to-do-australia",
+  "/blog/adhd-escript-management-australia",
+  "/blog/adhd-medication-management-parents-australia",
+  "/blog/managing-chronic-illness-escripts-australia",
+  "/blog/how-to-track-escript-repeats-australia",
+  "/blog/active-script-list-vs-escript-wallet-australia",
+  "/blog/health-app-data-privacy-laws-australia",
+  "/blog/how-to-share-escript-with-carer-australia",
+  // Landing page routes — use-case specific pages:
+  "/for/rural-australia",
   // Compare page routes — add one per comparison page as created:
   // NOTE: "/compare/openpharmacy-vs-scripty" is intentionally excluded until
   // we have stronger differentiating features to publish.
+  "/compare/openpharmacy-vs-medadvisor",
 ];
 
 // MIME types for the local static server
