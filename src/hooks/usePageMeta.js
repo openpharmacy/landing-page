@@ -11,8 +11,22 @@ import { useEffect } from "react";
  * @param {string} [options.canonicalPath] - Canonical path (e.g., "/faq")
  * @param {Object} [options.schema] - JSON-LD schema object to inject
  */
+export const SITE_ORIGIN = "https://www.openpharmacy.com";
+
+/**
+ * Ensures a path ends with a trailing slash (GitHub Pages serves with trailing slashes).
+ * The root "/" is left as-is.
+ */
+function withTrailingSlash(path) {
+  if (path === "/") return path;
+  return path.endsWith("/") ? path : `${path}/`;
+}
+
 export function usePageMeta({ title, description, canonicalPath = "/", schema = null }) {
   useEffect(() => {
+    const normalizedPath = withTrailingSlash(canonicalPath);
+    const fullUrl = `${SITE_ORIGIN}${normalizedPath}`;
+
     // Update document title
     document.title = title;
 
@@ -35,7 +49,7 @@ export function usePageMeta({ title, description, canonicalPath = "/", schema = 
 
     const ogUrl = document.querySelector('meta[property="og:url"]');
     if (ogUrl) {
-      ogUrl.setAttribute("content", `https://openpharmacy.com${canonicalPath}`);
+      ogUrl.setAttribute("content", fullUrl);
     }
 
     // Update Twitter tags
@@ -52,7 +66,7 @@ export function usePageMeta({ title, description, canonicalPath = "/", schema = 
     // Update canonical URL
     const canonical = document.querySelector('link[rel="canonical"]');
     if (canonical) {
-      canonical.setAttribute("href", `https://openpharmacy.com${canonicalPath}`);
+      canonical.setAttribute("href", fullUrl);
     }
 
     // Inject or update page-specific JSON-LD schema

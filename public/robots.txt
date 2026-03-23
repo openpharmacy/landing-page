@@ -19,4 +19,4 @@ Allow: /
 User-agent: CCBot
 Allow: /
 
-Sitemap: https://openpharmacy.com/sitemap.xml
+Sitemap: https://www.openpharmacy.com/sitemap.xml

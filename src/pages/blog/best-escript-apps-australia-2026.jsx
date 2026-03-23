@@ -22,32 +22,32 @@ const schema = {
   "@graph": [
     {
       "@type": "BlogPosting",
-      "@id": `https://openpharmacy.com/blog/${SLUG}#article`,
+      "@id": `https://www.openpharmacy.com/blog/${SLUG}/#article`,
       headline: meta.title,
       description: meta.description,
       datePublished: DATE,
       dateModified: DATE,
-      url: `https://openpharmacy.com/blog/${SLUG}`,
+      url: `https://www.openpharmacy.com/blog/${SLUG}/`,
       inLanguage: "en-AU",
       author: {
         "@type": "Organization",
         name: "OpenPharmacy",
         legalName: "Easy As Health Pty Ltd",
-        url: "https://openpharmacy.com",
+        url: "https://www.openpharmacy.com",
       },
       publisher: {
         "@type": "Organization",
         name: "OpenPharmacy",
         legalName: "Easy As Health Pty Ltd",
-        url: "https://openpharmacy.com",
+        url: "https://www.openpharmacy.com",
         logo: {
           "@type": "ImageObject",
-          url: "https://openpharmacy.com/Logo.svg",
+          url: "https://www.openpharmacy.com/Logo.svg",
         },
       },
       mainEntityOfPage: {
         "@type": "WebPage",
-        "@id": `https://openpharmacy.com/blog/${SLUG}`,
+        "@id": `https://www.openpharmacy.com/blog/${SLUG}/`,
       },
       keywords: "eScript app Australia, best prescription app Australia, ADHA conformant app, offline eScript, OpenPharmacy, Scripty, MedAdvisor",
       about: {
@@ -57,7 +57,7 @@ const schema = {
     },
     {
       "@type": "FAQPage",
-      "@id": `https://openpharmacy.com/blog/${SLUG}#faq`,
+      "@id": `https://www.openpharmacy.com/blog/${SLUG}/#faq`,
       mainEntity: post.faq.map((item) => ({
         "@type": "Question",
         name: item.question,
@@ -70,9 +70,9 @@ const schema = {
     {
       "@type": "BreadcrumbList",
       itemListElement: [
-        { "@type": "ListItem", position: 1, name: "Home", item: "https://openpharmacy.com/" },
-        { "@type": "ListItem", position: 2, name: "Blog", item: "https://openpharmacy.com/blog" },
-        { "@type": "ListItem", position: 3, name: meta.title, item: `https://openpharmacy.com/blog/${SLUG}` },
+        { "@type": "ListItem", position: 1, name: "Home", item: "https://www.openpharmacy.com/" },
+        { "@type": "ListItem", position: 2, name: "Blog", item: "https://www.openpharmacy.com/blog/" },
+        { "@type": "ListItem", position: 3, name: meta.title, item: `https://www.openpharmacy.com/blog/${SLUG}/` },
       ],
     },
   ],

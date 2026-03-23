@@ -6,7 +6,7 @@ import { usePageMeta } from "../../hooks/usePageMeta";
 
 const SLUG = "openpharmacy-vs-scripty";
 const CANONICAL_PATH = `/compare/${SLUG}`;
-const PAGE_URL = `https://openpharmacy.com${CANONICAL_PATH}`;
+const PAGE_URL = `https://www.openpharmacy.com${CANONICAL_PATH}/`;
 const DATE = "2026-03-11";
 const TITLE = "OpenPharmacy vs Scripty: Which eScript Wallet Is Right for You?";
 const DESCRIPTION =
@@ -82,7 +82,7 @@ function buildSchema(faqItems) {
         dateModified: DATE,
         isPartOf: {
           "@type": "WebSite",
-          url: "https://openpharmacy.com",
+          url: "https://www.openpharmacy.com",
           name: "OpenPharmacy",
         },
         breadcrumb: { "@id": `${PAGE_URL}#breadcrumb` },
@@ -91,18 +91,18 @@ function buildSchema(faqItems) {
         "@type": "BreadcrumbList",
         "@id": `${PAGE_URL}#breadcrumb`,
         itemListElement: [
-          { "@type": "ListItem", position: 1, name: "Home", item: "https://openpharmacy.com/" },
-          { "@type": "ListItem", position: 2, name: "Compare", item: "https://openpharmacy.com/compare/" },
+          { "@type": "ListItem", position: 1, name: "Home", item: "https://www.openpharmacy.com/" },
+          { "@type": "ListItem", position: 2, name: "Compare", item: "https://www.openpharmacy.com/compare/" },
           { "@type": "ListItem", position: 3, name: TITLE, item: PAGE_URL },
         ],
       },
       {
         "@type": "Product",
-        "@id": "https://openpharmacy.com/#product",
+        "@id": "https://www.openpharmacy.com/#product",
         name: "OpenPharmacy",
         description:
           "A secure Australian eScript wallet that stores electronic prescription QR codes on-device for guaranteed offline access. ADHA-conformant, end-to-end encrypted, and pharmacy-independent.",
-        url: "https://openpharmacy.com",
+        url: "https://www.openpharmacy.com",
         brand: {
           "@type": "Brand",
           name: "OpenPharmacy",
@@ -110,7 +110,7 @@ function buildSchema(faqItems) {
         manufacturer: {
           "@type": "Organization",
           name: "Easy As Health Pty Ltd",
-          url: "https://openpharmacy.com",
+          url: "https://www.openpharmacy.com",
         },
         operatingSystem: "iOS, Android",
         applicationCategory: "HealthApplication",
