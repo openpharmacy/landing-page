@@ -18,7 +18,7 @@ const TABLE_HEADERS = ["Feature", "OpenPharmacy", "MedAdvisor"];
 const TABLE_ROWS = [
   ["Offline access", "Full: works in airplane mode, no internet ever required", "No: requires internet for all functions"],
   ["Script import method", "Manual eScript token entry (paste or tap the token link sent via SMS or email)", "Pharmacy-connected: requires pharmacist activation to sync medications"],
-  ["ADHA ePrescribing conformance", "Yes: listed on ADHA Register as a mobile application patient wallet (MA category)", "Yes: listed on ADHA Register as a Mobile Application (MA) and Mobile Intermediary System (MIS). No eScript wallet (patient-facing token store) category present."],
+  ["ADHA ePrescribing conformance", "Yes: listed on ADHA Register as a Mobile Application (MA) and Mobile Intermediary System (MIS)", "Yes: listed on ADHA Register as a Mobile Application (MA) and Mobile Intermediary System (MIS)"],
   ["Pharmacist activation required", "No: download and use immediately", "Yes: must be activated by a pharmacist before core features work"],
   ["Pharmacy affiliation", "None: works with any Australian pharmacy", "Connected to your chosen pharmacy network (5,500+ pharmacies)"],
   ["Prescription ordering / delivery", "No", "Yes: pre-ordering, refill ordering, home delivery option"],
@@ -51,7 +51,7 @@ const FAQ_ITEMS = [
   {
     question: "Are both apps listed on the ADHA ePrescribing Conformance Register?",
     answer:
-      "Yes, both OpenPharmacy and MedAdvisor are listed on the Australian Digital Health Agency ePrescribing Conformance Register, but under different categories. OpenPharmacy is listed as a Mobile Application (MA) patient wallet: an independent on-device store for eScript tokens that patients can use at any pharmacy without an internet connection. MedAdvisor is listed as a Mobile Application (MA) and Mobile Intermediary System (MIS): categories that reflect its role as a pharmacy-connected platform handling prescription routing and ordering. Importantly, MedAdvisor does not hold an eScript wallet category on the register, meaning it is not assessed as a standalone, patient-facing, pharmacy-independent token store in the way OpenPharmacy is. OpenPharmacy's MA wallet conformance is assessed specifically for the use case of securely storing and presenting prescription QR codes offline, independent of any pharmacy network.",
+      "Yes. Both OpenPharmacy and MedAdvisor are listed on the Australian Digital Health Agency ePrescribing Conformance Register as a Mobile Application (MA) and Mobile Intermediary System (MIS). Registry listing confirms that an app meets the technical standards set by the ADHA for handling electronic prescription data. It does not indicate the app's use case, design philosophy, or how it stores and presents prescriptions in practice. For a full picture of how the two apps differ, the feature comparison table above is the better reference.",
   },
   {
     question: "Which app is better for rural Australians?",
@@ -389,12 +389,8 @@ function OpenPharmacyVsMedAdvisor() {
             engagement platform, your prescription and medication data is connected to your chosen
             pharmacy. MedAdvisor offers biometric login as an optional convenience (not mandatory),
             and connects to 5,500+ pharmacies across Australia, representing more than 95% of the
-            national network. MedAdvisor is listed on the ADHA ePrescribing Conformance Register
-            as a Mobile Application (MA) and Mobile Intermediary System (MIS), reflecting its
-            role as a pharmacy-connected platform handling prescription routing and ordering.
-            It does not hold an eScript wallet category on the register. OpenPharmacy is listed
-            under the mobile application patient wallet (MA) category, reflecting its design as
-            a standalone, pharmacy-independent on-device token store.
+            national network. Both MedAdvisor and OpenPharmacy are listed on the ADHA ePrescribing
+            Conformance Register as a Mobile Application (MA) and Mobile Intermediary System (MIS).
             One further data point worth knowing: MedAdvisor also partners with pharmaceutical
             companies to deliver targeted health content to some users. These messages are limited
             to one per month via SMS or in-app, and users can opt out at any time. OpenPharmacy
