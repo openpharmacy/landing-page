@@ -47,27 +47,27 @@ const BlogLayout = ({ children, meta, schema }) => {
     description: description,
     datePublished: date,
     dateModified: dateModified || date,
-    url: `https://openpharmacy.com/blog/${slug}`,
+    url: `https://www.openpharmacy.com/blog/${slug}/`,
     inLanguage: "en-AU",
     author: {
       "@type": "Organization",
       name: "OpenPharmacy",
       legalName: "Easy As Health Pty Ltd",
-      url: "https://openpharmacy.com",
+      url: "https://www.openpharmacy.com/",
     },
     publisher: {
       "@type": "Organization",
       name: "OpenPharmacy",
       legalName: "Easy As Health Pty Ltd",
-      url: "https://openpharmacy.com",
+      url: "https://www.openpharmacy.com/",
       logo: {
         "@type": "ImageObject",
-        url: "https://openpharmacy.com/Logo.svg",
+        url: "https://www.openpharmacy.com/Logo.svg",
       },
     },
     mainEntityOfPage: {
       "@type": "WebPage",
-      "@id": `https://openpharmacy.com/blog/${slug}`,
+      "@id": `https://www.openpharmacy.com/blog/${slug}/`,
     },
     keywords: tags.join(", "),
     about: {

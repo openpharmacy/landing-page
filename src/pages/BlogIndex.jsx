@@ -126,15 +126,15 @@ function BlogIndex() {
       name: "OpenPharmacy Blog",
       description:
         "eScript guides, app comparisons, and digital health tips for Australian patients managing electronic prescriptions.",
-      url: "https://openpharmacy.com/blog",
+      url: "https://www.openpharmacy.com/blog/",
       publisher: {
         "@type": "Organization",
         name: "OpenPharmacy",
         legalName: "Easy As Health Pty Ltd",
-        url: "https://openpharmacy.com",
+        url: "https://www.openpharmacy.com",
         logo: {
           "@type": "ImageObject",
-          url: "https://openpharmacy.com/Logo.svg",
+          url: "https://www.openpharmacy.com/Logo.svg",
         },
       },
       inLanguage: "en-AU",
