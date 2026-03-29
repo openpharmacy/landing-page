@@ -32,7 +32,7 @@ function FAQ() {
   const faqSchema = useMemo(() => buildFaqSchema(), []);
 
   usePageMeta({
-    title: "OpenPharmacy FAQ — Electronic Prescription Questions Answered",
+    title: "OpenPharmacy FAQ: Electronic Prescription Questions Answered",
     description:
       "Common questions about OpenPharmacy's eScript wallet, security, offline access, ADHA compliance, and prescription management in Australia.",
     canonicalPath: "/faq",

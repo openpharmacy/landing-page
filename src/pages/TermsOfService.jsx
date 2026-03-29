@@ -4,7 +4,7 @@ import { usePageMeta } from "../hooks/usePageMeta";
 
 function TermsOfService() {
   usePageMeta({
-    title: "Terms of Service — OpenPharmacy",
+    title: "Terms of Service | OpenPharmacy",
     description:
       "Terms and conditions for the OpenPharmacy eScript wallet application by Easy As Health Pty Ltd.",
     canonicalPath: "/terms-of-service",

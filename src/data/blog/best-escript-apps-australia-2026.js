@@ -12,7 +12,7 @@ const post = {
     rows: [
       ["OpenPharmacy", "Offline access, security, independence", "Yes (fully offline)", "Yes", "Yes", "Yes", "Free"],
       ["Scripty", "ASL auto-sync, pharmacy-agnostic", "Yes", "Yes", "Yes", "Yes", "Free"],
-      ["MedAdvisor", "Pharmacy-connected ordering, reminders", "Limited", "Partial", "Yes", "Yes", "Free"],
+      ["MedAdvisor", "Pharmacy-connected ordering, reminders", "Limited", "Yes", "Yes", "Yes", "Free"],
       ["my health app", "My Health Record integration", "No", "Yes (via govt)", "No", "Yes (govt)", "Free"],
     ],
   },
@@ -157,7 +157,7 @@ const post = {
     },
     {
       question: "Which eScript apps are ADHA conformant?",
-      answer: "OpenPharmacy and Scripty are both listed on the Australian Digital Health Agency (ADHA) ePrescribing Conformance Register. The my health app is a government product and operates within ADHA infrastructure. ADHA conformance means the app has passed a formal assessment confirming it meets the standards set by the Department of Health and Aged Care for accessing and handling electronic prescription data.",
+      answer: "OpenPharmacy, Scripty, and MedAdvisor are all listed on the Australian Digital Health Agency (ADHA) ePrescribing Conformance Register. The my health app is a government product and operates within ADHA infrastructure. ADHA conformance means the app has passed a formal assessment confirming it meets the standards set by the Department of Health and Aged Care for accessing and handling electronic prescription data. Being listed on the register does not indicate a specific role or use case — it confirms the app meets the technical and security standards required to handle Australian electronic prescriptions.",
     },
     {
       question: "Do eScript apps share my data with pharmacies or third parties?",

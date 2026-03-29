@@ -4,7 +4,7 @@ import { usePageMeta } from "../hooks/usePageMeta";
 
 function PrivacyPolicy() {
   usePageMeta({
-    title: "Privacy Policy — OpenPharmacy",
+    title: "Privacy Policy | OpenPharmacy",
     description:
       "How OpenPharmacy handles and protects your data. ADHA-conformant privacy practices with Australian data storage and end-to-end encryption.",
     canonicalPath: "/privacy-policy",
