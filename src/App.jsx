@@ -29,6 +29,7 @@ import HowToShareEscriptWithCarerAustralia from "./pages/blog/how-to-share-escri
 // Landing pages — use-case specific pages for targeted audiences.
 // Also add the path to scripts/prerender.mjs ROUTES.
 import RuralAustralia from "./pages/for/RuralAustralia";
+import IndependentPharmacies from "./pages/for/IndependentPharmacies";
 
 // Compare pages — import each comparison component and add a <Route> below.
 // Also add the slug to scripts/prerender.mjs ROUTES.
@@ -66,6 +67,7 @@ function App() {
         <Route path="/blog/how-to-share-escript-with-carer-australia" element={<HowToShareEscriptWithCarerAustralia />} />
         {/* Landing page routes — use-case specific pages: */}
         <Route path="/for/rural-australia" element={<RuralAustralia />} />
+        <Route path="/for/independent-pharmacies" element={<IndependentPharmacies />} />
         {/* Compare page routes — add one per comparison page as created: */}
         {/* OpenPharmacy vs Scripty is intentionally hidden — see import comment above */}
         <Route path="/compare/openpharmacy-vs-medadvisor" element={<OpenPharmacyVsMedAdvisor />} />

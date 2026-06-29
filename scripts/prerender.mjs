@@ -47,6 +47,7 @@ const ROUTES = [
   "/blog/how-to-share-escript-with-carer-australia",
   // Landing page routes — use-case specific pages:
   "/for/rural-australia",
+  "/for/independent-pharmacies",
   // Compare page routes — add one per comparison page as created:
   // NOTE: "/compare/openpharmacy-vs-scripty" is intentionally excluded until
   // we have stronger differentiating features to publish.
