@@ -43,6 +43,10 @@
         "addressLocality": "Brisbane",
         "addressCountry": "AU"
       },
+      "areaServed": {
+        "@type": "Country",
+        "name": "Australia"
+      },
       "contactPoint": {
         "@type": "ContactPoint",
         "email": "hello@openpharmacy.com",
@@ -61,6 +65,17 @@
       "name": "OpenPharmacy",
       "applicationCategory": "HealthApplication",
       "operatingSystem": "iOS, Android",
+      "isAccessibleForFree": true,
+      "countriesSupported": "AU",
+      "inLanguage": "en-AU",
+      "featureList": [
+        "Offline access: prescription QR codes stored on the device, working in full airplane mode",
+        "Family management: separate profiles for children, parents and partners, with secure sharing to a carer",
+        "ADHA conformant: app and API listed on the ADHA Electronic Prescribing Conformance Register since 17 June 2025",
+        "Any pharmacy: no activation code, no pharmacy chain account, no lock-in",
+        "Optional Active Script List (MySL) sync for eScripts, repeats and paper prescriptions",
+        "ASD-approved end-to-end encryption, mandatory 4-digit PIN, data stored on Australian servers"
+      ],
       "offers": {
         "@type": "Offer",
         "price": "0",
@@ -69,9 +84,14 @@
       "description": "A secure, ADHA-registered app for Australian patients to store, manage, and share electronic prescriptions (eScripts). Works offline, supports family management, and uses end-to-end encryption with Australian data storage.",
       "url": "https://www.openpharmacy.com",
       "downloadUrl": "https://apps.apple.com/au/app/openpharmacy/id6751562406",
+      "installUrl": [
+        "https://apps.apple.com/au/app/openpharmacy/id6751562406",
+        "https://play.google.com/store/apps/details?id=com.openpharmacy.production"
+      ],
       "publisher": {
         "@type": "Organization",
-        "name": "Easy As Health Pty Ltd"
+        "name": "Easy As Health Pty Ltd",
+        "url": "https://www.openpharmacy.com"
       }
     }
     </script>
