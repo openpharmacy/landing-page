@@ -1,0 +1,328 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+/*
+ * Dark mode is not designed yet (Figma is light-only). The variant and the
+ * `.dark` placeholder are wired so dark can later be a pure value-swap with
+ * no token renames.
+ */
+@custom-variant dark (&:is(.dark *));
+
+/* ───────────────────────────────────────────────────────────────────────────
+ * RAW PALETTE — Figma named tokens, 1:1, never themed.
+ * Generates utilities like `bg-primary-500`, `text-secondary-900`,
+ * `border-neutral-300`. Figma ramps are intentionally sparse — only the steps
+ * that actually exist in Figma are defined. See docs/design.md for the honest
+ * ramp-coverage note.
+ * ─────────────────────────────────────────────────────────────────────────── */
+@theme {
+  /* Brand / primary (blue) */
+  --color-primary-500: #5cb4f8; /* Color/Primary/500 */
+  --color-primary-700: #3b7bb5; /* gradient stop (de-facto 700) */
+  --color-primary-bright: #08a9ff; /* decorative blob accent */
+  --color-info-500: #269df9; /* link / active-nav / accent */
+
+  /* Secondary (slate) */
+  --color-secondary-300: #7396b2;
+  --color-secondary-500: #2f5069;
+  --color-secondary-700: #1f3648;
+  --color-secondary-900: #18222b;
+
+  /* Neutral */
+  --color-neutral-300: #d1d7de;
+  --color-neutral-700: #7c8793;
+
+  /* Status */
+  --color-success-500: #2ecc71;
+  --color-error-500: #e74c3c;
+
+  /* Surfaces, text, lines (raw fills used across the UI) */
+  --color-bg-app: #f5f7fa;
+  --color-bg-section: #f8fbfd;
+  --color-text: #364153;
+  --color-text-muted: #4a5565;
+  --color-icon: #292d32;
+  --color-border-subtle: #f3f4f6;
+  --color-checkbox-border: #b2c4de;
+  --color-footer-text: #9eb6c9;
+  --color-footer-border: #343d48;
+
+  /* Type families (provided by next/font in app/layout.tsx) */
+  --font-sans: var(--font-lato), ui-sans-serif, system-ui, sans-serif;
+  --font-brand: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+
+  /* Figma radii */
+  --radius-control: 8px; /* inputs / fields */
+  --radius-card: 12px; /* cards + buttons */
+  --radius-chip: 14px; /* floating chips / app-store buttons */
+  --radius-card-lg: 16px; /* larger cards */
+
+  /* Figma elevations */
+  --shadow-mockup: 0 5px 8px 0 rgb(0 0 0 / 0.1);
+  --shadow-float:
+    0 4px 6px -4px rgb(0 0 0 / 0.1), 0 10px 15px -3px rgb(0 0 0 / 0.1);
+  --shadow-card: 0 0 24px 0 rgb(0 0 0 / 0.15);
+
+  /* Desktop artboard width */
+  --breakpoint-2xl: 1440px;
+
+  /* Invalid-PIN warning shake */
+  --animate-shake: shake 0.4s ease-in-out;
+  @keyframes shake {
+    0%,
+    100% {
+      transform: translateX(0);
+    }
+    20%,
+    60% {
+      transform: translateX(-6px);
+    }
+    40%,
+    80% {
+      transform: translateX(6px);
+    }
+  }
+
+  /* Quick page-transition fade. */
+  --animate-page-fade: page-fade 0.18s ease-out;
+  @keyframes page-fade {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  /* Mobile menu drawer — slides in from the right. */
+  --animate-drawer-in: drawer-in 0.22s ease-out;
+  @keyframes drawer-in {
+    from {
+      transform: translateX(100%);
+    }
+    to {
+      transform: translateX(0);
+    }
+  }
+}
+
+/* ───────────────────────────────────────────────────────────────────────────
+ * SEMANTIC ROLES (shadcn/ui) — light theme, bound to the palette above.
+ * ─────────────────────────────────────────────────────────────────────────── */
+:root {
+  --radius: 12px;
+
+  --background: var(--color-bg-app);
+  --foreground: var(--color-secondary-900);
+
+  --card: #ffffff;
+  --card-foreground: var(--color-secondary-900);
+  --popover: #ffffff;
+  --popover-foreground: var(--color-secondary-900);
+
+  --primary: var(--color-primary-500);
+  --primary-foreground: #ffffff;
+  --secondary: var(--color-secondary-500);
+  --secondary-foreground: #ffffff;
+
+  --muted: var(--color-bg-section);
+  --muted-foreground: var(--color-text-muted);
+  --accent: var(--color-bg-section);
+  --accent-foreground: var(--color-secondary-900);
+
+  --destructive: var(--color-error-500);
+  --destructive-foreground: #ffffff;
+  --success: var(--color-success-500);
+  --success-foreground: #ffffff;
+
+  --border: var(--color-neutral-300);
+  --input: var(--color-neutral-300);
+  --ring: var(--color-info-500);
+}
+
+/* Dark theme placeholder — fill from a future Figma dark variant (value-swap only). */
+.dark {
+  --background: var(--color-secondary-900);
+  --foreground: #ffffff;
+}
+
+/* Map semantic roles to Tailwind color + radius utilities (runtime-themeable). */
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-success: var(--success);
+  --color-success-foreground: var(--success-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+}
+
+/* ───────────────────────────────────────────────────────────────────────────
+ * TYPOGRAPHY PRESETS — one utility per Figma named text style.
+ * `className="text-display-32"` maps 1:1 to a Figma style. All Lato unless the
+ * name says otherwise (wordmark/legal use Inter). See docs/design.md.
+ * ─────────────────────────────────────────────────────────────────────────── */
+/* Named styles */
+@utility text-display-32 {
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: 2rem;
+  line-height: 2.5rem;
+}
+@utility text-subtitle-18-bold {
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: 1.125rem;
+  line-height: 1.625rem;
+}
+@utility text-subtitle-18 {
+  font-family: var(--font-sans);
+  font-weight: 400;
+  font-size: 1.125rem;
+  line-height: 1.625rem;
+}
+@utility text-body-16-bold {
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: 1rem;
+  line-height: 1.5rem;
+}
+@utility text-body-16 {
+  font-family: var(--font-sans);
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1.5rem;
+}
+@utility text-body-14 {
+  font-family: var(--font-sans);
+  font-weight: 400;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+}
+@utility text-label-14 {
+  font-family: var(--font-sans);
+  font-weight: 500; /* the only Medium-weight use in Figma (form labels) */
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+}
+@utility text-caption-12-bold {
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: 0.75rem;
+  line-height: 1rem;
+}
+@utility text-caption-12 {
+  font-family: var(--font-sans);
+  font-weight: 400;
+  font-size: 0.75rem;
+  line-height: 1rem;
+}
+@utility text-wordmark {
+  font-family: var(--font-brand);
+  font-weight: 600;
+  font-size: 1rem;
+  line-height: 1.5rem;
+}
+/* Marketing one-offs (Landing); line-heights marked "auto" in Figma are
+   approximated — see docs/design.md §typography. */
+@utility text-hero-60 {
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: 3.75rem;
+  line-height: 4.0625rem;
+}
+@utility text-h2-48 {
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: 3rem;
+  line-height: 3.5rem; /* Figma: auto (~1.17) */
+}
+@utility text-h2-36 {
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: 2.25rem;
+  line-height: 2.5rem;
+}
+@utility text-h3-30 {
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: 1.875rem;
+  line-height: 2.25rem;
+}
+@utility text-h4-24 {
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: 1.5rem;
+  line-height: 2rem;
+}
+@utility text-title-20 {
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+}
+@utility text-body-18 {
+  font-family: var(--font-sans);
+  font-weight: 400;
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+}
+@utility text-legal-14 {
+  font-family: var(--font-brand);
+  font-weight: 400;
+  font-size: 0.875rem;
+  line-height: 1.3125rem;
+}
+
+/* ───────────────────────────────────────────────────────────────────────────
+ * BRAND GRADIENTS (Figma exact stops/angles).
+ * ─────────────────────────────────────────────────────────────────────────── */
+@utility bg-gradient-primary {
+  background-image: linear-gradient(154deg, #75c2ff 0%, #269df9 55%);
+}
+@utility bg-gradient-hero {
+  background-image: linear-gradient(-74deg, #3b7bb5 7%, #5cb4f8 100%);
+}
+@utility bg-gradient-promo {
+  background-image: linear-gradient(134deg, #f8fbfd 39%, #269df9 100%);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  html {
+    /* Disable the elastic over-scroll bounce at the top/bottom of the page. */
+    overscroll-behavior: none;
+  }
+  body {
+    @apply bg-background font-sans text-foreground antialiased;
+  }
+}
+
+/* Respect users who prefer reduced motion — skip the page-transition fade. */
+@media (prefers-reduced-motion: reduce) {
+  .animate-page-fade,
+  .animate-drawer-in {
+    animation: none;
+  }
+}
