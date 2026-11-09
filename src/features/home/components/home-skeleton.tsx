@@ -1,28 +1,39 @@
-import { cn } from "@/lib/utils";
+"use client";
 
-function Block({ className }: { className?: string }) {
-  return <div className={cn("rounded-xl bg-[#E2E8F0]", className)} />;
+import { SkeletonBlock as Block, SkeletonPage } from "@/components/ui/skeleton";
+import { useShowHidden } from "@/providers/hidden-screens";
+
+import { HOME_COLUMN } from "./home-layout";
+
+function CardRow() {
+  return (
+    <div className="grid grid-cols-2 gap-2">
+      <Block className="h-[112px] lg:h-[114px]" />
+      <Block className="h-[112px] lg:h-[114px]" />
+    </div>
+  );
 }
 
-/** Loading placeholder for the dashboard (Figma `42:2760`). */
-export function HomeSkeleton() {
+export function HomeSkeleton({ banner = false }: { banner?: boolean }) {
+  const showHidden = useShowHidden();
   return (
-    <div className="mx-auto w-full max-w-[870px] animate-pulse px-4 py-8">
-      <div className="flex flex-col gap-6">
-        <Block className="h-10 w-72" />
-        <div className="grid grid-cols-2 gap-2">
-          <Block className="h-28" />
-          <Block className="h-28" />
+    <SkeletonPage className={HOME_COLUMN}>
+      <div className="flex flex-col gap-9">
+        {banner && <Block className="h-14 lg:h-[52px]" />}
+        <Block className="h-[50px] max-w-[475px] lg:h-[58px]" />
+        <div className="flex flex-col gap-2">
+          {showHidden && <CardRow />}
+          <Block className="h-[112px] lg:h-[114px]" />
         </div>
-        <Block className="h-28" />
-        <Block className="h-16" />
-        <Block className="h-16" />
-        <div className="grid grid-cols-2 gap-2">
-          <Block className="h-28" />
-          <Block className="h-28" />
-        </div>
-        <Block className="h-20" />
+        {showHidden && (
+          <>
+            <Block className="h-[58px]" />
+            <Block className="h-[58px]" />
+          </>
+        )}
+        <CardRow />
+        <Block className="h-[58px]" />
       </div>
-    </div>
+    </SkeletonPage>
   );
 }

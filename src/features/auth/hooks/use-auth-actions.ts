@@ -1,49 +1,53 @@
 "use client";
 
-import { useRouter } from "next/navigation";
+import { isMockingEnabled } from "@/config/env";
+import { clearLocalSession } from "@/lib/auth/mock-session";
 
 import * as authApi from "../api/auth-api";
-import type { AuthSession, SignInInput, SignUpInput } from "../model/schema";
+import type { User } from "../model/schema";
 import { useAuthStore } from "../stores/auth-store";
 
-/** Mirror the token into memory + set the httpOnly session cookie (SSR/guard). */
-async function persistSession(session: AuthSession) {
-  useAuthStore.getState().setSession(session);
-  await fetch("/api/auth/session", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-      access_token: session.access_token,
-      expires_in: session.expires_in,
-    }),
-  });
-}
+type SignInPayload = Parameters<typeof authApi.signIn>[0];
+type SignUpPayload = Parameters<typeof authApi.signUp>[0];
+
+const signedIn = (user: User) => {
+  useAuthStore.getState().setUser(user);
+  return user;
+};
 
 export function useAuthActions() {
-  const router = useRouter();
-
   return {
-    async signIn(input: SignInInput) {
-      const session = await authApi.signIn(input);
-      await persistSession(session);
-      router.push("/");
-      router.refresh();
+    async signIn(payload: SignInPayload): Promise<User> {
+      return signedIn(await authApi.signIn(payload));
     },
-    async signUp(input: SignUpInput) {
-      const session = await authApi.signUp({
-        email: input.email,
-        password: input.password,
-        name: input.name || undefined,
-      });
-      await persistSession(session);
-      router.push("/");
-      router.refresh();
+    async signUp(payload: SignUpPayload): Promise<User> {
+      return signedIn(await authApi.signUp(payload));
     },
-    async signInWithGoogle(idToken: string) {
-      const session = await authApi.signInWithGoogle(idToken);
-      await persistSession(session);
-      router.push("/");
-      router.refresh();
+    async signInWithProvider(
+      provider: authApi.Provider,
+      payload: authApi.ProviderPayload,
+    ): Promise<{ user: User; isNewUser: boolean }> {
+      const result = await authApi.signInWithProvider(provider, payload);
+      signedIn(result.user);
+      return result;
+    },
+    async completeProfile(payload: {
+      name: string;
+      surname: string;
+    }): Promise<User> {
+      return signedIn(await authApi.completeProfile(payload));
+    },
+    async signInWithDevice(email: string): Promise<User> {
+      if (!isMockingEnabled) {
+        throw new Error("Device sign-in is not available");
+      }
+      return signedIn(await authApi.signIn({ email, password: "mock-device" }));
+    },
+    async signOut() {
+      const result = await authApi.logout();
+      clearLocalSession();
+      if (result !== "unreachable") useAuthStore.getState().clear();
+      return result;
     },
   };
 }

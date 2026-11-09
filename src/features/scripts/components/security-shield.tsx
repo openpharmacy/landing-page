@@ -1,7 +1,3 @@
-/**
- * Iconsax "security" shield — the green verified-secure mark on ASL scripts
- * (Figma `161:2878`, a plain shield outline, no tick). Recolour via currentColor.
- */
 export function SecurityShield({ className }: { className?: string }) {
   return (
     <svg viewBox="0 0 16 16" fill="none" aria-hidden className={className}>

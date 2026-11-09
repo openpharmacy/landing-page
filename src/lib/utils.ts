@@ -1,9 +1,6 @@
 import { clsx, type ClassValue } from "clsx";
 import { extendTailwindMerge } from "tailwind-merge";
 
-// Register our Figma typography presets (text-display-32, text-body-16-bold, …)
-// as their own group so tailwind-merge does NOT treat them as text colors and
-// drop a sibling color like `text-white` (e.g. on buttons).
 const twMerge = extendTailwindMerge<"font-preset">({
   extend: {
     classGroups: {
@@ -35,7 +32,6 @@ const twMerge = extendTailwindMerge<"font-preset">({
   },
 });
 
-/** Merge class names, resolving Tailwind conflicts (shadcn convention). */
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }

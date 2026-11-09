@@ -2,7 +2,8 @@
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { ExternalLink } from "lucide-react";
-import type { ReactNode } from "react";
+import Link from "next/link";
+import { useState, type ReactNode } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { z } from "zod";
 
@@ -12,7 +13,9 @@ import { Icon } from "@/components/ui/icon";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 
-/** Mask free input into a DD/MM/YYYY string as the user types (digits only). */
+import { aslSetupSchema, type AslSetup } from "../model/validation";
+import { ActivationCodeHelpModal } from "./script-dialogs";
+
 function formatDob(input: string): string {
   const digits = input.replace(/\D/g, "").slice(0, 8);
   if (digits.length <= 2) return digits;
@@ -20,50 +23,28 @@ function formatDob(input: string): string {
   return `${digits.slice(0, 2)}/${digits.slice(2, 4)}/${digits.slice(4)}`;
 }
 
-/** A real, not-in-the-future calendar date in DD/MM/YYYY form. */
-function isValidDob(value: string): boolean {
-  const match = /^(\d{2})\/(\d{2})\/(\d{4})$/.exec(value);
-  if (!match) return false;
-  const day = Number(match[1]);
-  const month = Number(match[2]);
-  const year = Number(match[3]);
-  const now = new Date();
-  if (month < 1 || month > 12) return false;
-  if (year < 1900 || year > now.getFullYear()) return false;
-  const date = new Date(year, month - 1, day);
-  return (
-    date.getDate() === day &&
-    date.getMonth() === month - 1 &&
-    date.getFullYear() === year &&
-    date <= now
-  );
-}
-
-const schema = z.object({
-  firstName: z.string().trim().min(1, "First name is required"),
-  lastName: z.string().trim().min(1, "Last name is required"),
-  dob: z
-    .string()
-    .min(1, "Date of birth is required")
-    .refine(isValidDob, "Enter a valid date (DD/MM/YYYY)"),
-  activationCode: z.string().trim().min(1, "Activation code is required"),
+const schema = aslSetupSchema.extend({
   permission: z
     .boolean()
-    .refine((value) => value, "You must give permission to continue"),
+    .refine(
+      (value) => value,
+      "Tick the box to give permission before you continue",
+    ),
 });
 type AslSetupInput = z.infer<typeof schema>;
 
-/**
- * ASL setup form (Figma `161:2741`). All fields are required; the Date of Birth
- * is masked to DD/MM/YYYY and validated as a real date. On a valid submit it
- * advances the wizard via `onContinue` (no ASL backend yet — docs/api-gaps.md).
- */
-export function AslSetupForm({ onContinue }: { onContinue: () => void }) {
+export function AslSetupForm({
+  onContinue,
+}: {
+  onContinue: (values: AslSetup) => Promise<string | null>;
+}) {
+  const [helpOpen, setHelpOpen] = useState(false);
   const {
     register,
     control,
     handleSubmit,
-    formState: { errors },
+    setError,
+    formState: { errors, isSubmitting },
   } = useForm<AslSetupInput>({
     resolver: zodResolver(schema),
     defaultValues: {
@@ -71,13 +52,18 @@ export function AslSetupForm({ onContinue }: { onContinue: () => void }) {
       lastName: "",
       dob: "",
       activationCode: "",
-      permission: true,
+      permission: false,
     },
   });
 
+  async function submit(values: AslSetupInput) {
+    const error = await onContinue(values);
+    if (error) setError("activationCode", { message: error });
+  }
+
   return (
     <form
-      onSubmit={handleSubmit(onContinue)}
+      onSubmit={handleSubmit(submit)}
       noValidate
       className="flex flex-col gap-[23px]"
     >
@@ -145,24 +131,24 @@ export function AslSetupForm({ onContinue }: { onContinue: () => void }) {
                 id="asl-permission"
                 checked={field.value}
                 onCheckedChange={(checked) => field.onChange(checked === true)}
-                className="mt-1"
+                className="mt-1 data-[state=checked]:border-primary-500 data-[state=checked]:bg-primary-500"
               />
             )}
           />
-          <div className="flex flex-col gap-1">
+          <div className="flex flex-col gap-1 py-0.5">
             <Label
               htmlFor="asl-permission"
-              className="text-body-14 text-secondary-900"
+              className="text-body-14 text-secondary-700"
             >
               I give permission for OpenPharmacy to access my Active Script List
             </Label>
-            <a
-              href="#"
-              className="inline-flex items-center gap-1 text-body-14 text-info-500"
+            <Link
+              href="/help/prescriptions-scripts/prescription-privacy-and-security"
+              className="inline-flex w-fit items-center gap-1 text-caption-12 text-info-500 hover:underline"
             >
               Learn more about privacy and data usage
               <ExternalLink className="size-3" />
-            </a>
+            </Link>
           </div>
         </div>
         {errors.permission && (
@@ -172,16 +158,25 @@ export function AslSetupForm({ onContinue }: { onContinue: () => void }) {
         )}
       </div>
 
-      <Button type="submit" size="lg" className="w-full">
+      <Button
+        type="submit"
+        size="lg"
+        className="w-full"
+        disabled={isSubmitting}
+      >
         Continue
       </Button>
       <button
         type="button"
+        onClick={() => setHelpOpen(true)}
         className="flex h-14 w-full items-center justify-center gap-1 rounded-card text-body-16-bold text-secondary-700 transition-colors hover:bg-secondary-500/5"
       >
-        <Icon src="/icons/scripts/message-question.svg" size={24} />I don&apos;t
-        have my activation code
+        <Icon src="/icons/scripts/asl/message-question.svg" size={24} />I
+        don&apos;t have my activation code
       </button>
+      {helpOpen && (
+        <ActivationCodeHelpModal onClose={() => setHelpOpen(false)} />
+      )}
     </form>
   );
 }

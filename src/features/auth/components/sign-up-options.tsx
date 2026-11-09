@@ -1,38 +1,16 @@
 "use client";
 
 import Link from "next/link";
-import { useRouter } from "next/navigation";
-import type { ReactNode } from "react";
-import { useState } from "react";
 
-import { cn } from "@/lib/utils";
+import { Icon } from "@/components/ui/icon";
 
-import { GoogleAccountModal, type GoogleAccount } from "./google-account-modal";
+import { useSocialSignIn } from "../hooks/use-social-sign-in";
+import { GoogleAccountModal } from "./google-account-modal";
+import { OptionButton } from "./option-button";
 import { OrDivider } from "./or-divider";
-import { AppleIcon, EnvelopeIcon, GoogleIcon } from "./social-icons";
 
-/**
- * Sign-up method chooser (Figma "Let's set you up"). Google opens a mock
- * account chooser (no real OAuth yet); Apple is unavailable; email goes to the
- * form. See docs/api-gaps.md.
- */
 export function SignUpOptions() {
-  const router = useRouter();
-  const [notice, setNotice] = useState<string | null>(null);
-  const [googleOpen, setGoogleOpen] = useState(false);
-
-  function onPickGoogleAccount(account: GoogleAccount | null) {
-    setGoogleOpen(false);
-    if (account) {
-      const params = new URLSearchParams({
-        first: account.first,
-        last: account.last,
-      });
-      router.push(`/sign-up/google?${params.toString()}`);
-    } else {
-      router.push("/sign-up/google");
-    }
-  }
+  const social = useSocialSignIn("sign-up");
 
   return (
     <>
@@ -47,24 +25,30 @@ export function SignUpOptions() {
         </div>
 
         <div className="flex flex-col gap-3">
-          <OptionButton onClick={() => setGoogleOpen(true)}>
-            <GoogleIcon />
+          <OptionButton
+            className="gap-2 lg:gap-[15px]"
+            onClick={() => social.start("google")}
+          >
+            <Icon src="/icons/auth/google.svg" size={20} />
             Sign up with Google
           </OptionButton>
           <OptionButton
-            onClick={() => setNotice("Social sign-up isn't available yet.")}
+            className="gap-2 lg:gap-[11px]"
+            onClick={() => social.start("apple")}
           >
-            <AppleIcon className="size-5 text-secondary-900" />
+            <Icon src="/icons/auth/apple.svg" size={24} />
             Sign up with Apple
           </OptionButton>
-          {notice && <p className="text-body-14 text-error-500">{notice}</p>}
+          {social.notice && (
+            <p className="text-body-14 text-error-500">{social.notice}</p>
+          )}
         </div>
 
         <OrDivider />
 
         <div className="flex flex-col gap-[23px]">
-          <OptionButton href="/sign-up/email">
-            <EnvelopeIcon className="size-5 text-secondary-900" />
+          <OptionButton className="gap-1" href="/sign-up/email">
+            <Icon src="/icons/auth/envelope.svg" size={24} />
             Sign up email
           </OptionButton>
           <p className="text-center text-body-14 text-secondary-500">
@@ -80,40 +64,10 @@ export function SignUpOptions() {
       </div>
 
       <GoogleAccountModal
-        open={googleOpen}
-        onClose={() => setGoogleOpen(false)}
-        onSelect={onPickGoogleAccount}
+        open={social.mockOpen}
+        onClose={social.closeMock}
+        onSelect={social.pickMockAccount}
       />
     </>
-  );
-}
-
-/** White outline button (radius 8) used for each sign-up method. */
-function OptionButton({
-  children,
-  href,
-  onClick,
-}: {
-  children: ReactNode;
-  href?: string;
-  onClick?: () => void;
-}) {
-  const className = cn(
-    "flex h-[60px] w-full items-center justify-center gap-3 rounded-control",
-    "border border-neutral-300 bg-white text-body-16 text-text",
-    "transition-colors hover:bg-bg-app",
-  );
-
-  if (href) {
-    return (
-      <Link href={href} className={className}>
-        {children}
-      </Link>
-    );
-  }
-  return (
-    <button type="button" onClick={onClick} className={className}>
-      {children}
-    </button>
   );
 }

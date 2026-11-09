@@ -2,7 +2,6 @@ import type * as React from "react";
 
 import { cn } from "@/lib/utils";
 
-/** Figma card: radius 12, 1px Neutral/300 border, white fill, ambient shadow, padding 24. */
 export function Card({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div

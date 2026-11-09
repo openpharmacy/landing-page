@@ -1,6 +1,5 @@
 import { AxiosError } from "axios";
 
-/** Normalised API error used across the app (UI reads `message` / `status`). */
 export class ApiError extends Error {
   readonly status: number;
   readonly code: string;
@@ -20,13 +19,11 @@ export class ApiError extends Error {
   }
 }
 
-/** Convert any thrown value (especially an AxiosError) into an ApiError. */
 export function toApiError(error: unknown): ApiError {
   if (error instanceof ApiError) return error;
 
   if (error instanceof AxiosError) {
     const status = error.response?.status ?? 0;
-    // FastAPI returns `{ "detail": string | object }`.
     const data = error.response?.data as { detail?: unknown } | undefined;
     const detail = data?.detail;
     const message =

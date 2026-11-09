@@ -1,15 +1,18 @@
 "use client";
 
-import { ArrowLeft, CircleCheck, FileText, ShieldCheck } from "lucide-react";
+import { ArrowLeft, CircleCheck } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState, type ReactNode } from "react";
 
 import { Button } from "@/components/ui/button";
-import { setAslConnected } from "@/lib/auth/mock-session";
+import { Icon } from "@/components/ui/icon";
 import { cn } from "@/lib/utils";
 
+import { connectAsl } from "../api/scripts-api";
+import type { AslSetup } from "../model/validation";
 import { AslSetupForm } from "./asl-setup-form";
+import { BackCircle } from "./back-circle";
 
 const BULLETS = [
   "Your Active Script List is a secure, national registry of all your current prescriptions and repeats",
@@ -19,29 +22,34 @@ const BULLETS = [
 
 type Step = "intro" | "setup" | "success";
 
-/**
- * Connect-ASL wizard (Figma `161:2680` → `161:2741` → `161:2813`). There is no
- * ASL backend yet (docs/api-gaps.md), so this is a UI-only mock: the setup form
- * validates locally, then a faked success "Go to My Scripts" flips the mock
- * `op_asl_connected` flag so My Scripts renders the synced (grouped) view.
- */
 export function ConnectAslFlow() {
   const router = useRouter();
   const [step, setStep] = useState<Step>("intro");
+  const [found, setFound] = useState(0);
+
+  async function connect(values: AslSetup): Promise<string | null> {
+    try {
+      const { activeScripts } = await connectAsl(values);
+      setFound(activeScripts);
+      setStep("success");
+      return null;
+    } catch (error) {
+      return error instanceof Error ? error.message : "Could not connect";
+    }
+  }
 
   function finish() {
-    setAslConnected();
     router.push("/scripts");
     router.refresh();
   }
 
   if (step === "success") {
     return (
-      <Shell key={step}>
+      <Shell key={step} className="gap-8 lg:pt-[84px]">
         <div className="flex flex-col items-center gap-6 text-center">
           <SuccessBadge />
           <div className="flex flex-col">
-            <h1 className="text-h4-24 text-secondary-700 lg:text-display-32">
+            <h1 className="text-display-32 text-secondary-700">
               ASL Successfully Linked!
             </h1>
             <p className="text-body-16 text-secondary-500">
@@ -51,21 +59,23 @@ export function ConnectAslFlow() {
         </div>
 
         <div className="flex flex-col gap-[23px]">
-          <div className="flex flex-col gap-6">
+          <div className="flex min-h-[339px] flex-col gap-6 lg:min-h-0">
             <div className="flex flex-col gap-3">
               <StatRow
-                icon={<FileText className="size-6 text-white" />}
-                iconClass="bg-primary-500"
+                icon={<Icon src="/icons/scripts/detail/paper.svg" size={44} />}
                 label="Active Scripts Found"
-                value="4"
-                valueClass="text-h4-24 text-primary-500"
+                value={String(found)}
+                valueClass="text-primary-500"
               />
               <StatRow
-                icon={<ShieldCheck className="size-6 text-[#21B23F]" />}
-                iconClass="bg-success-500/15"
+                icon={
+                  <span className="flex size-11 items-center justify-center rounded-control bg-success-500/20">
+                    <Icon src="/icons/scripts/asl/shield-green.svg" size={24} />
+                  </span>
+                }
                 label="Connection Status"
                 value="Secure & Active"
-                valueClass="text-subtitle-18-bold text-[#21B23F]"
+                valueClass="text-success-500"
               />
             </div>
             <p className="text-body-14 text-secondary-500">
@@ -84,34 +94,55 @@ export function ConnectAslFlow() {
 
   if (step === "setup") {
     return (
-      <Shell key={step}>
+      <Shell key={step} className="gap-8">
         <Header
-          back={<BackButton onClick={() => setStep("intro")} />}
+          back={
+            <>
+              <BackLink
+                onClick={() => setStep("intro")}
+                className="hidden lg:inline-flex"
+              />
+              <button
+                type="button"
+                onClick={() => setStep("intro")}
+                aria-label="Back"
+                className="my-1 flex size-8 shrink-0 items-center justify-center rounded-full bg-neutral-900/8 transition-colors hover:bg-neutral-900/12 lg:hidden"
+              >
+                <Icon src="/icons/scripts/asl/back.svg" size={24} />
+              </button>
+            </>
+          }
           title="Let's set Up Your ASL"
           subtitle="Enter your DOB and activation code."
         />
-        <AslSetupForm onContinue={() => setStep("success")} />
+        <AslSetupForm onContinue={connect} />
       </Shell>
     );
   }
 
-  // intro
   return (
-    <Shell key={step}>
+    <Shell key={step} className="gap-9 lg:gap-8">
       <Header
-        back={<BackLink href="/scripts" />}
+        back={
+          <>
+            <BackLink href="/scripts" className="hidden lg:inline-flex" />
+            <BackCircle
+              href="/scripts"
+              label="Back"
+              className="my-1 lg:hidden"
+            />
+          </>
+        }
         title="Connect ASL"
         subtitle="Connect your Active Script List to manage all your prescriptions in one place"
       />
-      <div className="flex flex-col gap-4 rounded-card-lg border border-[#E5E7EB] bg-white px-6 pt-6 pb-12">
-        <h2 className="text-subtitle-18-bold text-secondary-900">
-          What is ASL?
-        </h2>
-        <ul className="flex flex-col gap-3">
+      <div className="flex flex-col gap-4 rounded-card-lg border border-[#E5E7EB] bg-white px-[23px] pt-[23px] pb-[47px]">
+        <h2 className="text-subtitle-18-bold text-black">What is ASL?</h2>
+        <ul className="flex min-h-[413px] flex-col gap-3 lg:min-h-[150px]">
           {BULLETS.map((bullet) => (
             <li key={bullet} className="flex items-start gap-2">
-              <CircleCheck className="mt-0.5 size-5 shrink-0 text-success-500" />
-              <span className="text-body-14 text-text">{bullet}</span>
+              <CircleCheck className="size-5 shrink-0 text-success-500" />
+              <span className="text-body-14 text-secondary-700">{bullet}</span>
             </li>
           ))}
         </ul>
@@ -128,11 +159,21 @@ export function ConnectAslFlow() {
   );
 }
 
-/** 570px centred column shared by every step. */
-function Shell({ children }: { children: ReactNode }) {
+function Shell({
+  className,
+  children,
+}: {
+  className?: string;
+  children: ReactNode;
+}) {
   return (
-    <div className="mx-auto w-full max-w-[570px] animate-page-fade px-4 py-8">
-      <div className="flex flex-col gap-8">{children}</div>
+    <div
+      className={cn(
+        "mx-auto flex min-h-[774px] w-full max-w-[602px] animate-page-fade flex-col px-4 pt-[17px] lg:min-h-0 lg:pt-6 lg:pr-[15px] lg:pl-[17px]",
+        className,
+      )}
+    >
+      {children}
     </div>
   );
 }
@@ -147,83 +188,86 @@ function Header({
   subtitle: string;
 }) {
   return (
-    <div className="flex flex-col gap-6">
+    <div className="flex items-start gap-4 lg:flex-col lg:gap-0">
       {back}
-      <div className="flex flex-col">
+      <div className="flex min-w-0 flex-1 flex-col">
         <h1 className="text-h4-24 text-secondary-900 lg:text-display-32">
           {title}
         </h1>
-        <p className="text-body-16 text-secondary-300">{subtitle}</p>
+        <p className="text-body-14 text-secondary-300 lg:text-body-16">
+          {subtitle}
+        </p>
       </div>
     </div>
   );
 }
 
-function BackLink({ href }: { href: string }) {
-  return (
-    <Link
-      href={href}
-      className="inline-flex w-fit items-center gap-2 text-body-16 text-text-muted transition-colors hover:text-info-500"
-    >
+const BACK_LINK =
+  "w-fit items-center gap-2 text-body-16 text-text-muted transition-colors hover:text-info-500";
+
+function BackLink({
+  href,
+  onClick,
+  className,
+}: {
+  href?: string;
+  onClick?: () => void;
+  className?: string;
+}) {
+  const content = (
+    <>
       <ArrowLeft className="size-5" />
       Back
-    </Link>
+    </>
   );
-}
-
-function BackButton({ onClick }: { onClick: () => void }) {
+  if (href) {
+    return (
+      <Link href={href} className={cn(BACK_LINK, className)}>
+        {content}
+      </Link>
+    );
+  }
   return (
     <button
       type="button"
       onClick={onClick}
-      className="inline-flex w-fit items-center gap-2 text-body-16 text-text-muted transition-colors hover:text-info-500"
+      className={cn(BACK_LINK, className)}
     >
-      <ArrowLeft className="size-5" />
-      Back
+      {content}
     </button>
   );
 }
 
 function StatRow({
   icon,
-  iconClass,
   label,
   value,
   valueClass,
 }: {
   icon: ReactNode;
-  iconClass: string;
   label: string;
   value: string;
   valueClass: string;
 }) {
   return (
-    <div className="flex items-center gap-2 rounded-card border border-neutral-300 bg-white p-6">
-      <span
-        className={cn(
-          "flex size-11 shrink-0 items-center justify-center rounded-control",
-          iconClass,
-        )}
-      >
-        {icon}
-      </span>
+    <div className="flex items-center gap-2 rounded-card border border-neutral-300 bg-white p-[23px]">
+      {icon}
       <div className="flex flex-col">
-        <span className="text-body-16 text-[#1C232A]">{label}</span>
-        <span className={valueClass}>{value}</span>
+        <span className="text-body-16 text-neutral-900">{label}</span>
+        <span className={cn("text-h4-24", valueClass)}>{value}</span>
       </div>
     </div>
   );
 }
 
-/** Green success circle with a check and an overlapping blue security shield. */
 function SuccessBadge() {
   return (
     <div className="relative size-28">
-      <div className="flex size-28 items-center justify-center rounded-full bg-success-500/15">
-        <CircleCheck className="size-16 text-success-500" strokeWidth={1.8} />
+      <div className="flex size-28 items-center justify-center rounded-full bg-success-500/20">
+        <CircleCheck className="size-16 text-success-500" />
       </div>
-      <span className="absolute right-0 bottom-1 flex size-9 items-center justify-center rounded-full bg-primary-500 ring-4 ring-bg-app">
-        <ShieldCheck className="size-5 text-white" />
+      <span className="absolute right-0 bottom-0 flex size-9 items-center justify-center rounded-full bg-primary-500">
+        <Icon src="/icons/scripts/asl/shield-white.svg" size={24} />
       </span>
     </div>
   );

@@ -2,6 +2,7 @@
 
 import { CircleUserRound } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 import { useEffect } from "react";
 
 export type GoogleAccount = {
@@ -12,7 +13,6 @@ export type GoogleAccount = {
   color: string;
 };
 
-// Mock accounts for the Google chooser (no real OAuth yet — see api-gaps.md).
 const ACCOUNTS: GoogleAccount[] = [
   {
     name: "Cody Banks",
@@ -30,10 +30,6 @@ const ACCOUNTS: GoogleAccount[] = [
   },
 ];
 
-/**
- * Mock of Google's "Choose an account" OAuth dialog (Figma 171:6564). Selecting
- * an account (or "Use another account", which passes null) continues sign-up.
- */
 export function GoogleAccountModal({
   open,
   onClose,
@@ -128,13 +124,13 @@ export function GoogleAccountModal({
           To continue, Google will share your name, email address, language
           preference, and profile picture with OpenPharmacy. Before using this
           app, you can review OpenPharmacy&apos;s{" "}
-          <a href="#" className="text-info-500">
+          <Link href="/privacy" className="text-info-500">
             privacy policy
-          </a>{" "}
+          </Link>{" "}
           and{" "}
-          <a href="#" className="text-info-500">
+          <Link href="/terms" className="text-info-500">
             terms of service
-          </a>
+          </Link>
           .
         </p>
       </div>

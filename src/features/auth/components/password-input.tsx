@@ -1,13 +1,12 @@
 "use client";
 
-import { Eye, EyeOff } from "lucide-react";
 import type { InputHTMLAttributes } from "react";
 import { useState } from "react";
 import type { UseFormRegisterReturn } from "react-hook-form";
 
+import { Icon } from "@/components/ui/icon";
 import { cn } from "@/lib/utils";
 
-/** White password field with a show/hide eye toggle (Figma auth password input). */
 export function PasswordInput({
   id,
   registration,
@@ -15,7 +14,6 @@ export function PasswordInput({
   ...props
 }: {
   id: string;
-  /** react-hook-form registration; omit to use the input as a controlled field. */
   registration?: UseFormRegisterReturn;
   invalid?: boolean;
 } & InputHTMLAttributes<HTMLInputElement>) {
@@ -23,11 +21,11 @@ export function PasswordInput({
   return (
     <div
       className={cn(
-        "flex items-center gap-2 rounded-control border bg-white px-3 py-4 transition-colors",
+        "flex items-center gap-2 border bg-white px-[11px] py-[15px] transition-colors",
         "focus-within:ring-2 focus-within:ring-info-500/30",
         invalid
-          ? "border-error-500 focus-within:border-error-500"
-          : "border-neutral-300 focus-within:border-info-500",
+          ? "rounded-[4px] border-error-500 focus-within:border-error-500"
+          : "rounded-control border-neutral-300 focus-within:border-info-500",
       )}
     >
       <input
@@ -42,9 +40,12 @@ export function PasswordInput({
         tabIndex={-1}
         onClick={() => setShow((s) => !s)}
         aria-label={show ? "Hide password" : "Show password"}
-        className="shrink-0 text-neutral-700 transition-colors hover:text-secondary-500"
+        className="shrink-0 transition-opacity hover:opacity-70"
       >
-        {show ? <EyeOff className="size-5" /> : <Eye className="size-5" />}
+        <Icon
+          src={show ? "/icons/eye-slash.svg" : "/icons/eye.svg"}
+          size={20}
+        />
       </button>
     </div>
   );

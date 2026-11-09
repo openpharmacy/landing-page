@@ -6,7 +6,6 @@ import prettier from "eslint-config-prettier";
 const eslintConfig = defineConfig([
   ...nextVitals,
   ...nextTs,
-  // Disable ESLint rules that conflict with Prettier (formatting is Prettier's job).
   prettier,
   globalIgnores([
     ".next/**",

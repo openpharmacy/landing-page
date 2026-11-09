@@ -1,32 +1,34 @@
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Check, X } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import type { ReactNode } from "react";
+import { useState, type ReactNode } from "react";
 import { Controller, useForm, useWatch } from "react-hook-form";
 
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { setPendingSignup } from "@/lib/auth/mock-session";
+import { ApiError } from "@/lib/api/errors";
 
-import {
-  passwordRules,
-  signUpEmailSchema,
-  type SignUpEmailInput,
-} from "../model/schema";
+import { useAuthActions } from "../hooks/use-auth-actions";
+import { signUpEmailSchema, type SignUpEmailInput } from "../model/schema";
+import { FormError } from "./form-error";
 import { PasswordInput } from "./password-input";
+import { PasswordRules } from "./password-rules";
+import { TermsLabel } from "./terms-label";
 
 export function SignUpEmailForm() {
   const router = useRouter();
+  const { signUp } = useAuthActions();
+  const [submitError, setSubmitError] = useState<string | null>(null);
   const {
     register,
     control,
     handleSubmit,
-    formState: { errors, isValid },
+    setError,
+    formState: { errors, isValid, isSubmitting },
   } = useForm<SignUpEmailInput>({
     resolver: zodResolver(signUpEmailSchema),
     mode: "onChange",
@@ -42,14 +44,27 @@ export function SignUpEmailForm() {
 
   const password = useWatch({ control, name: "password" }) ?? "";
 
-  function onSubmit(values: SignUpEmailInput) {
-    // No sign-up API yet — stash the details and advance to verification.
-    setPendingSignup({
-      firstName: values.firstName,
-      lastName: values.lastName,
-      email: values.email,
-    });
-    router.push(`/sign-up/verify?email=${encodeURIComponent(values.email)}`);
+  async function onSubmit(values: SignUpEmailInput) {
+    setSubmitError(null);
+    try {
+      await signUp({
+        email: values.email,
+        password: values.password,
+        passwordConfirmation: values.confirmPassword,
+        name: values.firstName,
+        surname: values.lastName,
+      });
+      router.push("/sign-up/verify");
+      router.refresh();
+    } catch (error) {
+      if (error instanceof ApiError && error.status === 409) {
+        setError("email", { message: error.message });
+      } else {
+        setSubmitError(
+          error instanceof Error ? error.message : "Could not create account",
+        );
+      }
+    }
   }
 
   return (
@@ -60,15 +75,17 @@ export function SignUpEmailForm() {
     >
       <div className="flex flex-col gap-2">
         <Label htmlFor="email">Email</Label>
-        <Input
-          id="email"
-          type="email"
-          autoComplete="email"
-          placeholder="Enter email"
-          aria-invalid={Boolean(errors.email)}
-          {...register("email")}
-        />
-        {errors.email && <FieldError>{errors.email.message}</FieldError>}
+        <div className="flex flex-col gap-1">
+          <Input
+            id="email"
+            type="email"
+            autoComplete="email"
+            placeholder="Enter email"
+            aria-invalid={Boolean(errors.email)}
+            {...register("email")}
+          />
+          {errors.email && <FieldError>{errors.email.message}</FieldError>}
+        </div>
       </div>
 
       <div className="flex flex-col gap-2">
@@ -80,46 +97,23 @@ export function SignUpEmailForm() {
           registration={register("password")}
           invalid={Boolean(errors.password)}
         />
-        {password.length > 0 && (
-          <div className="flex flex-wrap gap-2">
-            {passwordRules.map((rule) => {
-              const ok = rule.test(password);
-              return (
-                <span
-                  key={rule.id}
-                  className="flex items-center gap-1 text-body-14 text-secondary-500"
-                >
-                  {ok ? (
-                    <Check
-                      className="size-[18px] shrink-0 text-success-500"
-                      strokeWidth={2.5}
-                    />
-                  ) : (
-                    <X
-                      className="size-[18px] shrink-0 text-error-500"
-                      strokeWidth={2.5}
-                    />
-                  )}
-                  {rule.label}
-                </span>
-              );
-            })}
-          </div>
-        )}
+        {password.length > 0 && <PasswordRules value={password} />}
       </div>
 
       <div className="flex flex-col gap-2">
         <Label htmlFor="confirmPassword">Confirm Password</Label>
-        <PasswordInput
-          id="confirmPassword"
-          autoComplete="new-password"
-          placeholder="Enter password"
-          registration={register("confirmPassword")}
-          invalid={Boolean(errors.confirmPassword)}
-        />
-        {errors.confirmPassword && (
-          <FieldError>{errors.confirmPassword.message}</FieldError>
-        )}
+        <div className="flex flex-col gap-1">
+          <PasswordInput
+            id="confirmPassword"
+            autoComplete="new-password"
+            placeholder="Enter password"
+            registration={register("confirmPassword")}
+            invalid={Boolean(errors.confirmPassword)}
+          />
+          {errors.confirmPassword && (
+            <FieldError>{errors.confirmPassword.message}</FieldError>
+          )}
+        </div>
       </div>
 
       <div className="flex gap-[23px]">
@@ -157,19 +151,17 @@ export function SignUpEmailForm() {
             />
           )}
         />
-        <Label htmlFor="terms" className="text-legal-14 text-secondary-900">
-          I agree with{" "}
-          <Link href="#" className="font-bold text-info-500">
-            Terms of Use
-          </Link>{" "}
-          and{" "}
-          <Link href="#" className="font-bold text-info-500">
-            Privacy Policy
-          </Link>
-        </Label>
+        <TermsLabel htmlFor="terms" />
       </div>
 
-      <Button type="submit" size="lg" disabled={!isValid} className="w-full">
+      {submitError && <FormError message={submitError} />}
+
+      <Button
+        type="submit"
+        size="lg"
+        disabled={!isValid || isSubmitting}
+        className="w-full"
+      >
         Next
       </Button>
 
@@ -187,5 +179,5 @@ export function SignUpEmailForm() {
 }
 
 function FieldError({ children }: { children: ReactNode }) {
-  return <p className="text-body-14 text-error-500">{children}</p>;
+  return <p className="text-caption-12 text-error-500">{children}</p>;
 }

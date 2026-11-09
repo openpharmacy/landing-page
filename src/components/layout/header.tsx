@@ -1,148 +1,134 @@
 "use client";
 
-import { ChevronRight, CircleUserRound, Menu, X } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import type { ComponentType, ReactNode } from "react";
-import { useEffect, useState, useSyncExternalStore } from "react";
+import type { ReactNode } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 import { Button } from "@/components/ui/button";
 import { Icon } from "@/components/ui/icon";
-import { useCartStore } from "@/features/shop/stores/cart-store";
 import { initials, type SessionUser } from "@/lib/auth/mock-session";
 import { cn } from "@/lib/utils";
+import { useShowHidden } from "@/providers/hidden-screens";
 
 import { Container } from "./container";
-import {
-  CapsuleIcon,
-  CartGlyph,
-  CartGlyphFilled,
-  HomeActiveIcon,
-  HomeIcon,
-  ScriptsActiveIcon,
-  ScriptsIcon,
-  ShopActiveIcon,
-  ShopIcon,
-} from "./nav-icons";
+import { Avatar, type Glyph, GLYPHS, isNavActive, NavGlyph } from "./nav";
+import { NotificationsButton } from "./notifications";
 
-type NavItem = {
-  label: string;
-  href: string;
-  icon: ComponentType<{ className?: string }>;
-  // Some glyphs differ between states (Iconsax linear vs bold), not just colour
-  // — e.g. the Shop magnifier is outline when inactive, filled when active.
-  activeIcon?: ComponentType<{ className?: string }>;
+type NavItem = { label: string; href: string; icon: Glyph; activeIcon: Glyph };
+
+const HOME: NavItem = {
+  label: "Home",
+  href: "/home",
+  icon: GLYPHS.home,
+  activeIcon: GLYPHS.homeActive,
+};
+const SCRIPTS: NavItem = {
+  label: "Scripts",
+  href: "/scripts",
+  icon: GLYPHS.capsule,
+  activeIcon: GLYPHS.capsuleActive,
+};
+const SCHEDULER: NavItem = {
+  label: "Scheduler",
+  href: "/scheduler",
+  icon: GLYPHS.calendar,
+  activeIcon: GLYPHS.calendarActive,
 };
 
-const NAV: NavItem[] = [
-  { label: "Home", href: "/home", icon: HomeIcon, activeIcon: HomeActiveIcon },
-  {
-    label: "Scripts",
-    href: "/scripts",
-    icon: ScriptsIcon,
-    activeIcon: ScriptsActiveIcon,
-  },
-  { label: "Shop", href: "/shop", icon: ShopIcon, activeIcon: ShopActiveIcon },
-];
+const GUEST_NAV = [{ ...HOME, href: "/" }, SCRIPTS];
+const USER_NAV = [HOME, SCRIPTS];
 
-// Mobile drawer rows (Figma `341:6461`): outline glyphs; the Scripts row uses a
-// capsule (not the nav's Rx mark) and a Profile row is appended after these.
-const DRAWER_NAV = [
-  { label: "Home", href: "/home", icon: HomeIcon },
-  { label: "Scripts", href: "/scripts", icon: CapsuleIcon },
-  { label: "Shop", href: "/shop", icon: ShopIcon },
-];
-
-/** Site header. Active nav follows the route; the right side adapts to the session. */
 export function Header({ user }: { user?: SessionUser | null }) {
-  const [open, setOpen] = useState(false);
+  const [menu, setMenu] = useState<"closed" | "open" | "closing">("closed");
   const pathname = usePathname();
+  const showHidden = useShowHidden();
 
-  // Close the mobile drawer on Escape.
+  const closeMenu = useCallback(() => {
+    const still = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    setMenu((state) =>
+      state === "closed" ? state : still ? "closed" : "closing",
+    );
+  }, []);
+
   useEffect(() => {
-    if (!open) return;
+    if (menu !== "open") return;
     function onKey(event: KeyboardEvent) {
-      if (event.key === "Escape") setOpen(false);
+      if (event.key === "Escape") closeMenu();
     }
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
-  }, [open]);
+  }, [menu, closeMenu]);
 
-  const isActive = (href: string) =>
-    href === "/" ? pathname === "/" : pathname.startsWith(href);
-  // The cart icon lights up while on the cart / checkout flow.
-  const cartActive =
-    pathname.startsWith("/cart") || pathname.startsWith("/checkout");
+  const nav = user
+    ? showHidden
+      ? [...USER_NAV, SCHEDULER]
+      : USER_NAV
+    : GUEST_NAV;
 
   return (
-    <header className="sticky top-0 z-40 border-b border-neutral-300 bg-white">
-      <Container className="flex h-20 items-center justify-between">
+    <header
+      className={cn(
+        "sticky top-0 z-40 border-b border-neutral-300 bg-white lg:h-20",
+        !user && "lg:border",
+      )}
+    >
+      <Container className="flex items-center justify-between py-2.5 lg:h-full lg:py-0">
         <Link href="/" className="flex items-center gap-1">
-          <Icon src="/icons/logo.svg" size={36} alt="OpenPharmacy" />
+          <Icon src="/icons/logo.svg" size={36} />
           <span className="text-wordmark text-secondary-500">OpenPharmacy</span>
         </Link>
 
-        <nav className="hidden items-center gap-[60px] lg:flex">
-          {NAV.map((item) => (
+        <nav
+          aria-label="Main"
+          className="hidden items-center gap-[60px] lg:flex"
+        >
+          {nav.map((item) => (
             <NavLink
               key={item.label}
               item={item}
-              active={isActive(item.href)}
+              active={isNavActive(pathname, item.href)}
             />
           ))}
         </nav>
 
-        <div className="hidden lg:block">
-          {user ? (
-            <div className="flex items-center gap-6">
-              <NotificationsButton />
-              <CartLink active={cartActive} />
-              <Link
-                href="/account"
-                aria-label="Account"
-                className="flex size-7 items-center justify-center rounded-full bg-info-500 text-caption-12-bold text-white"
-              >
-                {initials(user)}
-              </Link>
-            </div>
-          ) : (
-            // Guests can shop + check out, so they keep the cart too.
-            <div className="flex items-center gap-6">
-              <CartLink active={cartActive} />
-              <Button asChild>
-                <Link href="/sign-up">Get Started</Link>
-              </Button>
-            </div>
-          )}
-        </div>
-
-        {/* Mobile right side: signed-in users get notifications (the bottom tab
-            bar handles navigation); guests get the menu button. Both keep cart. */}
-        <div className="flex items-center gap-6 lg:hidden">
-          {user ? (
-            <>
-              <NotificationsButton />
-              <CartLink active={cartActive} />
-            </>
-          ) : (
-            <>
-              <CartLink active={cartActive} />
-              <button
-                type="button"
-                onClick={() => setOpen(true)}
-                aria-label="Open menu"
-                aria-expanded={open}
-                className="flex size-10 items-center justify-center rounded-control text-secondary-900"
-              >
-                <Menu className="size-6" />
-              </button>
-            </>
-          )}
-        </div>
+        {user ? (
+          <div className="flex items-center gap-6 lg:relative">
+            <NotificationsButton />
+            <Link
+              href="/account"
+              aria-label="Account"
+              className="hidden lg:flex"
+            >
+              <Avatar initials={initials(user)} />
+            </Link>
+          </div>
+        ) : (
+          <>
+            <Button asChild className="hidden w-[130px] lg:inline-flex">
+              <Link href="/sign-up">Get Started</Link>
+            </Button>
+            <button
+              type="button"
+              onClick={() => setMenu("open")}
+              aria-label="Open menu"
+              aria-expanded={menu === "open"}
+              className="flex p-2 lg:hidden"
+            >
+              <Image
+                src="/icons/nav/menu.svg"
+                alt=""
+                width={14}
+                height={27}
+                unoptimized
+              />
+            </button>
+          </>
+        )}
       </Container>
 
-      {/* Mobile drawer (Figma `341:6461`): slide-in panel of nav rows (guests). */}
-      {open && (
+      {menu !== "closed" && !user && (
         <div
           className="fixed inset-0 z-50 lg:hidden"
           role="dialog"
@@ -152,43 +138,51 @@ export function Header({ user }: { user?: SessionUser | null }) {
           <button
             type="button"
             aria-label="Close menu"
-            onClick={() => setOpen(false)}
-            className="absolute inset-0 animate-page-fade cursor-default bg-black/40"
+            onClick={closeMenu}
+            className={cn(
+              "absolute inset-0 cursor-default bg-[#131921]/95",
+              menu === "closing" ? "animate-fade-out" : "animate-page-fade",
+            )}
           />
-          <div className="absolute inset-y-0 right-0 flex w-[85vw] max-w-[316px] animate-drawer-in flex-col bg-white shadow-card">
-            <div className="flex justify-end px-5 py-4">
+          <div
+            onAnimationEnd={(event) => {
+              if (event.target === event.currentTarget && menu === "closing") {
+                setMenu("closed");
+              }
+            }}
+            className={cn(
+              "absolute inset-y-0 right-0 left-[43px] flex flex-col bg-white",
+              menu === "closing" ? "animate-drawer-out" : "animate-drawer-in",
+            )}
+          >
+            <div className="flex justify-end px-6 py-4">
               <button
                 type="button"
                 aria-label="Close menu"
-                onClick={() => setOpen(false)}
-                className="text-secondary-900 transition-colors hover:text-secondary-500"
+                onClick={closeMenu}
+                className="flex"
               >
-                <X className="size-6" />
+                <NavGlyph glyph={GLYPHS.close} />
               </button>
             </div>
-            <nav className="flex flex-col px-6">
-              {DRAWER_NAV.map((item) => (
-                <DrawerRow
-                  key={item.label}
-                  href={item.href}
-                  label={item.label}
-                  onClick={() => setOpen(false)}
-                  leading={<item.icon className="size-6 shrink-0" />}
-                />
-              ))}
+            <nav aria-label="Menu" className="flex flex-col gap-2 px-6 pt-2">
               <DrawerRow
-                href={user ? "/account" : "/sign-in"}
+                href="/"
+                label="Home"
+                leading={<NavGlyph glyph={GLYPHS.homeMobile} />}
+                onClick={closeMenu}
+              />
+              <DrawerRow
+                href="/scripts"
+                label="Scripts"
+                leading={<NavGlyph glyph={GLYPHS.capsuleMobile} />}
+                onClick={closeMenu}
+              />
+              <DrawerRow
+                href="/sign-in"
                 label="Profile"
-                onClick={() => setOpen(false)}
-                leading={
-                  user ? (
-                    <span className="flex size-6 shrink-0 items-center justify-center rounded-full bg-info-500 text-caption-12-bold text-white">
-                      {initials(user)}
-                    </span>
-                  ) : (
-                    <CircleUserRound className="size-6 shrink-0" />
-                  )
-                }
+                leading={<NavGlyph glyph={GLYPHS.profile} />}
+                onClick={closeMenu}
               />
             </nav>
           </div>
@@ -198,53 +192,24 @@ export function Header({ user }: { user?: SessionUser | null }) {
   );
 }
 
-function NotificationsButton() {
-  return (
-    <button type="button" aria-label="Notifications">
-      <Icon src="/icons/home/nav-bell.svg" size={24} />
-    </button>
-  );
-}
-
-// The cart is persisted client-side; gate the count badge on hydration so the
-// server-rendered (no badge) markup and the first client render agree.
-const emptySubscribe = () => () => {};
-function useHydrated() {
-  return useSyncExternalStore(
-    emptySubscribe,
-    () => true,
-    () => false,
-  );
-}
-
-function CartLink({ active }: { active: boolean }) {
-  const hydrated = useHydrated();
-  const count = useCartStore((state) => state.items.length);
+function NavLink({ item, active }: { item: NavItem; active: boolean }) {
   return (
     <Link
-      href="/cart"
-      aria-label={`Cart${hydrated && count > 0 ? ` (${count})` : ""}`}
+      href={item.href}
       aria-current={active ? "page" : undefined}
       className={cn(
-        "relative transition-colors",
-        active ? "text-info-500" : "text-secondary-900",
+        "flex items-center gap-0.5",
+        active
+          ? "text-caption-12-bold text-info-500"
+          : "text-caption-12 text-secondary-900",
       )}
     >
-      {active ? (
-        <CartGlyphFilled className="size-6" />
-      ) : (
-        <CartGlyph className="size-6" />
-      )}
-      {hydrated && count > 0 && (
-        <span className="absolute -top-2 -right-2 flex h-4 min-w-[16px] items-center justify-center rounded-full bg-[#FF7700] px-1 text-[11px] font-bold text-white">
-          {count}
-        </span>
-      )}
+      <NavGlyph glyph={active ? item.activeIcon : item.icon} />
+      {item.label}
     </Link>
   );
 }
 
-/** A single row in the mobile drawer: leading glyph, label, trailing chevron. */
 function DrawerRow({
   href,
   label,
@@ -260,39 +225,13 @@ function DrawerRow({
     <Link
       href={href}
       onClick={onClick}
-      className="flex items-center gap-3 border-b border-[#E5E7EB] py-4 text-[#101828] transition-colors hover:bg-bg-app"
+      className="flex items-center justify-between border-b border-neutral-300 py-6"
     >
-      {leading}
-      <span className="flex-1 text-body-16">{label}</span>
-      <ChevronRight className="size-5 shrink-0 text-[#101828]" />
-    </Link>
-  );
-}
-
-function NavLink({
-  item,
-  active,
-  onClick,
-}: {
-  item: NavItem;
-  active: boolean;
-  onClick?: () => void;
-}) {
-  const Glyph = active && item.activeIcon ? item.activeIcon : item.icon;
-  return (
-    <Link
-      href={item.href}
-      onClick={onClick}
-      aria-current={active ? "page" : undefined}
-      className={cn(
-        "flex items-center gap-0.5 transition-colors",
-        active ? "text-info-500" : "text-secondary-900",
-      )}
-    >
-      <Glyph className="shrink-0" />
-      <span className={active ? "text-caption-12-bold" : "text-caption-12"}>
-        {item.label}
+      <span className="flex items-center gap-1 text-body-16 text-[#101828]">
+        {leading}
+        {label}
       </span>
+      <NavGlyph glyph={GLYPHS.chevronRight} />
     </Link>
   );
 }

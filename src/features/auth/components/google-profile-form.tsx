@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState, type FormEvent } from "react";
 
@@ -8,35 +7,62 @@ import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { setPendingSignup } from "@/lib/auth/mock-session";
+import { ApiError } from "@/lib/api/errors";
+import { useShowHidden } from "@/providers/hidden-screens";
 
-/**
- * Post-Google profile completion (Figma 171:6652). Name is pre-filled from the
- * chosen Google account; there is no backend yet, so Continue advances to the
- * Set-a-PIN step (the Google email is treated as already verified).
- */
+import { needsSignIn } from "../api/auth-api";
+import { useAuthActions } from "../hooks/use-auth-actions";
+import { withNext } from "../model/next-path";
+import { FormError } from "./form-error";
+import { TermsLabel } from "./terms-label";
+
+const COULD_NOT_SAVE = "Could not save your name. Please try again.";
+
 export function GoogleProfileForm({
   firstName: initialFirst,
   lastName: initialLast,
+  next = null,
 }: {
   firstName: string;
   lastName: string;
+  next?: string | null;
 }) {
   const router = useRouter();
+  const showHidden = useShowHidden();
+  const { completeProfile } = useAuthActions();
   const [firstName, setFirstName] = useState(initialFirst);
   const [lastName, setLastName] = useState(initialLast);
-  const [accepted, setAccepted] = useState(true);
+  const [accepted, setAccepted] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
+  const [saving, setSaving] = useState(false);
 
   const initials =
     `${firstName.at(0) ?? ""}${lastName.at(0) ?? ""}`.toUpperCase();
   const canContinue =
     firstName.trim().length > 0 && lastName.trim().length > 0 && accepted;
 
-  function onSubmit(event: FormEvent) {
+  async function onSubmit(event: FormEvent) {
     event.preventDefault();
-    if (!canContinue) return;
-    setPendingSignup({ firstName, lastName });
-    router.push("/sign-up/pin");
+    if (!canContinue || saving) return;
+    setSubmitError(null);
+    setSaving(true);
+    try {
+      await completeProfile({
+        name: firstName.trim(),
+        surname: lastName.trim(),
+      });
+      router.push(next ?? (showHidden ? "/sign-up/pin" : "/sign-up/done"));
+      router.refresh();
+    } catch (error) {
+      setSaving(false);
+      if (needsSignIn(error)) {
+        router.push(withNext("/sign-in", next));
+        return;
+      }
+      setSubmitError(
+        error instanceof ApiError ? error.message : COULD_NOT_SAVE,
+      );
+    }
   }
 
   return (
@@ -74,23 +100,16 @@ export function GoogleProfileForm({
           checked={accepted}
           onCheckedChange={(checked) => setAccepted(checked === true)}
         />
-        <Label htmlFor="terms" className="text-legal-14 text-secondary-900">
-          I agree with{" "}
-          <Link href="#" className="font-bold text-info-500">
-            Terms of Use
-          </Link>{" "}
-          and{" "}
-          <Link href="#" className="font-bold text-info-500">
-            Privacy Policy
-          </Link>
-        </Label>
+        <TermsLabel htmlFor="terms" />
       </div>
+
+      {submitError && <FormError message={submitError} />}
 
       <Button
         type="submit"
         size="lg"
-        disabled={!canContinue}
-        className="w-full"
+        disabled={!canContinue || saving}
+        className="w-full max-lg:mt-[9px]"
       >
         Continue
       </Button>

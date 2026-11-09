@@ -1,19 +1,30 @@
 import type { Metadata } from "next";
-import { Inter, Lato } from "next/font/google";
+import { Inter } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
 
+import { getSession } from "@/lib/auth/session";
+import { showHiddenScreens } from "@/lib/features";
+import { userKey } from "@/lib/user-storage";
 import { Providers } from "@/providers";
 
-// Body / UI typeface. Lato on Google Fonts ships 100/300/400/700/900 — there is
-// no true 500, so the Figma "Medium" labels render at 400 (documented in design.md).
-const lato = Lato({
-  subsets: ["latin"],
-  weight: ["400", "700"],
+const lato = localFont({
+  src: [
+    { path: "./fonts/Lato-LightItalic.woff2", weight: "300", style: "italic" },
+    { path: "./fonts/Lato-Regular.woff2", weight: "400" },
+    { path: "./fonts/Lato-Medium.woff2", weight: "500" },
+    { path: "./fonts/Lato-Semibold.woff2", weight: "600" },
+    { path: "./fonts/Lato-Bold.woff2", weight: "700" },
+    { path: "./fonts/Lato-Heavy.woff2", weight: "800" },
+  ],
   variable: "--font-lato",
   display: "swap",
+  declarations: [
+    { prop: "ascent-override", value: "100%" },
+    { prop: "descent-override", value: "20%" },
+  ],
 });
 
-// Brand wordmark + legal text typeface.
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter",
@@ -23,18 +34,27 @@ const inter = Inter({
 export const metadata: Metadata = {
   title: "Open Pharmacy",
   description:
-    "Compare pharmacy products, prices and stock, and manage your scripts.",
+    "Sync your eScripts, track your medications, and stay on top of your treatment - all in one simple app.",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const [showHidden, session] = await Promise.all([
+    showHiddenScreens(),
+    getSession(),
+  ]);
   return (
     <html lang="en" className={`${lato.variable} ${inter.variable}`}>
       <body className="min-h-dvh">
-        <Providers>{children}</Providers>
+        <Providers
+          showHidden={showHidden}
+          userKey={session ? userKey(session.uid) : null}
+        >
+          {children}
+        </Providers>
       </body>
     </html>
   );

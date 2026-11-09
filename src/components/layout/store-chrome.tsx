@@ -7,35 +7,70 @@ import { cn } from "@/lib/utils";
 
 import { BottomNav } from "./bottom-nav";
 import { Footer } from "./footer";
+import { TAB_BAR_HEIGHT } from "./nav";
 
-// Focused flows (cart / checkout) drop the footer + tab bar — they pin their own
-// action panel (Order Summary, Order & Pay) to the bottom instead.
-const FOCUSED = ["/cart", "/checkout"];
+const FOOTER_ROUTES = [
+  "/account",
+  "/help",
+  "/compliance",
+  "/scripts/connect-asl",
+];
 
-/**
- * Mobile chrome for the store group: the marketing footer (only on the account
- * hub, per Figma — content/list/detail screens have none) plus, for signed-in
- * users, the bottom tab bar. Client-side so it can read the current route. The
- * spacer reserves room for the fixed tab bar; it's footer-tinted only when a
- * footer sits above it.
- */
+const NO_FOOTER = [
+  "/compliance/dose",
+  "/compliance/side-effects/new",
+  "/compliance/vitals/new",
+];
+const VITALS_EDIT = /^\/compliance\/vitals\/[^/]+\/edit$/;
+
+const DESKTOP_FOOTER_ROUTES = ["/help"];
+
+const NO_TAB_BAR = [
+  "/compliance",
+  "/scripts/detail",
+  "/scripts/connect-asl",
+  "/help",
+  "/account/settings/password",
+  "/scheduler",
+];
+
+const within = (pathname: string, routes: string[]) =>
+  routes.some(
+    (route) => pathname === route || pathname.startsWith(`${route}/`),
+  );
+
+function hasMobileFooter(pathname: string) {
+  if (within(pathname, NO_FOOTER) || VITALS_EDIT.test(pathname)) return false;
+  return within(pathname, FOOTER_ROUTES);
+}
+
 export function StoreChrome({ user }: { user: SessionUser | null }) {
   const pathname = usePathname();
-  if (FOCUSED.some((path) => pathname.startsWith(path))) return null;
 
-  const hasFooter = pathname === "/account";
+  const hasFooter = hasMobileFooter(pathname);
+  const hasDesktopFooter = within(pathname, DESKTOP_FOOTER_ROUTES);
+  const hasTabBar = user && !within(pathname, NO_TAB_BAR);
 
   return (
     <>
-      {hasFooter && (
-        <div className="lg:hidden">
+      {(hasFooter || hasDesktopFooter) && (
+        <div
+          className={cn(
+            !hasDesktopFooter && "lg:hidden",
+            !hasFooter && "max-lg:hidden",
+          )}
+        >
           <Footer />
         </div>
       )}
-      {user && (
+      {hasTabBar && (
         <>
           <div
-            className={cn("h-24 lg:hidden", hasFooter && "bg-secondary-700")}
+            className={cn(
+              TAB_BAR_HEIGHT,
+              "lg:hidden",
+              hasFooter && "bg-secondary-700",
+            )}
             aria-hidden
           />
           <BottomNav user={user} />

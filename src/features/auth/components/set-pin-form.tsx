@@ -2,22 +2,16 @@
 
 import { useRouter } from "next/navigation";
 
-import { setMockSession, takePendingSignup } from "@/lib/auth/mock-session";
+import { useShowHidden } from "@/providers/hidden-screens";
 
 import { PinPad } from "./pin-pad";
 
-/**
- * Set-a-PIN step (Figma 42:2164). No backend yet — once a valid 4-digit PIN is
- * entered, onboarding completes and the session is finalised.
- */
 export function SetPinForm() {
   const router = useRouter();
+  const showHidden = useShowHidden();
 
   function finish() {
-    const pending = takePendingSignup();
-    setMockSession(pending ?? { firstName: "there", lastName: "" });
-    router.push("/");
-    router.refresh();
+    router.push(showHidden ? "/sign-up/biometrics" : "/sign-up/done");
   }
 
   return (

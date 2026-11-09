@@ -1,145 +1,210 @@
 "use client";
 
-import { ArrowLeft, Bell, Mail, MessageSquare } from "lucide-react";
-import Link from "next/link";
-import { useState } from "react";
+import { useSyncExternalStore } from "react";
 
+import { Icon } from "@/components/ui/icon";
 import { cn } from "@/lib/utils";
 
-type Channel = "email" | "push" | "sms";
-type Prefs = Record<Channel, boolean>;
+import {
+  DEFAULT_PREFS,
+  readPrefs,
+  savePrefs,
+  subscribePrefs,
+  togglePref,
+  type Channel,
+  type Prefs,
+  type Topic,
+} from "../model/notification-prefs";
+import { BackLink } from "./back-link";
 
-const CHANNELS: { key: Channel; label: string; icon: typeof Mail }[] = [
-  { key: "email", label: "Email", icon: Mail },
-  { key: "push", label: "Push", icon: Bell },
-  { key: "sms", label: "SMS", icon: MessageSquare },
-];
-
-const ROWS: {
-  title: string;
-  desc: string;
-  defaults: Prefs;
+const CHANNELS: {
+  key: Channel;
+  label: string;
+  icon: string;
+  mobileWidth: string;
 }[] = [
   {
-    title: "Order Updates",
-    desc: "Get notified about order status, delivery, and pickup information",
-    defaults: { email: true, push: true, sms: false },
+    key: "email",
+    label: "Email",
+    icon: "/icons/account/mail.svg",
+    mobileWidth: "w-[58px]",
   },
   {
-    title: "Prescription Reminders",
-    desc: "Reminders to take your medication and refill prescriptions",
-    defaults: { email: true, push: false, sms: true },
+    key: "push",
+    label: "Push",
+    icon: "/icons/account/bell.svg",
+    mobileWidth: "w-[55px]",
   },
   {
-    title: "Promotions & Offers",
-    desc: "Special deals, discounts, and promotional offers",
-    defaults: { email: true, push: false, sms: true },
-  },
-  {
-    title: "Health Tips",
-    desc: "Wellness advice and health-related information",
-    defaults: { email: false, push: true, sms: true },
-  },
-  {
-    title: "Account Security",
-    desc: "Login alerts and security notifications",
-    defaults: { email: true, push: false, sms: false },
+    key: "sms",
+    label: "SMS",
+    icon: "/icons/account/message.svg",
+    mobileWidth: "w-[52px]",
   },
 ];
 
-/** Notifications (Figma `258:3679`). UI-only — preferences live in local state. */
-export function NotificationSettings() {
-  const [prefs, setPrefs] = useState<Prefs[]>(ROWS.map((r) => r.defaults));
+const TOPICS: Record<Topic, { title: string; desc: string }> = {
+  orders: {
+    title: "Order Updates",
+    desc: "Get notified about order status, delivery, and pickup information",
+  },
+  reminders: {
+    title: "Prescription Reminders",
+    desc: "Reminders to take your medication and refill prescriptions",
+  },
+  promotions: {
+    title: "Promotions & Offers",
+    desc: "Special deals, discounts, and promotional offers",
+  },
+  tips: {
+    title: "Health Tips",
+    desc: "Wellness advice and health-related information",
+  },
+  security: {
+    title: "Account Security",
+    desc: "Login alerts and security notifications",
+  },
+};
+const DESKTOP_TOPICS: Topic[] = ["reminders", "promotions", "tips", "security"];
+const MOBILE_TOPICS: Topic[] = [
+  "orders",
+  "reminders",
+  "promotions",
+  "tips",
+  "security",
+];
 
-  function toggle(rowIndex: number, channel: Channel) {
-    setPrefs((all) =>
-      all.map((row, i) =>
-        i === rowIndex ? { ...row, [channel]: !row[channel] } : row,
-      ),
-    );
+export function NotificationSettings({ storageKey }: { storageKey: string }) {
+  const prefs = useSyncExternalStore(
+    subscribePrefs,
+    () => readPrefs(storageKey),
+    () => DEFAULT_PREFS,
+  );
+
+  function toggle(topic: Topic, channel: Channel) {
+    savePrefs(storageKey, togglePref(prefs, topic, channel));
   }
 
   return (
-    <div className="mx-auto w-full max-w-[670px] px-4 pt-8 pb-20">
-      <div className="flex flex-col gap-6">
-        <Link
-          href="/account"
-          className="inline-flex w-fit items-center gap-2 text-body-16 text-text-muted transition-colors hover:text-info-500"
-        >
-          <ArrowLeft className="size-5" />
-          Back
-        </Link>
-        <h1 className="text-h4-24 text-secondary-900 lg:text-display-32">
-          Notifications
-        </h1>
-
-        {/* Channel legend — desktop only (mobile labels each toggle inline). */}
-        <div className="hidden flex-wrap items-center justify-between gap-4 rounded-card-lg border border-[#E5E7EB] bg-white px-6 py-5 lg:flex">
-          <span className="text-body-16-bold text-[#101828]">
-            Notification Channels
-          </span>
-          <div className="flex items-center">
-            {CHANNELS.map((c) => (
-              <span
-                key={c.key}
-                className="flex w-16 items-center justify-center gap-1.5 text-body-14 text-text-muted"
-              >
-                <c.icon className="size-4" />
-                {c.label}
-              </span>
-            ))}
-          </div>
+    <div className="mx-auto w-full px-4 pt-[17px] pb-[38px] lg:max-w-[572px] lg:pt-6 lg:pr-0 lg:pb-20 lg:pl-[2px]">
+      <div className="flex flex-col gap-4 lg:gap-8">
+        <div className="flex flex-col gap-1 lg:gap-4">
+          <BackLink />
+          <h1 className="text-h4-24 text-secondary-900 lg:text-display-32">
+            Notifications
+          </h1>
         </div>
 
-        {/* Preference rows */}
-        <div className="overflow-hidden rounded-card-lg border border-[#E5E7EB] bg-white">
-          {ROWS.map((row, index) => (
-            <div
-              key={row.title}
-              className={cn(
-                "flex flex-col gap-4 px-6 py-5 lg:flex-row lg:items-center",
-                index < ROWS.length - 1 && "border-b border-[#E5E7EB]",
-              )}
-            >
-              <div className="flex flex-1 flex-col gap-1">
-                <span className="text-body-16-bold text-[#101828]">
-                  {row.title}
-                </span>
-                <span className="text-body-14 text-secondary-500">
-                  {row.desc}
-                </span>
-              </div>
-              {/* Mobile: toggles row + labels row (spread). Desktop: `lg:contents`
-                  unwraps the toggles into w-16 columns aligned with the legend. */}
-              <div className="flex w-full flex-col gap-4 lg:w-auto lg:flex-row lg:gap-0">
-                <div className="flex justify-between lg:contents">
-                  {CHANNELS.map((c) => (
-                    <span key={c.key} className="flex justify-center lg:w-16">
-                      <Toggle
-                        on={prefs[index]![c.key]}
-                        onToggle={() => toggle(index, c.key)}
-                        label={`${row.title} ${c.label}`}
-                      />
-                    </span>
-                  ))}
-                </div>
-                <div className="flex justify-between lg:hidden">
-                  {CHANNELS.map((c) => (
-                    <span
-                      key={c.key}
-                      className="flex items-center gap-2 text-body-14 text-text-muted"
-                    >
-                      <c.icon className="size-4" />
-                      {c.label}
-                    </span>
-                  ))}
-                </div>
-              </div>
+        <div className="flex flex-col gap-4">
+          <div className="hidden items-center justify-between gap-1 rounded-card-lg border border-[#e5e7eb] bg-white p-[23px] lg:flex">
+            <span className="text-body-16-bold text-[#101828]">
+              Notification Channels
+            </span>
+            <div className="flex items-center gap-8">
+              {CHANNELS.map((c) => (
+                <ChannelLabel key={c.key} channel={c} />
+              ))}
             </div>
-          ))}
+          </div>
+
+          <PreferenceList
+            topics={DESKTOP_TOPICS}
+            prefs={prefs}
+            onToggle={toggle}
+            className="hidden lg:flex"
+          />
+          <PreferenceList
+            topics={MOBILE_TOPICS}
+            prefs={prefs}
+            onToggle={toggle}
+            className="lg:hidden"
+          />
         </div>
       </div>
     </div>
+  );
+}
+
+function PreferenceList({
+  topics,
+  prefs,
+  onToggle,
+  className,
+}: {
+  topics: Topic[];
+  prefs: Prefs;
+  onToggle: (topic: Topic, channel: Channel) => void;
+  className: string;
+}) {
+  return (
+    <div
+      className={cn(
+        "flex flex-col gap-2.5 rounded-card-lg border border-[#e5e7eb] bg-white py-[23px]",
+        className,
+      )}
+    >
+      {topics.map((topic, index) => {
+        const { title, desc } = TOPICS[topic];
+        return (
+          <div
+            key={topic}
+            className={cn(
+              "flex flex-col gap-4 px-[23px] lg:flex-row lg:items-center",
+              index < topics.length - 1 &&
+                "border-b border-[#e5e7eb] pb-[11px]",
+            )}
+          >
+            <div className="flex max-w-[289px] flex-col gap-1 lg:max-w-none lg:flex-1">
+              <span className="text-body-16-bold text-[#101828]">{title}</span>
+              <span className="text-body-14 leading-6 text-text-muted">
+                {desc}
+              </span>
+            </div>
+            <div className="flex flex-col gap-4">
+              <div className="flex justify-between lg:w-[217px]">
+                {CHANNELS.map((c) => (
+                  <Toggle
+                    key={c.key}
+                    on={prefs[topic][c.key]}
+                    onToggle={() => onToggle(topic, c.key)}
+                    label={`${title} ${c.label}`}
+                  />
+                ))}
+              </div>
+              <div className="flex justify-between lg:hidden">
+                {CHANNELS.map((c) => (
+                  <ChannelLabel
+                    key={c.key}
+                    channel={c}
+                    className={c.mobileWidth}
+                  />
+                ))}
+              </div>
+            </div>
+          </div>
+        );
+      })}
+    </div>
+  );
+}
+
+function ChannelLabel({
+  channel,
+  className,
+}: {
+  channel: (typeof CHANNELS)[number];
+  className?: string;
+}) {
+  return (
+    <span
+      className={cn(
+        "flex items-center gap-2 text-body-14 text-text-muted",
+        className,
+      )}
+    >
+      <Icon src={channel.icon} size={16} />
+      {channel.label}
+    </span>
   );
 }
 
@@ -161,13 +226,13 @@ function Toggle({
       onClick={onToggle}
       className={cn(
         "relative h-6 w-11 shrink-0 rounded-full transition-colors",
-        on ? "bg-info-500" : "bg-[#D1D5DC]",
+        on ? "bg-info-500" : "bg-[#d1d5dc]",
       )}
     >
       <span
         className={cn(
-          "absolute top-0.5 size-5 rounded-full bg-white shadow-sm transition-all",
-          on ? "left-[22px]" : "left-0.5",
+          "absolute top-0.5 size-5 rounded-full bg-white transition-all",
+          on ? "left-6" : "left-0.5",
         )}
       />
     </button>

@@ -1,7 +1,11 @@
 import type { Metadata } from "next";
-import { redirect } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 
 import { ScriptDetail } from "@/features/scripts/components/script-detail";
+import { toScriptDetails } from "@/features/scripts/model/from-api";
+import { scriptsForPage } from "@/features/scripts/model/load";
+import { qrCode } from "@/features/scripts/model/qr";
+import { isTokenOnly } from "@/features/scripts/model/script";
 import { getServerSession } from "@/lib/auth/get-session";
 
 export const metadata: Metadata = { title: "Script · Open Pharmacy" };
@@ -9,25 +13,39 @@ export const metadata: Metadata = { title: "Script · Open Pharmacy" };
 export default async function ScriptDetailPage({
   searchParams,
 }: {
-  searchParams: Promise<{
-    name?: string;
-    status?: string;
-    variant?: string;
-    tags?: string;
-    hidden?: string;
-  }>;
+  searchParams: Promise<{ id?: string }>;
 }) {
+  const { id = "" } = await searchParams;
+  const path = `/scripts/detail?id=${encodeURIComponent(id)}`;
   const user = await getServerSession();
-  if (!user) redirect("/sign-in");
+  if (!user) redirect(`/sign-in?next=${encodeURIComponent(path)}`);
 
-  const sp = await searchParams;
+  const { scripts, error } = await scriptsForPage(path);
+  if (error !== null) {
+    return (
+      <p
+        role="alert"
+        className="mx-auto w-full max-w-[902px] px-4 pt-6 text-caption-12 text-error-500 lg:pl-[23px]"
+      >
+        {error}
+      </p>
+    );
+  }
+  const index = scripts?.scripts.findIndex((s) => s.id === id) ?? -1;
+  if (!scripts || index < 0) notFound();
+
+  const script = scripts.scripts[index];
+  const archived = scripts.archived.includes(script.id);
+  if (isTokenOnly(script)) {
+    return <ScriptDetail script={script} archived={archived} />;
+  }
+  const api = scripts.data.scripts[index];
   return (
     <ScriptDetail
-      name={sp.name ?? "Script"}
-      status={sp.status === "expired" ? "expired" : "active"}
-      variant={sp.variant === "paper" ? "paper" : "asl"}
-      tags={sp.tags ? sp.tags.split(",").filter(Boolean) : []}
-      hidden={sp.hidden === "1"}
+      script={script}
+      archived={archived}
+      details={toScriptDetails(api)}
+      qr={qrCode(api.prescription_dspid)}
     />
   );
 }

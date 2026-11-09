@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 
 export default function SignUpEmailPage() {
   return (
-    <AuthSplit hero={<AuthPhotoHero />} backHref="/sign-up" backLabel="Back">
+    <AuthSplit hero={<AuthPhotoHero />}>
       <div className="flex flex-col gap-8">
         <div className="flex flex-col gap-2">
           <h1 className="text-h4-24 text-secondary-900 lg:text-display-32">

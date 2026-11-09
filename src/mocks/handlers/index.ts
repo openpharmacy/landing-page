@@ -1,5 +1,3 @@
-import { authHandlers } from "./auth";
-import { productHandlers } from "./products";
+import type { RequestHandler } from "msw";
 
-/** Aggregate of all MSW request handlers (one module per feature). */
-export const handlers = [...authHandlers, ...productHandlers];
+export const handlers: RequestHandler[] = [];

@@ -9,24 +9,36 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        // Figma: 154deg gradient fill, white label, radius 12.
-        primary: "bg-gradient-primary text-white shadow-float hover:opacity-95",
-        // Figma: white fill, 1px Secondary/500 border, Secondary/500 label.
+        primary:
+          "bg-gradient-primary text-white hover:opacity-95 disabled:bg-gradient-primary-40 disabled:opacity-100",
         secondary:
           "border border-secondary-500 bg-white text-secondary-500 hover:bg-secondary-500/5",
-        // Outline on a neutral border (e.g. social buttons on auth).
         outline:
           "border border-neutral-300 bg-white text-secondary-900 hover:bg-bg-app",
+        destructive:
+          "bg-error-500 text-white hover:opacity-95 disabled:bg-error-500/40 disabled:opacity-100",
         ghost: "text-secondary-500 hover:bg-secondary-500/5",
         link: "text-info-500 underline-offset-4 hover:underline",
       },
       size: {
         default: "text-body-16-bold px-6 py-4",
-        sm: "text-body-14 px-4 py-2.5",
-        lg: "text-body-16-bold px-8 py-4",
+        sm: "text-body-14 font-bold rounded-control px-4 py-2",
+        lg: "text-body-16-bold px-6 py-4",
         icon: "size-11",
       },
     },
+    compoundVariants: [
+      {
+        variant: ["secondary", "outline"],
+        size: ["default", "lg"],
+        className: "px-[23px] py-[15px]",
+      },
+      {
+        variant: ["secondary", "outline"],
+        size: "sm",
+        className: "px-[15px] py-[7px]",
+      },
+    ],
     defaultVariants: { variant: "primary", size: "default" },
   },
 );
