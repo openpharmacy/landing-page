@@ -17,6 +17,7 @@ import {
   USER_COOKIE,
 } from "@/lib/auth/session";
 import { HIDDEN_SCREENS_COOKIE } from "@/lib/features";
+import { siteHost } from "@/lib/redirect";
 
 const REFRESH_MARGIN_MS = 2 * 60_000;
 
@@ -89,7 +90,12 @@ function isCrossSite(request: NextRequest) {
   const site = request.headers.get("sec-fetch-site");
   if (site) return site !== "same-origin" && site !== "none";
   const origin = request.headers.get("origin");
-  return origin !== null && origin !== request.nextUrl.origin;
+  if (origin === null) return false;
+  try {
+    return new URL(origin).host !== siteHost(request);
+  } catch {
+    return true;
+  }
 }
 
 const within = (pathname: string, section: string) =>

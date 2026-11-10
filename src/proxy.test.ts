@@ -72,6 +72,32 @@ describe("proxy", () => {
     }
   });
 
+  it("behind a proxy, compares Origin with the host the browser used", async () => {
+    const behind = (headers: Record<string, string>) =>
+      proxy(
+        new NextRequest("http://localhost:8080/api/auth/login", {
+          method: "POST",
+          headers,
+        }),
+      );
+    const host = { "x-forwarded-host": "app.example.com" };
+    expect(
+      (await behind({ ...host, origin: "https://app.example.com" })).status,
+    ).toBe(200);
+    expect(
+      (await behind({ ...host, origin: "https://evil.example" })).status,
+    ).toBe(403);
+    expect(
+      (
+        await behind({
+          host: "app.example.com",
+          origin: "https://app.example.com",
+        })
+      ).status,
+    ).toBe(200);
+    expect((await behind({ ...host, origin: "null" })).status).toBe(403);
+  });
+
   it("issues a device id on the first request", async () => {
     const res = await proxy(request("GET"));
     expect(res.cookies.get("op_device")?.value).toMatch(/^[0-9a-f-]{36}$/);

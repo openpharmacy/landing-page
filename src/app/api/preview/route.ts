@@ -1,9 +1,10 @@
-import { NextResponse, type NextRequest } from "next/server";
+import type { NextRequest } from "next/server";
 
 import { HIDDEN_SCREENS_COOKIE } from "@/lib/features";
+import { redirectTo } from "@/lib/redirect";
 
 export function GET(request: NextRequest) {
-  const response = NextResponse.redirect(new URL("/", request.url));
+  const response = redirectTo("/");
   if (request.nextUrl.searchParams.get("hidden") === "1") {
     response.cookies.set(HIDDEN_SCREENS_COOKIE, "1", {
       path: "/",

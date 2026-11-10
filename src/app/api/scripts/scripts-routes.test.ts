@@ -505,9 +505,7 @@ describe("GET /api/auth/expired", () => {
   it("clears the session and sends the user to sign in, then back", async () => {
     const res = await reauth(request("same-origin"));
     expect(res.status).toBe(307);
-    expect(res.headers.get("location")).toBe(
-      "http://localhost/sign-in?next=%2Fscripts",
-    );
+    expect(res.headers.get("location")).toBe("/sign-in?next=%2Fscripts");
     expect(h.store.has("op_session")).toBe(false);
   });
 
@@ -521,8 +519,6 @@ describe("GET /api/auth/expired", () => {
     const res = await reauth(
       new NextRequest("http://localhost/api/auth/expired?next=//evil.example"),
     );
-    expect(res.headers.get("location")).toBe(
-      "http://localhost/sign-in?next=%2F",
-    );
+    expect(res.headers.get("location")).toBe("/sign-in?next=%2F");
   });
 });

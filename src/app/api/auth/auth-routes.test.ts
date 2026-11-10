@@ -323,9 +323,22 @@ describe("GET /api/auth/expired", () => {
 
   it("clears the session for this site's pages and sends them to sign in", async () => {
     const res = await visit({ "sec-fetch-site": "same-origin" });
-    expect(res.headers.get("location")).toBe(
-      "http://localhost/sign-in?next=%2Faccount",
+    expect(res.headers.get("location")).toBe("/sign-in?next=%2Faccount");
+    expect(h.store.has("op_session")).toBe(false);
+  });
+
+  it("behind a proxy, keeps the browser's address and trusts its Referer", async () => {
+    h.store.set("op_session", "id-1");
+    const res = await expired(
+      new NextRequest("http://localhost:8080/api/auth/expired?next=/account", {
+        headers: {
+          "x-forwarded-host": "app.example.com",
+          referer: "https://app.example.com/account/profile",
+        },
+      }),
     );
+    expect(res.status).toBe(307);
+    expect(res.headers.get("location")).toBe("/sign-in?next=%2Faccount");
     expect(h.store.has("op_session")).toBe(false);
   });
 
