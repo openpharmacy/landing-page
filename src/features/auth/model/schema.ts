@@ -8,7 +8,7 @@ export const userSchema = z.object({
 export type User = z.infer<typeof userSchema>;
 
 export const signInSchema = z.object({
-  email: z.string().email("Enter a valid email"),
+  email: z.string().trim().email("Enter a valid email"),
   password: z.string().min(1, "Password is required"),
 });
 export type SignInInput = z.infer<typeof signInSchema>;
@@ -39,7 +39,7 @@ export const passwordRules = [
 
 export const signUpEmailSchema = z
   .object({
-    email: z.string().email("Enter a valid email"),
+    email: z.string().trim().email("Enter a valid email"),
     password: z
       .string()
       .refine(

@@ -13,7 +13,7 @@ import { Label } from "@/components/ui/label";
 import { ApiError } from "@/lib/api/errors";
 
 import { useAuthActions } from "../hooks/use-auth-actions";
-import { safeNextPath } from "../model/next-path";
+import { withNext } from "../model/next-path";
 import { signInSchema, type SignInInput } from "../model/schema";
 import { FormError } from "./form-error";
 import { PasswordInput } from "./password-input";
@@ -24,7 +24,13 @@ const UNAVAILABLE = "The service is not available right now. Please try again.";
 const rememberShown = () =>
   window.matchMedia?.("(min-width: 1024px)").matches ?? true;
 
-export function SignInForm({ defaultEmail = "" }: { defaultEmail?: string }) {
+export function SignInForm({
+  defaultEmail = "",
+  next = null,
+}: {
+  defaultEmail?: string;
+  next?: string | null;
+}) {
   const router = useRouter();
   const { signIn } = useAuthActions();
   const [remember, setRemember] = useState(false);
@@ -43,8 +49,7 @@ export function SignInForm({ defaultEmail = "" }: { defaultEmail?: string }) {
     setSubmitError(null);
     try {
       await signIn({ ...values, remember: rememberShown() ? remember : true });
-      const next = new URLSearchParams(window.location.search).get("next");
-      router.push(safeNextPath(next) ?? "/home");
+      router.push(next ?? "/home");
       router.refresh();
     } catch (error) {
       if (error instanceof ApiError && error.status === 401) {
@@ -141,7 +146,7 @@ export function SignInForm({ defaultEmail = "" }: { defaultEmail?: string }) {
       <p className="text-center text-body-14 text-secondary-500">
         Don’t have an account yet?{" "}
         <Link
-          href="/sign-up"
+          href={withNext("/sign-up", next)}
           className="font-semibold text-info-500 hover:underline"
         >
           Sign up

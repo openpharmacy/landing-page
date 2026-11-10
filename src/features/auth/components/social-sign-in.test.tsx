@@ -69,12 +69,27 @@ describe("mock mode", () => {
       user: { id: "demo", email: "j@e.com" },
       isNewUser: false,
     });
-    render(<SignUpOptions />);
+    render(<SignUpOptions next={null} />);
     click("Sign up with Google");
     fireEvent.click(screen.getByRole("button", { name: /cody\.b@gmail\.com/ }));
     await waitFor(() =>
       expect(push).toHaveBeenCalledWith(
         "/sign-up/google?first=Cody&last=Banks",
+      ),
+    );
+  });
+
+  it("keeps ?next= through the name step", async () => {
+    actions.signInWithProvider.mockResolvedValue({
+      user: { id: "demo", email: "j@e.com" },
+      isNewUser: false,
+    });
+    render(<SignUpOptions next="/scripts" />);
+    click("Sign up with Google");
+    fireEvent.click(screen.getByRole("button", { name: /cody\.b@gmail\.com/ }));
+    await waitFor(() =>
+      expect(push).toHaveBeenCalledWith(
+        "/sign-up/google?first=Cody&last=Banks&next=%2Fscripts",
       ),
     );
   });
@@ -147,6 +162,42 @@ describe("real mode", () => {
     );
   });
 
+  it("signs an existing account in from sign-up and goes to ?next=", async () => {
+    vi.stubEnv("NEXT_PUBLIC_GOOGLE_CLIENT_ID", "client-1");
+    sdk.prepareGoogle.mockResolvedValue({
+      request: vi.fn().mockResolvedValue({ id_token: "t", nonce: "n" }),
+    });
+    actions.signInWithProvider.mockResolvedValue({
+      user: { id: "u-1", email: "g@b.com" },
+      isNewUser: false,
+    });
+    render(<SignUpOptions next="/scripts" />);
+    await waitFor(() =>
+      expect(sdk.prepareGoogle).toHaveBeenCalledWith("client-1", "signup"),
+    );
+    await Promise.resolve();
+    click("Sign up with Google");
+    await waitFor(() => expect(push).toHaveBeenCalledWith("/scripts"));
+  });
+
+  it("sends a new account from sign-up to the name step with ?next=", async () => {
+    vi.stubEnv("NEXT_PUBLIC_GOOGLE_CLIENT_ID", "client-1");
+    sdk.prepareGoogle.mockResolvedValue({
+      request: vi.fn().mockResolvedValue({ id_token: "t", nonce: "n" }),
+    });
+    actions.signInWithProvider.mockResolvedValue({
+      user: { id: "u-1", email: "g@b.com" },
+      isNewUser: true,
+    });
+    render(<SignUpOptions next="/scripts" />);
+    await waitFor(() => expect(sdk.prepareGoogle).toHaveBeenCalled());
+    await Promise.resolve();
+    click("Sign up with Google");
+    await waitFor(() =>
+      expect(push).toHaveBeenCalledWith("/sign-up/google?next=%2Fscripts"),
+    );
+  });
+
   it("waits for a script that is still loading when clicked", async () => {
     vi.stubEnv("NEXT_PUBLIC_GOOGLE_CLIENT_ID", "client-1");
     let loaded: (prepared: unknown) => void = () => {};
@@ -208,7 +259,7 @@ describe("real mode", () => {
         code: "http_401",
       }),
     );
-    render(<SignUpOptions />);
+    render(<SignUpOptions next={null} />);
     await waitFor(() => expect(sdk.prepareGoogle).toHaveBeenCalled());
     await Promise.resolve();
     click("Sign up with Google");
@@ -230,5 +281,28 @@ describe("real mode", () => {
     await Promise.resolve();
     expect(actions.signInWithProvider).not.toHaveBeenCalled();
     expect(screen.queryByText(/isn't available/)).not.toBeInTheDocument();
+  });
+});
+
+describe("links", () => {
+  const href = (name: string) =>
+    screen.getByRole("link", { name }).getAttribute("href");
+
+  it("keeps ?next= from sign-in to sign-up", () => {
+    const { unmount } = render(<SignInOptions next="/scripts" />);
+    expect(href("Sign up")).toBe("/sign-up?next=%2Fscripts");
+    unmount();
+    render(<SignInOptions next={null} />);
+    expect(href("Sign up")).toBe("/sign-up");
+  });
+
+  it("keeps ?next= on the sign-up chooser's links", () => {
+    const { unmount } = render(<SignUpOptions next="/scripts" />);
+    expect(href("Sign up email")).toBe("/sign-up/email?next=%2Fscripts");
+    expect(href("Sign in")).toBe("/sign-in?next=%2Fscripts");
+    unmount();
+    render(<SignUpOptions next={null} />);
+    expect(href("Sign up email")).toBe("/sign-up/email");
+    expect(href("Sign in")).toBe("/sign-in");
   });
 });

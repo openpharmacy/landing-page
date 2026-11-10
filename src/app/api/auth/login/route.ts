@@ -11,7 +11,7 @@ import {
 import { getDeviceId, writeSession } from "@/lib/auth/session";
 
 const bodySchema = z.object({
-  email: z.string().email(),
+  email: z.string().trim().email(),
   password: z.string().min(1),
   remember: z.boolean().optional(),
 });

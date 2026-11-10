@@ -4,9 +4,16 @@ import { useRouter } from "next/navigation";
 
 import { useShowHidden } from "@/providers/hidden-screens";
 
+import { withNext } from "../model/next-path";
 import { VerifyCode } from "./verify-code";
 
-export function VerifyEmailForm({ email }: { email: string }) {
+export function VerifyEmailForm({
+  email,
+  next = null,
+}: {
+  email: string;
+  next?: string | null;
+}) {
   const router = useRouter();
   const showHidden = useShowHidden();
 
@@ -25,9 +32,11 @@ export function VerifyEmailForm({ email }: { email: string }) {
       </div>
 
       <VerifyCode
-        returnTo="/sign-up/verify"
+        returnTo={withNext("/sign-up/verify", next)}
         onVerified={() => {
-          router.push(showHidden ? "/sign-up/pin" : "/sign-up/done");
+          router.push(
+            withNext(showHidden ? "/sign-up/pin" : "/sign-up/done", next),
+          );
           router.refresh();
         }}
       />

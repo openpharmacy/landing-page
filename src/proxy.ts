@@ -14,6 +14,7 @@ import {
   SESSION_COOKIES,
   sessionMaxAge,
   UID_COOKIE,
+  USER_COOKIE,
 } from "@/lib/auth/session";
 import { HIDDEN_SCREENS_COOKIE } from "@/lib/features";
 
@@ -48,11 +49,16 @@ export async function proxy(request: NextRequest) {
     if (refresh && uid) {
       try {
         const renewed = await refreshToken(refresh, uid, deviceId);
-        const maxAge = sessionMaxAge(
-          request.cookies.get(REMEMBER_COOKIE)?.value,
-        );
+        const remember = request.cookies.get(REMEMBER_COOKIE)?.value ?? "1";
+        const maxAge = sessionMaxAge(remember);
         set.push([SESSION_COOKIE, renewed.idToken, maxAge]);
         set.push([REFRESH_COOKIE, renewed.refreshToken, maxAge]);
+        set.push([UID_COOKIE, renewed.userId || uid, maxAge]);
+        set.push([REMEMBER_COOKIE, remember, maxAge]);
+        const user = request.cookies
+          .get(USER_COOKIE)
+          ?.value.replace(/%/g, "\\u0025");
+        if (user) set.push([USER_COOKIE, user, maxAge]);
       } catch (error) {
         if (isHttpError(error)) remove.push(...SESSION_COOKIES);
       }
@@ -66,9 +72,11 @@ export async function proxy(request: NextRequest) {
 
   const signedIn = request.cookies.has(SESSION_COOKIE);
   const response =
-    !signedIn && needsSignIn(request)
-      ? redirectToSignIn(request)
-      : NextResponse.next({ request });
+    !signedIn && request.nextUrl.pathname === "/home"
+      ? NextResponse.redirect(new URL("/", request.url))
+      : !signedIn && needsSignIn(request)
+        ? redirectToSignIn(request)
+        : NextResponse.next({ request });
 
   for (const [name, value, maxAge] of set) {
     response.cookies.set(name, value, cookieOptions(maxAge));

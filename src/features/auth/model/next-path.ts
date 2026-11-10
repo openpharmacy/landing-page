@@ -1,7 +1,9 @@
 const ORIGIN = "http://next.invalid";
 
-export function safeNextPath(next: string | null | undefined): string | null {
-  if (!next || !next.startsWith("/")) return null;
+export function safeNextPath(
+  next: string | string[] | null | undefined,
+): string | null {
+  if (typeof next !== "string" || !next.startsWith("/")) return null;
   try {
     const url = new URL(next, ORIGIN);
     return url.origin === ORIGIN ? url.pathname + url.search + url.hash : null;

@@ -22,10 +22,10 @@ vi.mock("../api/auth-api", async (importOriginal) => ({
 const apiError = (status: number, message: string) =>
   new ApiError({ status, message, code: `http_${status}` });
 
-function verify(showHidden: boolean, code = "1234") {
+function verify(showHidden: boolean, code = "1234", next?: string) {
   render(
     <HiddenScreensProvider value={showHidden}>
-      <VerifyEmailForm email="john@email.com" />
+      <VerifyEmailForm email="john@email.com" next={next} />
     </HiddenScreensProvider>,
   );
   for (const [i, digit] of [...code].entries()) {
@@ -54,6 +54,20 @@ describe("VerifyEmailForm", () => {
   it("goes to the PIN step when the hidden screens are shown", async () => {
     verify(true);
     await waitFor(() => expect(push).toHaveBeenCalledWith("/sign-up/pin"));
+  });
+
+  it("keeps ?next= on the way to the done screen", async () => {
+    verify(false, "1234", "/scripts");
+    await waitFor(() =>
+      expect(push).toHaveBeenCalledWith("/sign-up/done?next=%2Fscripts"),
+    );
+  });
+
+  it("keeps ?next= on the way to the PIN step", async () => {
+    verify(true, "1234", "/scripts");
+    await waitFor(() =>
+      expect(push).toHaveBeenCalledWith("/sign-up/pin?next=%2Fscripts"),
+    );
   });
 
   it("shows the API's message for a wrong code and stays", async () => {
@@ -87,6 +101,23 @@ describe("VerifyEmailForm", () => {
       expect(push).toHaveBeenCalledWith("/sign-in?next=%2Fsign-up%2Fverify"),
     );
     expect(refresh).toHaveBeenCalled();
+  });
+
+  it("keeps ?next= on the way back from signing in again", async () => {
+    api.verifyEmail.mockRejectedValue(
+      new ApiError({
+        status: 401,
+        message: "Not authenticated",
+        code: "http_401",
+        detail: { error: "Not authenticated", signIn: true },
+      }),
+    );
+    verify(false, "1234", "/scripts");
+    await waitFor(() =>
+      expect(push).toHaveBeenCalledWith(
+        "/sign-in?next=%2Fsign-up%2Fverify%3Fnext%3D%252Fscripts",
+      ),
+    );
   });
 
   it("resends the code", async () => {

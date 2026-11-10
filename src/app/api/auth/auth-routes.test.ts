@@ -89,6 +89,18 @@ describe("POST /api/auth/login", () => {
     });
   });
 
+  it("signs in with a pasted email trimmed", async () => {
+    api.signin.mockResolvedValue(auth);
+    const res = await login(
+      post({ email: " a@b.com  ", password: "secret12" }),
+    );
+    expect(res.status).toBe(200);
+    expect(api.signin).toHaveBeenCalledWith(
+      { email: "a@b.com", password: "secret12" },
+      "dev-1",
+    );
+  });
+
   it("keeps the API's email_verified in the session profile", async () => {
     api.signin.mockResolvedValue({ ...auth, email_verified: true });
     await login(post({ email: "a@b.com", password: "secret12" }));
@@ -208,6 +220,18 @@ describe("POST /api/auth/register", () => {
       false,
     );
     expect(h.store.get("op_remember")).toBe("1");
+  });
+
+  it("signs up with a pasted email trimmed", async () => {
+    api.signup.mockResolvedValue(auth);
+    api.sendVerificationEmail.mockResolvedValue(null);
+    const res = await register(post({ ...body, email: " a@b.com  " }));
+    expect(res.status).toBe(201);
+    expect(api.signup).toHaveBeenCalledWith(
+      expect.objectContaining({ email: "a@b.com" }),
+      "dev-1",
+    );
+    expect(api.sendVerificationEmail).toHaveBeenCalledWith("a@b.com");
   });
 
   it("answers 409 when the email is taken", async () => {

@@ -34,7 +34,7 @@ vi.mock("next/navigation", () => ({
 
 const searchParams = Promise.resolve({});
 const PAGES = {
-  "/sign-up/biometrics": () => SignUpBiometricsPage(),
+  "/sign-up/biometrics": () => SignUpBiometricsPage({ searchParams }),
   "/sign-in/quick": () => QuickSignInPage({ searchParams }),
   "/sign-in/pin": () => PinSignInPage({ searchParams }),
   "/sign-in/biometric": () => BiometricSignInPage({ searchParams }),

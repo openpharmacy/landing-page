@@ -30,13 +30,12 @@ beforeEach(() => {
   refresh.mockClear();
   actions.signIn.mockReset();
   actions.signUp.mockReset();
-  window.history.replaceState(null, "", "/sign-in/email");
 });
 
 describe("SignUpEmailForm", () => {
-  async function submit() {
-    render(<SignUpEmailForm />);
-    type("#email", "ann@b.com");
+  async function submit(email = "ann@b.com", nextPath: string | null = null) {
+    render(<SignUpEmailForm next={nextPath} />);
+    type("#email", email);
     type("#password", "secret12");
     type("#confirmPassword", "secret12");
     type("#firstName", "Ann");
@@ -59,6 +58,38 @@ describe("SignUpEmailForm", () => {
       name: "Ann",
       surname: "Lee",
     });
+  });
+
+  it("keeps ?next= on the way to verify", async () => {
+    actions.signUp.mockResolvedValue({ id: "u-1", email: "ann@b.com" });
+    await submit("ann@b.com", "/scripts");
+    await waitFor(() =>
+      expect(push).toHaveBeenCalledWith("/sign-up/verify?next=%2Fscripts"),
+    );
+  });
+
+  it("keeps ?next= on the Sign in link", () => {
+    const { unmount } = render(<SignUpEmailForm next="/scripts" />);
+    expect(screen.getByRole("link", { name: "Sign in" })).toHaveAttribute(
+      "href",
+      "/sign-in?next=%2Fscripts",
+    );
+    unmount();
+    render(<SignUpEmailForm />);
+    expect(screen.getByRole("link", { name: "Sign in" })).toHaveAttribute(
+      "href",
+      "/sign-in",
+    );
+  });
+
+  it("signs up with a pasted email trimmed", async () => {
+    actions.signUp.mockResolvedValue({ id: "u-1", email: "ann@b.com" });
+    await submit(" ann@b.com  ");
+    await waitFor(() =>
+      expect(actions.signUp).toHaveBeenCalledWith(
+        expect.objectContaining({ email: "ann@b.com" }),
+      ),
+    );
   });
 
   it("links the terms and the privacy policy", () => {
@@ -103,31 +134,50 @@ describe("SignUpEmailForm", () => {
 });
 
 describe("SignInForm", () => {
-  function submit(password = "secret12") {
+  function submit(password = "secret12", email = "ann@b.com") {
     render(<SignInForm />);
-    type("#email", "ann@b.com");
+    type("#email", email);
     type("#password", password);
     fireEvent.click(screen.getByRole("button", { name: "Log In" }));
   }
 
   it("goes to ?next= after signing in", async () => {
-    window.history.replaceState(null, "", "/sign-in/email?next=%2Faccount");
     actions.signIn.mockResolvedValue({ id: "u-1", email: "ann@b.com" });
-    submit();
+    render(<SignInForm next="/account" />);
+    type("#email", "ann@b.com");
+    type("#password", "secret12");
+    fireEvent.click(screen.getByRole("button", { name: "Log In" }));
     await waitFor(() => expect(push).toHaveBeenCalledWith("/account"));
-  });
-
-  it("ignores a ?next= that leaves the site", async () => {
-    window.history.replaceState(null, "", "/sign-in/email?next=%2F%2Fevil.com");
-    actions.signIn.mockResolvedValue({ id: "u-1", email: "ann@b.com" });
-    submit();
-    await waitFor(() => expect(push).toHaveBeenCalledWith("/home"));
   });
 
   it("goes to Home without ?next=", async () => {
     actions.signIn.mockResolvedValue({ id: "u-1", email: "ann@b.com" });
     submit();
     await waitFor(() => expect(push).toHaveBeenCalledWith("/home"));
+  });
+
+  it("signs in with a pasted email trimmed", async () => {
+    actions.signIn.mockResolvedValue({ id: "u-1", email: "ann@b.com" });
+    submit("secret12", " ann@b.com  ");
+    await waitFor(() =>
+      expect(actions.signIn).toHaveBeenCalledWith(
+        expect.objectContaining({ email: "ann@b.com" }),
+      ),
+    );
+  });
+
+  it("keeps ?next= on the Sign up link", () => {
+    const { unmount } = render(<SignInForm next="/scripts" />);
+    expect(screen.getByRole("link", { name: "Sign up" })).toHaveAttribute(
+      "href",
+      "/sign-up?next=%2Fscripts",
+    );
+    unmount();
+    render(<SignInForm />);
+    expect(screen.getByRole("link", { name: "Sign up" })).toHaveAttribute(
+      "href",
+      "/sign-up",
+    );
   });
 
   it("fills in the email it is given", () => {

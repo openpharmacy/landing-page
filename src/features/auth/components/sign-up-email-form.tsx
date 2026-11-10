@@ -13,13 +13,14 @@ import { Label } from "@/components/ui/label";
 import { ApiError } from "@/lib/api/errors";
 
 import { useAuthActions } from "../hooks/use-auth-actions";
+import { withNext } from "../model/next-path";
 import { signUpEmailSchema, type SignUpEmailInput } from "../model/schema";
 import { FormError } from "./form-error";
 import { PasswordInput } from "./password-input";
 import { PasswordRules } from "./password-rules";
 import { TermsLabel } from "./terms-label";
 
-export function SignUpEmailForm() {
+export function SignUpEmailForm({ next = null }: { next?: string | null }) {
   const router = useRouter();
   const { signUp } = useAuthActions();
   const [submitError, setSubmitError] = useState<string | null>(null);
@@ -54,7 +55,7 @@ export function SignUpEmailForm() {
         name: values.firstName,
         surname: values.lastName,
       });
-      router.push("/sign-up/verify");
+      router.push(withNext("/sign-up/verify", next));
       router.refresh();
     } catch (error) {
       if (error instanceof ApiError && error.status === 409) {
@@ -168,7 +169,7 @@ export function SignUpEmailForm() {
       <p className="text-center text-body-14 text-secondary-500">
         Already have an account?{" "}
         <Link
-          href="/sign-in"
+          href={withNext("/sign-in", next)}
           className="font-semibold text-info-500 hover:underline"
         >
           Sign in

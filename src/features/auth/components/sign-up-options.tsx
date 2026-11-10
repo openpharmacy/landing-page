@@ -5,12 +5,13 @@ import Link from "next/link";
 import { Icon } from "@/components/ui/icon";
 
 import { useSocialSignIn } from "../hooks/use-social-sign-in";
+import { withNext } from "../model/next-path";
 import { GoogleAccountModal } from "./google-account-modal";
 import { OptionButton } from "./option-button";
 import { OrDivider } from "./or-divider";
 
-export function SignUpOptions() {
-  const social = useSocialSignIn("sign-up");
+export function SignUpOptions({ next }: { next: string | null }) {
+  const social = useSocialSignIn("sign-up", next);
 
   return (
     <>
@@ -47,14 +48,17 @@ export function SignUpOptions() {
         <OrDivider />
 
         <div className="flex flex-col gap-[23px]">
-          <OptionButton className="gap-1" href="/sign-up/email">
+          <OptionButton
+            className="gap-1"
+            href={withNext("/sign-up/email", next)}
+          >
             <Icon src="/icons/auth/envelope.svg" size={24} />
             Sign up email
           </OptionButton>
           <p className="text-center text-body-14 text-secondary-500">
             Already have an account?{" "}
             <Link
-              href="/sign-in"
+              href={withNext("/sign-in", next)}
               className="font-semibold text-info-500 hover:underline"
             >
               Sign in

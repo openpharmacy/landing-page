@@ -1,26 +1,49 @@
-import { NextRequest } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { describe, expect, it, vi } from "vitest";
 
 const identity = vi.hoisted(() => ({ refreshToken: vi.fn() }));
 vi.mock("@/lib/api/op/identity", () => identity);
 
+import { SESSION_COOKIES } from "@/lib/auth/session";
+
 import { proxy } from "./proxy";
 
-const expiring = () =>
-  `x.${Buffer.from(JSON.stringify({ exp: Math.floor(Date.now() / 1000) + 60 })).toString("base64url")}.y`;
+const idToken = (secondsLeft: number) =>
+  `x.${Buffer.from(JSON.stringify({ exp: Math.floor(Date.now() / 1000) + secondsLeft })).toString("base64url")}.y`;
 
-function signedIn(remember?: string) {
+const PROFILE = JSON.stringify({
+  email: "zoe+1@example.com",
+  name: 'Zoë "Z" 100%; =',
+  surname: "Nguyễn Thị Ánh",
+  emailVerified: true,
+});
+
+function signedIn(remember?: string, user?: string) {
   const cookies = [
-    `op_session=${expiring()}`,
+    `op_session=${idToken(60)}`,
     "op_refresh=rt-1",
     "op_uid=u-1",
     "op_device=dev-1",
     ...(remember ? [`op_remember=${remember}`] : []),
+    ...(user ? [`op_user=${encodeURIComponent(user)}`] : []),
   ];
   return new NextRequest("http://localhost/home", {
     headers: { cookie: cookies.join("; ") },
   });
 }
+
+const forwarded = (res: Response) => {
+  const cookies = new NextRequest("http://localhost/", {
+    headers: { cookie: res.headers.get("x-middleware-request-cookie") ?? "" },
+  }).cookies;
+  const set = new NextResponse(null, {
+    headers: res.headers
+      .getSetCookie()
+      .map((line): [string, string] => ["set-cookie", line]),
+  }).cookies;
+  for (const cookie of set.getAll()) cookies.set(cookie);
+  return cookies;
+};
 
 const request = (method: string, headers: Record<string, string> = {}) =>
   new NextRequest("http://localhost/api/auth/login", { method, headers });
@@ -102,27 +125,96 @@ describe("proxy", () => {
     }
   });
 
-  it("renews the tokens with the lifetime chosen at sign-in", async () => {
+  it("sends guests from the signed-in home to the landing page", async () => {
+    const guest = await proxy(new NextRequest("http://localhost/home?x=1"));
+    expect(guest.status).toBe(307);
+    expect(guest.headers.get("location")).toBe("http://localhost/");
+    expect(guest.cookies.get("op_device")?.value).toMatch(/^[0-9a-f-]{36}$/);
+
+    const user = await proxy(
+      new NextRequest("http://localhost/home", {
+        headers: { cookie: `op_session=${idToken(3600)}` },
+      }),
+    );
+    expect(user.status).toBe(200);
+
+    for (const path of ["/homepage", "/home-x"]) {
+      const res = await proxy(new NextRequest(`http://localhost${path}`));
+      expect(res.status).toBe(200);
+    }
+  });
+
+  it("renews the whole session with the lifetime chosen at sign-in", async () => {
     identity.refreshToken.mockResolvedValue({
       userId: "u-1",
       idToken: "id-2",
       refreshToken: "rt-2",
     });
-    const remembered = await proxy(signedIn("1"));
-    expect(remembered.cookies.get("op_session")?.maxAge).toBe(2592000);
+    const values = {
+      op_session: "id-2",
+      op_refresh: "rt-2",
+      op_uid: "u-1",
+      op_remember: "1",
+    };
+    const renewed = [...Object.keys(values), "op_user"];
+
+    const remembered = await proxy(signedIn("1", PROFILE));
+    const page = forwarded(remembered);
+    for (const [name, value] of Object.entries(values)) {
+      expect(remembered.cookies.get(name)?.value).toBe(value);
+      expect(page.get(name)?.value).toBe(value);
+    }
+    for (const name of renewed) {
+      expect(remembered.cookies.get(name)?.maxAge).toBe(2592000);
+    }
+
+    const browserOnly = await proxy(signedIn("0", PROFILE));
+    expect(browserOnly.cookies.get("op_remember")?.value).toBe("0");
+    for (const name of renewed) {
+      expect(browserOnly.cookies.get(name)?.value).toBeTruthy();
+      expect(browserOnly.cookies.get(name)?.maxAge).toBeUndefined();
+      expect(browserOnly.cookies.get(name)?.expires).toBeUndefined();
+    }
+
     const legacy = await proxy(signedIn());
     expect(legacy.cookies.get("op_refresh")?.maxAge).toBe(2592000);
-    const browserOnly = await proxy(signedIn("0"));
-    expect(browserOnly.cookies.get("op_session")?.value).toBe("id-2");
-    expect(browserOnly.cookies.get("op_session")?.maxAge).toBeUndefined();
-    expect(browserOnly.cookies.get("op_refresh")?.maxAge).toBeUndefined();
+    expect(legacy.cookies.get("op_remember")?.value).toBe("1");
+    expect(legacy.cookies.get("op_remember")?.maxAge).toBe(2592000);
+    expect(legacy.cookies.get("op_user")).toBeUndefined();
+  });
+
+  it('keeps the profile in op_user, a "%" included', async () => {
+    identity.refreshToken.mockResolvedValue({
+      userId: "u-1",
+      idToken: "id-2",
+      refreshToken: "rt-2",
+    });
+    const res = await proxy(signedIn("1", PROFILE));
+    for (const value of [
+      res.cookies.get("op_user")?.value,
+      forwarded(res).get("op_user")?.value,
+    ]) {
+      expect(JSON.parse(value ?? "")).toEqual(JSON.parse(PROFILE));
+    }
+  });
+
+  it("takes the user id from the refresh answer when it differs", async () => {
+    identity.refreshToken.mockResolvedValue({
+      userId: "u-2",
+      idToken: "id-2",
+      refreshToken: "rt-2",
+    });
+    const res = await proxy(signedIn("1", PROFILE));
+    expect(res.cookies.get("op_uid")?.value).toBe("u-2");
+    expect(forwarded(res).get("op_uid")?.value).toBe("u-2");
   });
 
   it("clears every session cookie when the refresh is refused", async () => {
     identity.refreshToken.mockRejectedValue({ status: 400 });
-    const res = await proxy(signedIn("0"));
-    for (const name of ["op_session", "op_sync", "op_remember"]) {
+    const res = await proxy(signedIn("0", PROFILE));
+    for (const name of SESSION_COOKIES) {
       expect(res.cookies.get(name)?.value).toBe("");
     }
+    expect(res.status).toBe(307);
   });
 });

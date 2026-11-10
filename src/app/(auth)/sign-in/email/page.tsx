@@ -36,7 +36,7 @@ export default async function SignInEmailPage({
             Log in to your OpenPharmacy account
           </p>
         </div>
-        <SignInForm defaultEmail={lastUser?.email} />
+        <SignInForm defaultEmail={lastUser?.email} next={next} />
       </div>
     </AuthSplit>
   );

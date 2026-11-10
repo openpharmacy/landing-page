@@ -4,14 +4,17 @@ import { useRouter } from "next/navigation";
 
 import { useShowHidden } from "@/providers/hidden-screens";
 
+import { withNext } from "../model/next-path";
 import { PinPad } from "./pin-pad";
 
-export function SetPinForm() {
+export function SetPinForm({ next = null }: { next?: string | null }) {
   const router = useRouter();
   const showHidden = useShowHidden();
 
   function finish() {
-    router.push(showHidden ? "/sign-up/biometrics" : "/sign-up/done");
+    router.push(
+      withNext(showHidden ? "/sign-up/biometrics" : "/sign-up/done", next),
+    );
   }
 
   return (

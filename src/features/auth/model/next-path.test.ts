@@ -18,6 +18,10 @@ describe("safeNextPath", () => {
     expect(safeNextPath("/\\evil.example")).toBeNull();
   });
 
+  it("rejects a repeated ?next=", () => {
+    expect(safeNextPath(["/scripts", "/account"])).toBeNull();
+  });
+
   it("rejects targets the browser turns into another site", () => {
     expect(safeNextPath("/\t/evil.example")).toBeNull();
     expect(safeNextPath("/\n/evil.example/x")).toBeNull();

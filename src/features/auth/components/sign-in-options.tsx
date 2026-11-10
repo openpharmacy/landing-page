@@ -58,7 +58,7 @@ export function SignInOptions({ next }: { next: string | null }) {
           <p className="text-center text-body-14 text-secondary-500">
             Don’t have an account yet?{" "}
             <Link
-              href="/sign-up"
+              href={withNext("/sign-up", next)}
               className="font-semibold text-info-500 hover:underline"
             >
               Sign up
