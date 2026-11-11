@@ -1,0 +1,312 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme {
+  --color-primary-500: #5cb4f8;
+  --color-primary-700: #3b7bb5;
+  --color-primary-bright: #08a9ff;
+  --color-info-500: #269df9;
+
+  --color-secondary-300: #7396b2;
+  --color-secondary-500: #2f5069;
+  --color-secondary-700: #1f3648;
+  --color-secondary-900: #18222b;
+
+  --color-neutral-300: #d1d7de;
+  --color-neutral-700: #7c8793;
+  --color-neutral-900: #1c232a;
+
+  --color-success-500: #2ecc71;
+  --color-error-500: #e74c3c;
+
+  --color-bg-app: #f5f7fa;
+  --color-bg-section: #f8fbfd;
+  --color-text: #364153;
+  --color-text-muted: #4a5565;
+  --color-icon: #292d32;
+  --color-border-subtle: #f3f4f6;
+  --color-checkbox-border: #b2c4de;
+  --color-footer-text: #9eb6c9;
+  --color-footer-border: #343d48;
+
+  --font-sans: var(--font-lato), ui-sans-serif, system-ui, sans-serif;
+  --font-brand: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+
+  --radius-control: 8px;
+  --radius-card: 12px;
+  --radius-chip: 14px;
+  --radius-card-lg: 16px;
+
+  --shadow-mockup: 0 5px 8px 0 rgb(0 0 0 / 0.1);
+  --shadow-float:
+    0 4px 6px -4px rgb(0 0 0 / 0.1), 0 10px 15px -3px rgb(0 0 0 / 0.1);
+  --shadow-card: 0 0 24px 0 rgb(0 0 0 / 0.15);
+
+  --breakpoint-2xl: 1440px;
+
+  --animate-shake: shake 0.4s ease-in-out;
+  @keyframes shake {
+    0%,
+    100% {
+      transform: translateX(0);
+    }
+    20%,
+    60% {
+      transform: translateX(-6px);
+    }
+    40%,
+    80% {
+      transform: translateX(6px);
+    }
+  }
+
+  --animate-page-fade: page-fade 0.18s ease-out;
+  @keyframes page-fade {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  --animate-drawer-in: drawer-in 0.22s ease-out;
+  @keyframes drawer-in {
+    from {
+      transform: translateX(100%);
+    }
+    to {
+      transform: translateX(0);
+    }
+  }
+  --animate-drawer-out: drawer-out 0.2s ease-in forwards;
+  @keyframes drawer-out {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(100%);
+    }
+  }
+  --animate-fade-out: fade-out 0.2s ease-in forwards;
+  @keyframes fade-out {
+    from {
+      opacity: 1;
+    }
+    to {
+      opacity: 0;
+    }
+  }
+}
+
+:root {
+  --radius: 12px;
+
+  --background: var(--color-bg-app);
+  --foreground: var(--color-secondary-900);
+
+  --card: #ffffff;
+  --card-foreground: var(--color-secondary-900);
+  --popover: #ffffff;
+  --popover-foreground: var(--color-secondary-900);
+
+  --primary: var(--color-primary-500);
+  --primary-foreground: #ffffff;
+  --secondary: var(--color-secondary-500);
+  --secondary-foreground: #ffffff;
+
+  --muted: var(--color-bg-section);
+  --muted-foreground: var(--color-text-muted);
+  --accent: var(--color-bg-section);
+  --accent-foreground: var(--color-secondary-900);
+
+  --destructive: var(--color-error-500);
+  --destructive-foreground: #ffffff;
+  --success: var(--color-success-500);
+  --success-foreground: #ffffff;
+
+  --border: var(--color-neutral-300);
+  --input: var(--color-neutral-300);
+  --ring: var(--color-info-500);
+}
+
+.dark {
+  --background: var(--color-secondary-900);
+  --foreground: #ffffff;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-success: var(--success);
+  --color-success-foreground: var(--success-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+}
+
+@utility text-display-32 {
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: 2rem;
+  line-height: 2.5rem;
+}
+@utility text-subtitle-18-bold {
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: 1.125rem;
+  line-height: 1.625rem;
+}
+@utility text-subtitle-18 {
+  font-family: var(--font-sans);
+  font-weight: 400;
+  font-size: 1.125rem;
+  line-height: 1.625rem;
+}
+@utility text-body-16-bold {
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: 1rem;
+  line-height: 1.5rem;
+}
+@utility text-body-16 {
+  font-family: var(--font-sans);
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1.5rem;
+}
+@utility text-body-14 {
+  font-family: var(--font-sans);
+  font-weight: 400;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+}
+@utility text-label-14 {
+  font-family: var(--font-sans);
+  font-weight: 500;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+}
+@utility text-caption-12-bold {
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: 0.75rem;
+  line-height: 1rem;
+}
+@utility text-caption-12 {
+  font-family: var(--font-sans);
+  font-weight: 400;
+  font-size: 0.75rem;
+  line-height: 1rem;
+}
+@utility text-wordmark {
+  font-family: var(--font-brand);
+  font-weight: 600;
+  font-size: 1rem;
+  line-height: 1.5rem;
+}
+@utility text-hero-60 {
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: 3.75rem;
+  line-height: 4.0625rem;
+}
+@utility text-h2-48 {
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: 3rem;
+  line-height: 3.5rem;
+}
+@utility text-h2-36 {
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: 2.25rem;
+  line-height: 2.5rem;
+}
+@utility text-h3-30 {
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: 1.875rem;
+  line-height: 2.25rem;
+}
+@utility text-h4-24 {
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: 1.5rem;
+  line-height: 2rem;
+}
+@utility text-title-20 {
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+}
+@utility text-body-18 {
+  font-family: var(--font-sans);
+  font-weight: 400;
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+}
+@utility text-legal-14 {
+  font-family: var(--font-brand);
+  font-weight: 400;
+  font-size: 0.875rem;
+  line-height: 1.3125rem;
+}
+
+@utility bg-gradient-primary {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1' preserveAspectRatio='none'%3E%3ClinearGradient id='g' gradientUnits='userSpaceOnUse' x2='1' gradientTransform='matrix(0.27356 0.55357 -0.01604 0.27356 0.02322 -0.13678)'%3E%3Cstop stop-color='%2375c2ff'/%3E%3Cstop offset='1' stop-color='%23269df9'/%3E%3C/linearGradient%3E%3Crect width='1' height='1' fill='url(%23g)'/%3E%3C/svg%3E");
+  background-size: 100% 100%;
+}
+@utility bg-gradient-primary-40 {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1' preserveAspectRatio='none'%3E%3ClinearGradient id='g' gradientUnits='userSpaceOnUse' x2='1' gradientTransform='matrix(0.27356 0.55357 -0.01604 0.27356 0.02322 -0.13678)'%3E%3Cstop stop-color='%2375c2ff'/%3E%3Cstop offset='1' stop-color='%23269df9'/%3E%3C/linearGradient%3E%3Crect width='1' height='1' fill='url(%23g)' opacity='0.4'/%3E%3C/svg%3E");
+  background-size: 100% 100%;
+}
+@utility bg-gradient-hero {
+  background-image: linear-gradient(302.2deg, #3b7bb5 39.4%, #5cb4f8 108.8%);
+}
+@utility bg-gradient-promo {
+  background-image: linear-gradient(134deg, #f8fbfd 39%, #269df9 100%);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  html {
+    overscroll-behavior: none;
+  }
+  body {
+    @apply bg-background font-sans text-foreground antialiased;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-page-fade,
+  .animate-drawer-in,
+  .animate-drawer-out,
+  .animate-fade-out {
+    animation: none;
+  }
+}

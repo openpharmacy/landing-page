@@ -1,0 +1,7 @@
+import type { ReactNode } from "react";
+
+import { PageTransition } from "@/components/layout/page-transition";
+
+export default function StoreTemplate({ children }: { children: ReactNode }) {
+  return <PageTransition>{children}</PageTransition>;
+}
