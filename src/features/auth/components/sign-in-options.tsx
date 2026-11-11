@@ -7,7 +7,7 @@ import { Icon } from "@/components/ui/icon";
 import { useSocialSignIn } from "../hooks/use-social-sign-in";
 import { withNext } from "../model/next-path";
 import { GoogleAccountModal } from "./google-account-modal";
-import { GoogleOverlay } from "./google-overlay";
+import { GoogleSignInButton } from "./google-sign-in-button";
 import { OptionButton } from "./option-button";
 import { OrDivider } from "./or-divider";
 
@@ -27,17 +27,17 @@ export function SignInOptions({ next }: { next: string | null }) {
         </div>
 
         <div className="flex flex-col gap-3">
-          <div className="group relative rounded-control focus-within:ring-2 focus-within:ring-ring">
+          {social.googleButton ? (
+            <GoogleSignInButton button={social.googleButton} />
+          ) : (
             <OptionButton
-              covered={social.googleButton !== null}
               className="gap-2 lg:gap-5"
               onClick={() => social.start("google")}
             >
               <Icon src="/icons/auth/google.svg" size={20} />
               Sign in with Google
             </OptionButton>
-            <GoogleOverlay button={social.googleButton} />
-          </div>
+          )}
           <OptionButton
             className="gap-2 lg:gap-[15px]"
             onClick={() => social.start("apple")}

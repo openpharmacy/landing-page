@@ -138,7 +138,7 @@ describe("real mode", () => {
     expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
   });
 
-  it("lays Google's button over ours and goes to ?next= after its sign-in", async () => {
+  it("shows Google's button in place of ours and goes to ?next= after its sign-in", async () => {
     vi.stubEnv("NEXT_PUBLIC_GOOGLE_CLIENT_ID", "client-1");
     const google = fakeGoogle();
     actions.signInWithProvider.mockResolvedValue({
