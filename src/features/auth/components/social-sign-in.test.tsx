@@ -1,4 +1,10 @@
-import { fireEvent, render, screen, waitFor } from "@testing-library/react";
+import {
+  act,
+  fireEvent,
+  render,
+  screen,
+  waitFor,
+} from "@testing-library/react";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
 import { ApiError } from "@/lib/api/errors";
@@ -33,6 +39,27 @@ vi.mock("../api/provider-sdk", async (importOriginal) => ({
 
 const click = (name: string) =>
   fireEvent.click(screen.getByRole("button", { name }));
+
+type Token = { id_token: string; nonce: string };
+
+function fakeGoogle() {
+  let onToken: (token: Token) => void = () => {};
+  const draw = vi.fn((parent: HTMLElement) => {
+    const button = document.createElement("button");
+    button.textContent = "Google's button";
+    parent.append(button);
+  });
+  sdk.prepareGoogle.mockImplementation(
+    async (_id: string, _context: string, callback: (token: Token) => void) => {
+      onToken = callback;
+      return { render: draw };
+    },
+  );
+  return {
+    draw,
+    signIn: (token: Token) => act(() => onToken(token)),
+  };
+}
 
 beforeEach(() => {
   mode.mock = false;
@@ -111,23 +138,29 @@ describe("real mode", () => {
     expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
   });
 
-  it("signs in with Google's ID token and goes to ?next=", async () => {
+  it("lays Google's button over ours and goes to ?next= after its sign-in", async () => {
     vi.stubEnv("NEXT_PUBLIC_GOOGLE_CLIENT_ID", "client-1");
-    const request = vi
-      .fn()
-      .mockResolvedValue({ id_token: "google-token", nonce: "raw-nonce" });
-    sdk.prepareGoogle.mockResolvedValue({ request });
+    const google = fakeGoogle();
     actions.signInWithProvider.mockResolvedValue({
       user: { id: "u-1", email: "g@b.com" },
       isNewUser: false,
     });
 
     render(<SignInOptions next="/account" />);
-    await waitFor(() =>
-      expect(sdk.prepareGoogle).toHaveBeenCalledWith("client-1", "signin"),
+    await waitFor(() => expect(google.draw).toHaveBeenCalled());
+    expect(sdk.prepareGoogle).toHaveBeenCalledWith(
+      "client-1",
+      "signin",
+      expect.any(Function),
     );
-    await Promise.resolve();
-    click("Sign in with Google");
+    expect(
+      screen.queryByRole("button", { name: "Sign in with Google" }),
+    ).not.toBeInTheDocument();
+    expect(
+      screen.getByRole("button", { name: "Google's button" }),
+    ).toBeInTheDocument();
+
+    await google.signIn({ id_token: "google-token", nonce: "raw-nonce" });
     await waitFor(() => expect(push).toHaveBeenCalledWith("/account"));
     expect(actions.signInWithProvider).toHaveBeenCalledWith("google", {
       id_token: "google-token",
@@ -164,76 +197,64 @@ describe("real mode", () => {
 
   it("signs an existing account in from sign-up and goes to ?next=", async () => {
     vi.stubEnv("NEXT_PUBLIC_GOOGLE_CLIENT_ID", "client-1");
-    sdk.prepareGoogle.mockResolvedValue({
-      request: vi.fn().mockResolvedValue({ id_token: "t", nonce: "n" }),
-    });
+    const google = fakeGoogle();
     actions.signInWithProvider.mockResolvedValue({
       user: { id: "u-1", email: "g@b.com" },
       isNewUser: false,
     });
     render(<SignUpOptions next="/scripts" />);
-    await waitFor(() =>
-      expect(sdk.prepareGoogle).toHaveBeenCalledWith("client-1", "signup"),
+    await waitFor(() => expect(google.draw).toHaveBeenCalled());
+    expect(sdk.prepareGoogle).toHaveBeenCalledWith(
+      "client-1",
+      "signup",
+      expect.any(Function),
     );
-    await Promise.resolve();
-    click("Sign up with Google");
+    await google.signIn({ id_token: "t", nonce: "n" });
     await waitFor(() => expect(push).toHaveBeenCalledWith("/scripts"));
   });
 
   it("sends a new account from sign-up to the name step with ?next=", async () => {
     vi.stubEnv("NEXT_PUBLIC_GOOGLE_CLIENT_ID", "client-1");
-    sdk.prepareGoogle.mockResolvedValue({
-      request: vi.fn().mockResolvedValue({ id_token: "t", nonce: "n" }),
-    });
+    const google = fakeGoogle();
     actions.signInWithProvider.mockResolvedValue({
       user: { id: "u-1", email: "g@b.com" },
       isNewUser: true,
     });
     render(<SignUpOptions next="/scripts" />);
-    await waitFor(() => expect(sdk.prepareGoogle).toHaveBeenCalled());
-    await Promise.resolve();
-    click("Sign up with Google");
+    await waitFor(() => expect(google.draw).toHaveBeenCalled());
+    await google.signIn({ id_token: "t", nonce: "n" });
     await waitFor(() =>
       expect(push).toHaveBeenCalledWith("/sign-up/google?next=%2Fscripts"),
     );
   });
 
-  it("waits for a script that is still loading when clicked", async () => {
+  it("draws Google's button once its script has loaded", async () => {
     vi.stubEnv("NEXT_PUBLIC_GOOGLE_CLIENT_ID", "client-1");
-    let loaded: (prepared: unknown) => void = () => {};
+    const draw = vi.fn();
+    let loaded: (button: unknown) => void = () => {};
     sdk.prepareGoogle.mockReturnValue(
       new Promise((resolve) => {
         loaded = resolve;
       }),
     );
-    actions.signInWithProvider.mockResolvedValue({
-      user: { id: "u-1", email: "g@b.com" },
-      isNewUser: false,
-    });
     render(<SignInOptions next={null} />);
     click("Sign in with Google");
     expect(screen.queryByText(/isn't available/)).not.toBeInTheDocument();
+    expect(screen.queryByText(/could not load/)).not.toBeInTheDocument();
 
-    loaded({
-      request: vi.fn().mockResolvedValue({ id_token: "t", nonce: "n" }),
-    });
-    await waitFor(() => expect(push).toHaveBeenCalledWith("/home"));
+    await act(async () => loaded({ render: draw }));
+    expect(draw).toHaveBeenCalledOnce();
     expect(sdk.prepareGoogle).toHaveBeenCalledOnce();
   });
 
   it("tries a script that failed to load again on the next click", async () => {
     vi.stubEnv("NEXT_PUBLIC_GOOGLE_CLIENT_ID", "client-1");
     vi.spyOn(console, "warn").mockImplementation(() => {});
+    const draw = vi.fn();
     sdk.prepareGoogle
       .mockRejectedValueOnce(new Error("Could not load"))
       .mockRejectedValueOnce(new Error("Could not load"))
-      .mockResolvedValue({
-        request: vi.fn().mockResolvedValue({ id_token: "t", nonce: "n" }),
-      });
-    actions.signInWithProvider.mockResolvedValue({
-      user: { id: "u-1", email: "g@b.com" },
-      isNewUser: false,
-    });
+      .mockResolvedValue({ render: draw });
     render(<SignInOptions next={null} />);
     await waitFor(() => expect(sdk.prepareGoogle).toHaveBeenCalledTimes(1));
     click("Sign in with Google");
@@ -243,15 +264,13 @@ describe("real mode", () => {
       ),
     ).toBeInTheDocument();
     click("Sign in with Google");
-    await waitFor(() => expect(push).toHaveBeenCalledWith("/home"));
+    await waitFor(() => expect(draw).toHaveBeenCalled());
     expect(sdk.prepareGoogle).toHaveBeenCalledTimes(3);
   });
 
   it("shows the API's message when it refuses the token", async () => {
     vi.stubEnv("NEXT_PUBLIC_GOOGLE_CLIENT_ID", "client-1");
-    sdk.prepareGoogle.mockResolvedValue({
-      request: vi.fn().mockResolvedValue({ id_token: "t", nonce: "n" }),
-    });
+    const google = fakeGoogle();
     actions.signInWithProvider.mockRejectedValue(
       new ApiError({
         status: 401,
@@ -260,24 +279,23 @@ describe("real mode", () => {
       }),
     );
     render(<SignUpOptions next={null} />);
-    await waitFor(() => expect(sdk.prepareGoogle).toHaveBeenCalled());
-    await Promise.resolve();
-    click("Sign up with Google");
+    await waitFor(() => expect(google.draw).toHaveBeenCalled());
+    await google.signIn({ id_token: "t", nonce: "n" });
     expect(
       await screen.findByText("Invalid Credentials. Please try again."),
     ).toBeInTheDocument();
     expect(push).not.toHaveBeenCalled();
   });
 
-  it("says nothing when the user closes the provider's window", async () => {
-    vi.stubEnv("NEXT_PUBLIC_GOOGLE_CLIENT_ID", "client-1");
-    sdk.prepareGoogle.mockResolvedValue({
+  it("says nothing when the user closes Apple's window", async () => {
+    vi.stubEnv("NEXT_PUBLIC_APPLE_SERVICES_ID", "services-1");
+    sdk.prepareApple.mockResolvedValue({
       request: vi.fn().mockRejectedValue(new Error("cancelled")),
     });
     render(<SignInOptions next={null} />);
-    await waitFor(() => expect(sdk.prepareGoogle).toHaveBeenCalled());
+    await waitFor(() => expect(sdk.prepareApple).toHaveBeenCalled());
     await Promise.resolve();
-    click("Sign in with Google");
+    click("Sign in with Apple");
     await Promise.resolve();
     expect(actions.signInWithProvider).not.toHaveBeenCalled();
     expect(screen.queryByText(/isn't available/)).not.toBeInTheDocument();

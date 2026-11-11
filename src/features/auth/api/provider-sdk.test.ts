@@ -10,21 +10,16 @@ import {
   prepareGoogle,
 } from "./provider-sdk";
 
-type Listener = (n: {
-  isSkippedMoment: () => boolean;
-  isDismissedMoment: () => boolean;
-  getDismissedReason: () => string;
-}) => void;
-
 function fakeGoogle() {
   const calls: {
     config?: {
       client_id: string;
       nonce: string;
       context: string;
+      ux_mode: string;
       callback: (r: { credential?: string }) => void;
     };
-    listener?: Listener;
+    rendered?: { parent: HTMLElement; options: Record<string, unknown> };
   } = {};
   window.google = {
     accounts: {
@@ -32,20 +27,14 @@ function fakeGoogle() {
         initialize: (config) => {
           calls.config = config;
         },
-        prompt: (listener) => {
-          calls.listener = listener;
+        renderButton: (parent, options) => {
+          calls.rendered = { parent, options };
         },
       },
     },
   };
   return calls;
 }
-
-const moment = (skipped: boolean, dismissedReason?: string) => ({
-  isSkippedMoment: () => skipped,
-  isDismissedMoment: () => dismissedReason !== undefined,
-  getDismissedReason: () => dismissedReason ?? "",
-});
 
 const sha256 = (value: string) =>
   createHash("sha256").update(value).digest("hex");
@@ -75,33 +64,40 @@ describe("loadScript", () => {
 });
 
 describe("prepareGoogle", () => {
-  it("gives Google the hashed nonce and returns the ID token with the raw one", async () => {
+  it("draws Google's button, which opens Google's window", async () => {
     const google = fakeGoogle();
-    const prepared = await prepareGoogle("client-1", "signup");
+    const button = await prepareGoogle("client-1", "signup", vi.fn());
     expect(google.config).toMatchObject({
       client_id: "client-1",
       context: "signup",
+      ux_mode: "popup",
     });
 
-    const token = prepared.request();
+    const parent = document.createElement("div");
+    button.render(parent, 345);
+    expect(google.rendered?.parent).toBe(parent);
+    expect(google.rendered?.options).toMatchObject({
+      text: "signup_with",
+      width: 345,
+    });
+  });
+
+  it("gives Google the hashed nonce and passes on the ID token with the raw one", async () => {
+    const google = fakeGoogle();
+    const onToken = vi.fn();
+    await prepareGoogle("client-1", "signin", onToken);
     google.config!.callback({ credential: "google-id-token" });
-    const result = await token;
-    expect(result.id_token).toBe("google-id-token");
-    expect(google.config!.nonce).toBe(sha256(result.nonce));
+    const token = onToken.mock.calls[0][0];
+    expect(token.id_token).toBe("google-id-token");
+    expect(google.config!.nonce).toBe(sha256(token.nonce));
   });
 
-  it("reports a prompt Google did not show", async () => {
+  it("ignores an answer without a credential", async () => {
     const google = fakeGoogle();
-    const token = (await prepareGoogle("client-1", "signin")).request();
-    google.listener!(moment(true));
-    await expect(token).rejects.toThrow("Google sign-in could not open");
-  });
-
-  it("treats a closed prompt as cancelled", async () => {
-    const google = fakeGoogle();
-    const token = (await prepareGoogle("client-1", "signin")).request();
-    google.listener!(moment(false, "cancel_called"));
-    await expect(token).rejects.toThrow(CANCELLED);
+    const onToken = vi.fn();
+    await prepareGoogle("client-1", "signin", onToken);
+    google.config!.callback({});
+    expect(onToken).not.toHaveBeenCalled();
   });
 });
 

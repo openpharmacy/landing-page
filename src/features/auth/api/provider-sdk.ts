@@ -7,17 +7,15 @@ export type ProviderToken = {
 
 export type PreparedProvider = { request: () => Promise<ProviderToken> };
 
+export type GoogleButton = {
+  render: (parent: HTMLElement, width: number) => void;
+};
+
 export const CANCELLED = "cancelled";
 
 const GOOGLE_SRC = "https://accounts.google.com/gsi/client";
 const APPLE_SRC =
   "https://appleid.cdn-apple.com/appleauth/static/jsapi/appleid/1/en_US/appleid.auth.js";
-
-type PromptNotification = {
-  isSkippedMoment: () => boolean;
-  isDismissedMoment: () => boolean;
-  getDismissedReason: () => string;
-};
 
 type GoogleAccountsId = {
   initialize: (config: {
@@ -25,9 +23,20 @@ type GoogleAccountsId = {
     callback: (response: { credential?: string }) => void;
     nonce: string;
     context: "signin" | "signup";
-    use_fedcm_for_prompt: boolean;
+    ux_mode: "popup";
   }) => void;
-  prompt: (listener: (notification: PromptNotification) => void) => void;
+  renderButton: (
+    parent: HTMLElement,
+    options: {
+      type: "standard";
+      theme: "outline";
+      size: "large";
+      text: "signin_with" | "signup_with";
+      shape: "rectangular";
+      logo_alignment: "center";
+      width: number;
+    },
+  ) => void;
 };
 
 type AppleIdAuth = {
@@ -90,51 +99,33 @@ export async function createNonce(): Promise<{ raw: string; hashed: string }> {
 export async function prepareGoogle(
   clientId: string,
   context: "signin" | "signup",
-): Promise<PreparedProvider> {
+  onToken: (token: ProviderToken) => void,
+): Promise<GoogleButton> {
   if (!window.google) await loadScript(GOOGLE_SRC);
   const id = window.google?.accounts.id;
   if (!id) throw new Error("Google sign-in did not load");
   const nonce = await createNonce();
 
-  let pending: {
-    resolve: (token: ProviderToken) => void;
-    reject: (error: Error) => void;
-  } | null = null;
-  const settle = () => {
-    const current = pending;
-    pending = null;
-    return current;
-  };
-
   id.initialize({
     client_id: clientId,
     nonce: nonce.hashed,
     context,
-    use_fedcm_for_prompt: true,
+    ux_mode: "popup",
     callback: ({ credential }) => {
-      const current = settle();
-      if (credential)
-        current?.resolve({ id_token: credential, nonce: nonce.raw });
-      else current?.reject(new Error(CANCELLED));
+      if (credential) onToken({ id_token: credential, nonce: nonce.raw });
     },
   });
 
   return {
-    request: () =>
-      new Promise<ProviderToken>((resolve, reject) => {
-        pending = { resolve, reject };
-        id.prompt((notification) => {
-          if (notification.isSkippedMoment()) {
-            settle()?.reject(
-              new Error("Google sign-in could not open. Try again later."),
-            );
-          } else if (
-            notification.isDismissedMoment() &&
-            notification.getDismissedReason() !== "credential_returned"
-          ) {
-            settle()?.reject(new Error(CANCELLED));
-          }
-        });
+    render: (parent, width) =>
+      id.renderButton(parent, {
+        type: "standard",
+        theme: "outline",
+        size: "large",
+        text: context === "signup" ? "signup_with" : "signin_with",
+        shape: "rectangular",
+        logo_alignment: "center",
+        width,
       }),
   };
 }

@@ -8,9 +8,11 @@ import { isMockingEnabled } from "@/config/env";
 import type { Provider, ProviderPayload } from "../api/auth-api";
 import {
   CANCELLED,
+  type GoogleButton,
   prepareApple,
   prepareGoogle,
   type PreparedProvider,
+  type ProviderToken,
 } from "../api/provider-sdk";
 import type { GoogleAccount } from "../components/google-account-modal";
 import { useAuthActions } from "./use-auth-actions";
@@ -37,11 +39,13 @@ export function useSocialSignIn(intent: Intent, next: string | null = null) {
   const { signInWithProvider } = useAuthActions();
   const [notice, setNotice] = useState<string | null>(null);
   const [mockOpen, setMockOpen] = useState(false);
-  const loading = useRef<Partial<Record<Provider, Promise<PreparedProvider>>>>(
-    {},
-  );
-  const ready = useRef<Partial<Record<Provider, PreparedProvider>>>({});
+  const [googleButton, setGoogleButton] = useState<GoogleButton | null>(null);
+  const loading = useRef<
+    Partial<Record<Provider, Promise<GoogleButton | PreparedProvider>>>
+  >({});
+  const apple = useRef<PreparedProvider | null>(null);
   const waiting = useRef(false);
+  const onGoogleToken = useRef<(token: ProviderToken) => void>(() => {});
 
   const prepare = useCallback(
     (provider: Provider) => {
@@ -51,12 +55,20 @@ export function useSocialSignIn(intent: Intent, next: string | null = null) {
       if (!pending) {
         pending =
           provider === "google"
-            ? prepareGoogle(id, intent === "sign-up" ? "signup" : "signin")
+            ? prepareGoogle(
+                id,
+                intent === "sign-up" ? "signup" : "signin",
+                (token) => onGoogleToken.current(token),
+              )
             : prepareApple(id);
         loading.current[provider] = pending;
         pending.then(
           (prepared) => {
-            ready.current[provider] = prepared;
+            if (provider === "google") {
+              setGoogleButton(prepared as GoogleButton);
+            } else {
+              apple.current = prepared as PreparedProvider;
+            }
           },
           (error: unknown) => {
             console.warn(error);
@@ -110,9 +122,8 @@ export function useSocialSignIn(intent: Intent, next: string | null = null) {
       else setNotice(UNAVAILABLE[intent]);
       return;
     }
-    const prepared = ready.current[provider];
-    if (prepared) {
-      void finish(provider, prepared.request());
+    if (provider === "apple" && apple.current) {
+      void finish(provider, apple.current.request());
       return;
     }
     const pending = prepare(provider);
@@ -124,13 +135,20 @@ export function useSocialSignIn(intent: Intent, next: string | null = null) {
     waiting.current = true;
     try {
       const loaded = await pending;
-      void finish(provider, loaded.request());
+      if (provider === "apple") {
+        void finish(provider, (loaded as PreparedProvider).request());
+      }
     } catch {
       setNotice(NOT_LOADED[provider]);
     } finally {
       waiting.current = false;
     }
   }
+
+  useEffect(() => {
+    onGoogleToken.current = (token) =>
+      void finish("google", Promise.resolve(token));
+  });
 
   function pickMockAccount(account: GoogleAccount | null) {
     setMockOpen(false);
@@ -144,6 +162,7 @@ export function useSocialSignIn(intent: Intent, next: string | null = null) {
   return {
     notice,
     start,
+    googleButton,
     mockOpen,
     closeMock: () => setMockOpen(false),
     pickMockAccount,
